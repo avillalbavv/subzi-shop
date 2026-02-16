@@ -136,11 +136,10 @@ header{
   z-index: 56;
 }
 .nav.open{ display:flex; animation: rise .18s ease; }
-.nav .chip{
+.nav .navDropdown .chip, .nav .navDropdown .chip, .nav .chip{
   width: 100%;
   justify-content: space-between;
 }
-
 
 .brand{
   display:flex;
@@ -197,6 +196,10 @@ header{
   justify-content:flex-end;
 }
 .chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
   padding: 10px 12px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.10);
@@ -276,7 +279,8 @@ header{
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   z-index: 55;
   display:none;
 }
@@ -899,7 +903,7 @@ header #navMenu.navDropdown.open{
   display: flex !important;
   animation: rise .18s ease;
 }
-header #navMenu.navDropdown .chip{
+header #navMenu.navDropdown .navDropdown .chip, .nav .navDropdown .chip, .nav .chip{
   width: 100%;
   justify-content: space-between;
 }
@@ -996,7 +1000,7 @@ header .menuBtn .mlabel{
 }
 
 /* Asegurar que contenido quede por encima */
-header, main, footer, .waFloat, .chatFab, .chatPanel, .toast, .overlay, .drawer{ position: relative; z-index: 1; }
+main, footer, .toast{ position: relative; z-index: 1; }
 
 /* ===== Inicio limpio (categorías) ===== */
 .heroClean{ padding: 22px; }
@@ -1094,4 +1098,113 @@ header, main, footer, .waFloat, .chatFab, .chatPanel, .toast, .overlay, .drawer{
 }
 @media (max-width: 980px){
   .howGrid{ grid-template-columns: 1fr; }
+}
+
+
+/* ===== Modal lock (cesto) ===== */
+body.lock{ overflow: hidden; }
+
+/* ===== Asegurar overlay/drawer siempre fijos arriba ===== */
+.overlay{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 80 !important;
+}
+.drawer{
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 100vh !important;
+  z-index: 90 !important;
+}
+
+
+/* ===== Mobile header fixes ===== */
+@media (max-width: 780px){
+  .topbar{
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .brand{
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+  .brandtext .tag{ display:none; }
+  .logo{ width: 76px; height: 76px; border-radius: 18px; }
+
+  .hdrRight{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* Que el WhatsApp no “rompa” el layout */
+  #btnWhatsAppHeader{
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .cartBtn{
+    flex: 0 0 auto;
+  }
+  .menuBtn{
+    flex: 0 0 auto;
+    min-width: 120px;
+  }
+
+  /* Dropdown: panel más cómodo en móvil */
+  .navDropdown{
+    position: fixed;
+    top: 88px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+}
+
+@media (max-width: 420px){
+  .brandtext .name{ font-size: 18px; }
+  .btn, .chip{ font-size: 12px; }
+  .menuBtn{ min-width: 110px; height: 44px; }
+  .menuBtn .mlabel{ font-size: 12px; }
+  .cartBtn{ height: 44px; }
+  #btnWhatsAppHeader{ height: 44px; padding: 10px 10px; }
+}
+
+@media (max-width: 560px){
+  .drawer{
+    width: 100vw !important;
+    border-left: 0 !important;
+    border-radius: 0 !important;
+  }
+  .drawerHead{ padding-top: 16px; }
+}
+
+/* ===== FORCE waFloat fixed (evita que caiga al footer) ===== */
+.waFloat{
+  position: fixed !important;
+  z-index: 95 !important;
+  right: calc(16px + env(safe-area-inset-right)) !important;
+  bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+}
+
+/* ===== Asegurar chatbot flotante a la derecha ===== */
+.chatFab{
+  position: fixed !important;
+  right: 16px !important;
+  left: auto !important;
+  bottom: 74px !important;
+  z-index: 95 !important;
+}
+.chatPanel{
+  position: fixed !important;
+  right: 16px !important;
+  left: auto !important;
+  bottom: 132px !important;
+  z-index: 96 !important;
+}
+@media (max-width: 520px){
+  .chatPanel{ width: calc(100% - 20px) !important; right: 10px !important; left: auto !important; }
+  .chatFab{ right: 10px !important; }
 }

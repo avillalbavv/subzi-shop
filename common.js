@@ -3,12 +3,9 @@
  * ES5 para máxima compatibilidad.
  */
 (function(){
-  if (!window.SUBZI || !SUBZI.core) return;
-  var core = SUBZI.core;
-
   function byId(id){ return document.getElementById(id); }
 
-  // Menú
+  // ===== MENU (sin depender de SUBZI.core) =====
   var navMenu = byId("navMenu");
   var menuOverlay = byId("menuOverlay");
   var btnMenu = byId("btnMenu");
@@ -24,13 +21,18 @@
     if (btnMenu) btnMenu.setAttribute("aria-expanded","false");
   }
 
-  if (btnMenu){
-    btnMenu.addEventListener("click", function(e){
-      e.preventDefault();
-      if (navMenu && navMenu.classList.contains("open")) closeMenu();
-      else openMenu();
-    });
-  }
+  // Evitar doble bind (por caché o scripts duplicados)
+  try{
+    if (btnMenu && btnMenu.getAttribute("data-bound-menu") !== "1"){
+      btnMenu.setAttribute("data-bound-menu","1");
+      btnMenu.addEventListener("click", function(e){
+        if (e) e.preventDefault();
+        if (navMenu && navMenu.classList.contains("open")) closeMenu();
+        else openMenu();
+      });
+    }
+  }catch(e){}
+
   if (menuOverlay) menuOverlay.addEventListener("click", closeMenu);
 
   document.addEventListener("keydown", function(e){
@@ -44,6 +46,10 @@
       links[i].addEventListener("click", closeMenu);
     }
   }
+
+  // ===== Si core existe, inicializamos el resto =====
+  if (!window.SUBZI || !SUBZI.core) return;
+  var core = SUBZI.core;
 
   // WhatsApp (header + float + hero si existe)
   var waHead = byId("btnWhatsAppHeader");
@@ -93,5 +99,4 @@
     var y = byId("year");
     if (y) y.textContent = String(new Date().getFullYear());
   }catch(e){}
-
 })();

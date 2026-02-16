@@ -189,12 +189,14 @@ function openCart(){
   var dr = $("#drawer");
   if (ov) ov.classList.add("show");
   if (dr) dr.classList.add("open");
+  document.body.classList.add("lock");
 }
 function closeCart(){
   var ov = $("#overlay");
   var dr = $("#drawer");
   if (ov) ov.classList.remove("show");
   if (dr) dr.classList.remove("open");
+  document.body.classList.remove("lock");
 }
 
 function addToCart(productId, opts){
