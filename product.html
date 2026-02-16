@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SubZi — Detalle</title>
+  <meta name="description" content="Detalle del servicio SubZi." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="bgAnim" aria-hidden="true"></div>
+
+<header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <div class="logo" title="SubZi">
+          <img alt="Logo SubZi" src="./assets/logo.jpg" />
+        </div>
+        <div class="brandtext">
+          <div class="name">SubZi</div>
+          <div class="tag">Streaming · IA · Steam · Edición · pedidos por WhatsApp</div>
+        </div>
+      </div>
+
+      <div class="hdrRight">
+        <div class="chip primary" id="btnWhatsAppHeader">WhatsApp</div>
+
+        <button class="cartBtn" id="btnCart" aria-label="Abrir cesto">
+          <span style="font-weight:900;">🧺 Cesto</span>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="menuBtn" id="btnMenu" aria-label="Abrir categorías" aria-expanded="false" title="Categorías">
+          <span class="mwrap" aria-hidden="true">
+            <span class="mbar"></span>
+            <span class="mbar"></span>
+            <span class="mbar"></span>
+          </span>
+          <span class="mlabel">Categorías</span>
+        </button>
+      </div>
+
+      <!-- Dropdown de categorías -->
+      <nav class="navDropdown" id="navMenu" aria-label="Categorías">
+        <a class="chip" href="./index.html">🏠 Inicio</a>
+        <a class="chip" href="./streaming.html">📺 Streaming</a>
+        <a class="chip" href="./descuentos.html">🏷️ Descuentos</a>
+        <a class="chip" href="./chatgpt.html">🤖 ChatGPT/IA</a>
+        <a class="chip" href="./steam.html">🎮 Steam</a>
+        <a class="chip" href="./edicion.html">🎬 Edición</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="menuOverlay" id="menuOverlay" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="section" id="inicio">
+      <div class="sectionHead reveal">
+        <h2>Detalle del servicio</h2>
+        <p class="hint"><a class="soc" href="./index.html#inicio">← Volver al inicio</a></p>
+      </div>
+
+      <div class="detailGrid">
+        <div class="card detailCard glowBorder reveal" id="detailCard">
+          <div class="detailTop">
+            <div class="detailImg">
+              <img id="detailImg" alt="Imagen del producto" />
+            </div>
+            <div class="detailInfo">
+              <div class="pill" id="detailBadge">Servicio</div>
+              <h1 class="detailTitle" id="detailTitle">Producto</h1>
+              <p class="lead" id="detailDesc">Descripción</p>
+
+              <div class="detailActions">
+                <button class="btn primary" id="btnAddDetail">Agregar al cesto</button>
+                <button class="btn ghost" id="btnWhatsDetail">Consultar por WhatsApp</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="detailSections">
+            <div class="detailBlock reveal">
+              <h3>Plan</h3>
+              <p id="detailPlan" class="mutedP">A definir</p>
+            </div>
+            <div class="detailBlock reveal">
+              <h3>Pagos</h3>
+              <p id="detailPay" class="mutedP">A definir</p>
+            </div>
+            <div class="detailBlock reveal">
+              <h3>Cómo funciona</h3>
+              <p id="detailHow" class="mutedP">A definir</p>
+            </div>
+            <div class="detailBlock reveal">
+              <h3>Incluye</h3>
+              <ul id="detailFeatures" class="features"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card heroSide reveal">
+          <div class="mini">
+            <h3>✅ Soporte</h3>
+            <p>Te guiamos por WhatsApp para activar y usar.</p>
+          </div>
+          <div class="mini">
+            <h3>🧺 Cesto + WhatsApp</h3>
+            <p>Podés agregar varios servicios y enviar el pedido.</p>
+          </div>
+          <div class="mini">
+            <h3>🏷️ Promos</h3>
+            <p>Consultá combos y descuentos en la web.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer>
+    <div class="wrap foot">
+      <div class="footLeft">
+        <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div>
+        <div class="credit">Desarrollo web por <b>Universitario Alejandro Cota Villalba</b>.</div>
+      </div>
+
+      <div class="social">
+        <a class="soc" href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a>
+        <a class="soc" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+        <a class="soc" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Cesto de compras">
+    <div class="drawerHead">
+      <h3>Tu cesto</h3>
+      <button class="closeBtn" id="btnClose" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="drawerBody" id="cartItems"></div>
+
+    <div class="drawerFoot">
+      <div class="totals">
+        <div class="label">Subtotal</div>
+        <div class="val" id="subtotalValue">A confirmar</div>
+      </div>
+
+      <div class="totals">
+        <div class="label">Cupón</div>
+        <div class="val" id="couponState">—</div>
+      </div>
+
+      <div class="totals">
+        <div class="label">Descuento</div>
+        <div class="val" id="discountValue">—</div>
+      </div>
+
+      <div class="totals">
+        <div class="label">Total</div>
+        <div class="val" id="totalValue">A confirmar</div>
+      </div>
+
+      <div class="discountRow">
+        <input class="input" id="couponInput" placeholder="Cupón (ej: SUBZI10)" />
+        <button class="btn ghost" id="btnApplyCoupon">Aplicar</button>
+      </div>
+
+      <button class="btn primary" style="width:100%; justify-content:center;" id="btnCheckout">
+        Finalizar por WhatsApp <span aria-hidden="true">📲</span>
+      </button>
+
+      <p class="note">
+        Nota: Si el precio está en “Consultar”, te confirmamos por WhatsApp.
+      </p>
+    </div>
+  </aside>
+
+  <div class="waFloat" id="btnWhatsAppFloat" title="Abrir WhatsApp">
+    <div class="waDot"></div>
+    <span>WhatsApp</span>
+  </div>
+
+  <button class="chatFab" id="chatFab" aria-label="Abrir chatbot" title="Chatbot">🤖</button>
+  <div class="chatPanel" id="chatPanel" aria-label="Chatbot">
+    <div class="chatHead">
+      <div class="t">
+        <b>Asistente SubZi</b>
+        <small>FAQ + WhatsApp</small>
+      </div>
+      <button class="closeBtn" id="chatClose" aria-label="Cerrar chat">✕</button>
+    </div>
+    <div class="chatBody" id="chatBody"></div>
+    <div class="chatQuick">
+      <div class="q" data-q="Streaming">Streaming</div>
+      <div class="q" data-q="Descuentos">Descuentos</div>
+      <div class="q" data-q="IA">ChatGPT/IA</div>
+      <div class="q" data-q="Steam">Steam</div>
+      <div class="q" data-q="Edición">Edición</div>
+      <div class="q" data-q="Precios">Precios</div>
+      <div class="q" data-q="Hablar">Hablar por WhatsApp</div>
+    </div>
+    <div class="chatInputRow">
+      <input class="chatInput" id="chatInput" placeholder="Escribí acá… (ej: quiero Netflix)" />
+      <button class="chatSend" id="chatSend" aria-label="Enviar">Enviar</button>
+    </div>
+  </div>
+
+  <script src="./data.js"></script>
+  <script src="./core.js"></script>
+  <script src="./common.js"></script>
+  <script src="./product.js"></script>
+  <script src="./chat.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
