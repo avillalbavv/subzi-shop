@@ -5,6 +5,61 @@
 (function(){
   function byId(id){ return document.getElementById(id); }
 
+  // ===== POPUP 'CÓMO COMPRAR' (se cierra sola en 5s) =====
+
+function shouldShowStartupPopup(){
+  // Solo en inicio (/, /index.html)
+  try{
+    var p = (location.pathname || "").split("/").pop();
+    return !p || p === "index.html";
+  }catch(e){ return false; }
+}
+
+function showStartupPopup(){
+  // Evitar duplicados
+  if (document.getElementById("startPopupOverlay")) return;
+
+  var ov = document.createElement("div");
+  ov.id = "startPopupOverlay";
+  ov.className = "startPopupOverlay";
+  ov.innerHTML =
+    '<div class="startPopup" role="dialog" aria-label="Cómo comprar">' +
+      '<div class="startPopupHead">' +
+        '<b>Cómo comprar</b>' +
+        '<button class="closeBtn" id="startPopupClose" aria-label="Cerrar">✕</button>' +
+      '</div>' +
+      '<div class="startPopupBody">' +
+        '<ol class="startSteps">' +
+          '<li>Entrá a <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
+          '<li>Tocá <b>Añadir al cesto</b> en lo que querés.</li>' +
+          '<li>Abrí el <b>🧺 Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
+          '<li>Te respondemos para coordinar el pago y la entrega.</li>' +
+          '<li>Si tenés <b>cashback</b>, podés activarlo desde el cesto.</li>' +
+        '</ol>' +
+        '<div class="startPopupNote">Este mensaje se cierra solo en 5 segundos (o tocá fuera para cerrar).</div>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(ov);
+
+  function close(){
+    if (!ov) return;
+    ov.classList.remove("show");
+    setTimeout(function(){
+      try{ ov.remove(); }catch(e){}
+    }, 180);
+  }
+
+  ov.addEventListener("click", function(e){ if (e && e.target === ov) close(); });
+  var btn = document.getElementById("startPopupClose");
+  if (btn) btn.addEventListener("click", close);
+
+  // Mostrar + autocierre
+  setTimeout(function(){ ov.classList.add("show"); }, 0);
+  setTimeout(close, 5000);
+}
+
+
   // Migración desde versiones viejas (una vez)
   try{
     var oldCart = localStorage.getItem("subzi_cart");
@@ -362,10 +417,36 @@
         client.auth.signUp({
           email: email,
           password: pass,
-          options: { data: { first_name: first, last_name: last } }
+          options: {
+            data: { first_name: first, last_name: last },
+            // Asegura que la confirmación vuelva a tu sitio (no a localhost)
+            emailRedirectTo: (window.location.origin + '/index.html')
+          }
         }).then(function(res){
           if (res.error){
-            showMsg(res.error.message || "No se pudo registrar.", false);
+            var m = (res.error.message || "").toString();
+            var ml = m.toLowerCase();
+            
+// Rate limit (429): Supabase limita los emails de confirmación/recuperación
+if ((res.error.status && String(res.error.status) === "429") || ml.includes("rate limit") || ml.includes("too many")){
+  showMsg("Límite de emails alcanzado (Supabase). Para seguir: usá un email ya registrado e iniciá sesión, o desactivá temporalmente la confirmación por email en Supabase → Auth → Providers (solo para pruebas), o configurá SMTP / aumentá rate limits.", false);
+  setTab("login");
+  return;
+}
+
+// Supabase suele responder con textos tipo "User already registered" / "already exists"
+            // Pediste: si el email ya está registrado, no permitir re-registro.
+            if (ml.includes("already") && (ml.includes("registered") || ml.includes("exists") || ml.includes("exist"))){
+              showMsg("Ese email ya está registrado. Iniciá sesión o usá \"Recuperar\" para cambiar la contraseña.", false);
+              setTab("login");
+              return;
+            }
+            if (ml.includes("email") && (ml.includes("registered") || ml.includes("exists"))){
+              showMsg("Ese email ya está registrado. Iniciá sesión o usá \"Recuperar\".", false);
+              setTab("login");
+              return;
+            }
+            showMsg(m || "No se pudo registrar.", false);
             return;
           }
 
@@ -381,7 +462,14 @@
             afterAuth(user);
             if (window.SUBZI && SUBZI.core) SUBZI.core.toast("Cuenta creada ✅");
           } else {
-            showMsg("Cuenta creada ✅ Revisá tu email para confirmar y luego iniciá sesión.", true);
+            // Cuando la confirmación por email está activa, suele venir sin sesión.
+            // Si por algún motivo no viene user/session (algunos setups devuelven éxito por seguridad),
+            // avisamos que no se puede re-registrar si ya existe.
+            if (!user && !session){
+              showMsg("Si este email ya está registrado, no se puede crear otra cuenta. Iniciá sesión o usá \"Recuperar\". Si es nuevo, revisá tu email para confirmar.", true);
+            } else {
+              showMsg("Cuenta creada ✅ Revisá tu email para confirmar y luego iniciá sesión.", true);
+            }
             setTab("login");
           }
         });
@@ -407,9 +495,15 @@
 
         client.auth.resetPasswordForEmail(email, redirectTo ? { redirectTo: redirectTo } : {}).then(function(res){
           if (res.error){
-            showMsg(res.error.message || "No se pudo enviar el email.", false);
-            return;
-          }
+  var m = (res.error.message || "").toString();
+  var ml = m.toLowerCase();
+  if ((res.error.status && String(res.error.status) === "429") || ml.includes("rate limit") || ml.includes("too many")){
+    showMsg("Límite de emails alcanzado (Supabase). Evitá pedir varios enlaces seguidos. Para pruebas podés desactivar confirmación por email o configurar SMTP / rate limits en Supabase.", false);
+    return;
+  }
+  showMsg(m || "No se pudo enviar el email.", false);
+  return;
+}
           showMsg("Listo ✅ Te enviamos un enlace al email.", true);
         });
       });
@@ -553,6 +647,8 @@
   document.addEventListener("DOMContentLoaded", function(){
     initAuth();
     initCoreBits();
+
+    try{ if (shouldShowStartupPopup()) showStartupPopup(); }catch(e){}
 
     // Año
     try{

@@ -1762,3 +1762,55 @@ footer .social{
   .pBtn{ height: 42px; }
 }
 
+
+
+/* ===== Popup 'Cómo comprar' (auto 5s) ===== */
+
+.startPopupOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  background: rgba(0,0,0,0.60);
+  display:none;
+  padding: 16px;
+}
+.startPopupOverlay.show{ display:block; }
+
+.startPopup{
+  width: min(560px, calc(100vw - 24px));
+  margin: 10vh auto;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(10,10,10,0.94);
+  box-shadow: 0 30px 120px rgba(0,0,0,0.75);
+  overflow:hidden;
+}
+.startPopupHead{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.startPopupHead b{ font-size: 14px; }
+.startPopupBody{ padding: 14px 16px 16px; }
+.startSteps{
+  margin: 0;
+  padding-left: 18px;
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(255,255,255,0.86);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.startPopupNote{
+  margin-top: 12px;
+  color: rgba(255,255,255,0.60);
+  font-size: 12px;
+}
+
+@media (max-width: 520px){
+  .startPopup{ margin: 6vh auto; }
+  .startSteps{ font-size: 12px; }
+}

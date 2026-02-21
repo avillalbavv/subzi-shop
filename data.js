@@ -110,6 +110,5 @@ SUBZI.products = [
       pagos: "Pago a coordinar por WhatsApp.",
       how: "Confirmamos estado, precio y forma de entrega."
     }
-  },
-    }
+  }
 ];
