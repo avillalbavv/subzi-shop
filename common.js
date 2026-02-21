@@ -192,38 +192,13 @@
       msg.className = ok ? "authMsg ok" : "authMsg err";
     }
 
-    
-    function fmtAuthError(err){
-      var msg = "";
-      try{ msg = (err && err.message) ? String(err.message) : String(err || ""); }catch(e){ msg = "Error"; }
-      msg = (msg || "").trim();
-      if (!msg) msg = "Error.";
-
-      // Mensajes comunes (más guía para arreglarlo rápido)
-      if (/signups?\s*(are|is)\s*not\s*allowed|signup\s*is\s*disabled|signups\s*disabled/i.test(msg)){
-        return "Registro deshabilitado en Supabase. Activá Email/Password en: Authentication → Providers → Email.";
-      }
-      if (/already\s*(registered|exists)|user\s*already\s*registered|email\s*already\s*registered/i.test(msg)){
-        return "Ese email ya está registrado. Probá iniciar sesión o usá 'Recuperar'.";
-      }
-      if (/password/i.test(msg) && /weak|least|characters|min/i.test(msg)){
-        return msg; // ya es claro
-      }
-      if (/database\s*error\s*saving\s*new\s*user/i.test(msg)){
-        return "Supabase devolvió: 'Database error saving new user'. Casi siempre es un trigger/tabla mal creada. Re-ejecutá `supabase.sql` en SQL Editor y revisá Logs → Auth para ver el detalle exacto.";
-      }
-      if (/captcha/i.test(msg)){
-        return "Supabase está pidiendo CAPTCHA para registrar. Desactivá CAPTCHA en Auth settings o implementá captchaToken en el frontend.";
-      }
-      if (/redirect/i.test(msg) && /(not\s*allowed|forbidden)/i.test(msg)){
-        return "Redirect URL no permitida. Agregá tu URL en Supabase → Auth → URL Configuration → Redirect URLs.";
-      }
-      return msg;
-    }
-
-function showLoggedUI(user){
+    function showLoggedUI(user){
       var logged = byId("authLogged");
       if (logged) logged.style.display = user ? "" : "none";
+      // Ocultar tabs cuando hay sesión (en móvil queda “pegado” si se muestran)
+      var tabsWrap = document.querySelector(".authTabs");
+      if (tabsWrap) tabsWrap.style.display = user ? "none" : "";
+
 
       if (formLogin) formLogin.style.display = user ? "none" : "";
       if (formReg) formReg.style.display = "none";
@@ -348,8 +323,7 @@ function showLoggedUI(user){
 
         client.auth.signInWithPassword({ email: email, password: pass }).then(function(res){
           if (res.error){
-            console.error('Supabase login error:', res.error);
-            showMsg(fmtAuthError(res.error) || "No se pudo iniciar sesión.", false);
+            showMsg(res.error.message || "No se pudo iniciar sesión.", false);
             return;
           }
           var user = res.data ? res.data.user : null;
@@ -384,16 +358,14 @@ function showLoggedUI(user){
           showMsg("Falta configurar Supabase (config.js).", false);
           return;
         }
-        var cfg = (window.SUBZI && SUBZI.supabaseConfig) ? SUBZI.supabaseConfig : {};
-        var emailRedirectTo = (cfg.emailRedirectTo || "").trim();
-        var opts = { data: { first_name: first, last_name: last } };
-        if (emailRedirectTo) opts.emailRedirectTo = emailRedirectTo;
 
-        client.auth.signUp({ email: email, password: pass, options: opts }).then(function(res){
-
+        client.auth.signUp({
+          email: email,
+          password: pass,
+          options: { data: { first_name: first, last_name: last } }
+        }).then(function(res){
           if (res.error){
-            console.error('Supabase signup error:', res.error);
-            showMsg(fmtAuthError(res.error) || "No se pudo registrar.", false);
+            showMsg(res.error.message || "No se pudo registrar.", false);
             return;
           }
 
@@ -435,8 +407,7 @@ function showLoggedUI(user){
 
         client.auth.resetPasswordForEmail(email, redirectTo ? { redirectTo: redirectTo } : {}).then(function(res){
           if (res.error){
-            console.error('Supabase reset error:', res.error);
-            showMsg(fmtAuthError(res.error) || "No se pudo enviar el email.", false);
+            showMsg(res.error.message || "No se pudo enviar el email.", false);
             return;
           }
           showMsg("Listo ✅ Te enviamos un enlace al email.", true);

@@ -111,21 +111,5 @@ SUBZI.products = [
       how: "Confirmamos estado, precio y forma de entrega."
     }
   },
-  {
-    id: "f1-25",
-    category: "games",
-    icon: "🏎️",
-    name: "F1 25",
-    price: 0,
-    currency: "USD",
-    badge: "Juego",
-    desc: "Compra digital (consulta plataforma y disponibilidad).",
-    image: "./assets/products/f1-25.png",
-    features: ["Entrega digital", "Soporte", "Cotización"],
-    details: {
-      plan: "F1 25. Plataforma a confirmar.",
-      pagos: "Pago a coordinar por WhatsApp.",
-      how: "Te cotizamos y coordinamos entrega según plataforma/región."
     }
-  }
 ];

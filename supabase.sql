@@ -114,17 +114,3 @@ for each row execute function public.handle_new_user();
 -- Índices (opcionales)
 -- =========================
 create index if not exists profiles_email_idx on public.profiles (email);
-
-
--- =========================
--- Seguridad / compatibilidad
--- =========================
--- Importante: si alguna vez activaste FORCE RLS, el trigger de auto-provisión puede romper el registro.
--- Dejamos explícito NO FORCE para que el owner (y la función security definer) puedan insertar al crear usuario.
-alter table public.profiles no force row level security;
-alter table public.user_state no force row level security;
-
--- Grants (por si tu proyecto no los aplica automáticamente)
-grant usage on schema public to anon, authenticated;
-grant select, insert, update on table public.profiles to anon, authenticated;
-grant select, insert, update on table public.user_state to anon, authenticated;

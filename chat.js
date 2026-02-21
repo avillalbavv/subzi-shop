@@ -83,12 +83,6 @@
       return;
     }
 
-    if (low.indexOf("f1") !== -1){
-      addChatMsg("Dale ✅ Te abro F1 25.", "bot");
-      goPage("./product.html?id=f1-25");
-      return;
-    }
-
     if (low.indexOf("juego") !== -1 || low.indexOf("games") !== -1){
       addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
       goPage("./games.html");

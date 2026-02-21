@@ -62,7 +62,6 @@ button, input{ font-family: inherit; }
 /* Header */
 header{
   position: sticky;
-  padding-top: env(safe-area-inset-top);
   top: 0;
   z-index: 60;
   backdrop-filter: blur(10px);
@@ -231,10 +230,6 @@ header{
   transition:.15s ease;
 }
 .cartBtn:hover{ transform: translateY(-1px); border-color: rgba(10,156,194,0.35); }
-.cartLabel{ display:inline-flex; align-items:center; gap:6px; font-weight:900; }
-.cartEmoji{ font-size: 16px; line-height: 1; }
-.cartText{ font-size: 13px; line-height: 1; }
-
 .badge{
   position:absolute;
   top:-7px;
@@ -253,23 +248,30 @@ header{
 }
 
 
-/* Mobile hamburger (solo móvil) */
-@media (max-width: 520px){
-  .menuBtn{
-    width: 44px;
-    min-width: 44px;
-    height: 44px;
-    padding: 0;
-    border-radius: 16px;
-    display:grid;
-    place-items:center;
-    gap: 4px;
-  }
-  .menuBtn .mlabel{ display:none; }
-  .cartBtn{ height: 44px; padding: 0 12px; }
-  .userBtn{ height: 44px; padding: 0 12px; }
-  .cartText{ display:none; }
-  .userBtn .uText{ display:none; }
+/* Mobile hamburger */
+.menuBtn{
+  display:grid;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  cursor:pointer;
+  place-items:center;
+  gap: 4px;
+  padding: 10px 12px;
+  box-shadow: 0 16px 50px rgba(0,0,0,.55);
+  transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+}
+.menuBtn:hover{ transform: translateY(-1px); border-color: rgba(106,224,209,0.25); filter: brightness(1.06); }
+.mbar{
+  display:block;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3));
+  opacity: .92;
 }
 
 /* Mobile menu overlay */
@@ -1148,6 +1150,7 @@ body.lock{ overflow: hidden; }
   }
   .menuBtn{
     flex: 0 0 auto;
+    min-width: 120px;
   }
 
   /* Dropdown: panel más cómodo en móvil */
@@ -1697,3 +1700,65 @@ footer .social{
   .bgAnim, .noise{ animation: none !important; }
   *{ scroll-behavior: auto !important; }
 }
+
+
+
+/* ===== Popup: Cómo comprar ===== */
+.howPopup{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.58);
+  backdrop-filter: blur(6px);
+}
+.howPopupCard{
+  width: min(520px, 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.72);
+  padding: 16px 16px 14px;
+  box-shadow: 0 26px 90px rgba(0,0,0,0.65);
+}
+.howPopupTitle{
+  font-weight: 800;
+  letter-spacing: .2px;
+  margin-bottom: 6px;
+}
+.howPopupText{
+  color: rgba(255,255,255,0.82);
+  line-height: 1.35;
+  font-size: 14px;
+}
+
+/* ===== Mejoras móvil: imágenes sin recorte + acciones no flotantes ===== */
+@media (max-width: 560px){
+  .pimg{ height: auto; aspect-ratio: 16 / 9; }
+  .pimg img{ object-fit: contain; transform: none; }
+
+  .pCover img{ object-fit: contain; transform: none; }
+  .detailImg{ height: auto; aspect-ratio: 16 / 9; }
+  .detailImg img{ object-fit: contain; }
+
+  .catImg img{ object-fit: contain; }
+
+  /* Evita que el overlay de acciones quede “pegado” en touch */
+  .pActions{
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 10px;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    background: rgba(0,0,0,0.35);
+  }
+  .pTile:hover .pActions{ transform: none; opacity: 1; }
+
+  /* Si el badge o botones se desbordan en móvil */
+  .pBtn{ height: 42px; }
+}
+

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SubZi — ChatGPT y Juegos</title>
+  <title>SubZi Tienda Online</title>
   <meta name="description" content="SubZi: suscripciones de ChatGPT y juegos. Comprá por WhatsApp." />
   <link rel="stylesheet" href="./styles.css" />
   <script>
@@ -32,7 +32,7 @@
         </button>
 
         <button class="cartBtn" id="btnCart" aria-label="Abrir cesto">
-          <span class="cartLabel"><span class="cartEmoji">🧺</span><span class="cartText">Cesto</span></span>
+          <span style="font-weight:900;">🧺 Cesto</span>
           <span class="badge" id="cartBadge">0</span>
         </button>
 
@@ -91,7 +91,7 @@
           <div class="catImg"><img alt="Juegos" src="./assets/products/games.png" /></div>
           <div class="catBody">
             <b>🎮 Juegos</b>
-            <p>God of War (2018), Silent Hill f y F1 25.</p>
+            <p>God of War (2018) y Silent Hill f.</p>
             <span class="go">Ver Juegos →</span>
           </div>
         </a>
@@ -100,34 +100,14 @@
       <div class="divider"></div>
     </section>
 
-    <section class="section">
-      <div class="sectionHead reveal" style="display:flex; justify-content:space-between; gap:12px; align-items:flex-end;">
-        <h2>Cómo comprar</h2>
-        <p class="hint">1) Elegí  ·  2) Agregá  ·  3) Enviá por WhatsApp</p>
-      </div>
-
-      <div class="grid reveal" style="grid-template-columns: repeat(auto-fill, minmax(240px,1fr));">
-        <div class="mini">
-          <h3>1) Elegí</h3>
-          <p>Entrá a ChatGPT o Juegos.</p>
-        </div>
-        <div class="mini">
-          <h3>2) Agregá</h3>
-          <p>Sumá uno o varios productos al cesto.</p>
-        </div>
-        <div class="mini">
-          <h3>3) Enviá</h3>
-          <p>Se arma el mensaje y se envía por WhatsApp.</p>
-        </div>
-      </div>
-    </section>
+    
   </main>
 
 <footer>
     <div class="wrap foot">
       <div class="footLeft">
         <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div>
-        <div class="credit">Desarrollo web por <b>Alejandro J. Villalba</b>.</div>
+        <div class="credit">Desarrollo Web: <b>Univ. Alejandro J. Villalba</b>.</div>
       </div>
 
       <div class="social">
@@ -227,7 +207,7 @@
       <div class="q" data-q="Hablar">Hablar por WhatsApp</div>
     </div>
     <div class="chatInputRow">
-      <input class="chatInput" id="chatInput" placeholder="Escribí acá… (ej: quiero F1 25)" />
+      <input class="chatInput" id="chatInput" placeholder="Escribí acá… (ej: quiero God of War)" />
       <button class="chatSend" id="chatSend" aria-label="Enviar">Enviar</button>
     </div>
   </div>
@@ -242,5 +222,14 @@
   <script src="./index.js"></script>
   <script src="./chat.js"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <!-- Popup: Cómo comprar (auto-cierra en 5s) -->
+  <div id="howPopup" class="howPopup" role="dialog" aria-modal="true" aria-label="Cómo comprar" style="display:none;">
+    <div class="howPopupCard">
+      <div class="howPopupTitle">Cómo comprar</div>
+      <div class="howPopupText">1) Elegí tu producto · 2) Agregá al cesto · 3) Finalizá por WhatsApp</div>
+    </div>
+  </div>
+
 </body>
 </html>
