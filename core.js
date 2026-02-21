@@ -448,8 +448,7 @@ function buildWhatsAppMessage(cart, discount, order){
 
   lines.push("");
   lines.push("Gracias.");
-  return encodeURIComponent(lines.join("
-"));
+  return encodeURIComponent(lines.join("\n"));
 }
 
 function openWhatsApp(withCart){
