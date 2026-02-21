@@ -13,7 +13,13 @@ window.SUBZI = window.SUBZI || {};
     }
 
     if (window.supabase && typeof window.supabase.createClient === "function"){
-      SUBZI.supabase = window.supabase.createClient(url, key);
+      SUBZI.supabase = window.supabase.createClient(url, key, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      });
     } else {
       SUBZI.supabase = null;
     }
