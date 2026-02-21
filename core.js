@@ -51,26 +51,21 @@ function useCashbackKey(){ return "subzi_usecashback__" + getCurrentUser(); }
 function ordersStorageKey(){ return "subzi_orders__" + getCurrentUser(); }
 
 function money(n, cur){
-  // Moneda principal: Guaraní (PYG)
   cur = cur || "PYG";
   if (!n || n === 0) return "Consultar";
-
-  // Formato simple y consistente para Paraguay: 39.000 Gs
-  if (cur === "PYG" || cur === "Gs"){
-    try{
-      var s = Math.round(Number(n) || 0).toString();
-      // miles con punto
-      s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      return s + " Gs";
-    }catch(e){
-      return String(n) + " Gs";
-    }
-  }
-
   try{
-    return new Intl.NumberFormat("es-AR", { style:"currency", currency: cur, maximumFractionDigits: 0 }).format(n);
+    return new Intl.NumberFormat("es-PY", { style:"currency", currency: cur, maximumFractionDigits: 0 }).format(n);
   }catch(e){
     return String(n) + " " + cur;
+  }
+}
+
+function moneyTextGs(n){
+  if (!n || n === 0) return "Consultar";
+  try{
+    return new Intl.NumberFormat("es-PY", { maximumFractionDigits: 0 }).format(n) + " Gs";
+  }catch(e){
+    return String(n) + " Gs";
   }
 }
 
@@ -430,27 +425,31 @@ function buildWhatsAppMessage(cart, discount, order){
     lines.push("");
 
     if (totals.subtotal === 0){
-      lines.push("(Precios a confirmar) ¿Me confirmás disponibilidad y total?");
+      lines.push("(Precios a confirmar) Me confirmas disponibilidad y total?");
     } else {
-      lines.push("Subtotal: " + money(totals.subtotal, "PYG"));
-      if (totals.appliedCoupon) lines.push("Descuento (" + discount.code + "): -" + money(totals.discountValue, "PYG"));
-      if (totals.cashbackUse > 0) lines.push("Cashback usado: -" + money(totals.cashbackUse, "PYG"));
-      lines.push("Total: " + money(totals.total, "PYG"));
-      lines.push("¿Me confirmás disponibilidad y el total final?");
+      lines.push("Subtotal: " + moneyTextGs(totals.subtotal));
+      if (totals.appliedCoupon) lines.push("Descuento (" + discount.code + "): -" + moneyTextGs(totals.discountValue));
+      if (totals.cashbackUse > 0) lines.push("Cashback usado: -" + moneyTextGs(totals.cashbackUse));
+      lines.push("Total: " + moneyTextGs(totals.total));
+      lines.push("Me confirmas disponibilidad y el total final?");
     }
 
     if (order && order.cashbackToEarn && order.cashbackToEarn > 0){
       lines.push("");
-      lines.push("Cashback a acreditar (al confirmar pago): " + money(order.cashbackToEarn, "PYG"));
+      lines.push("Cashback a acreditar (al confirmar pago): " + moneyTextGs(order.cashbackToEarn));
     }
   }
 
-  if (order) { lines.push(""); lines.push("Pedido: " + order.id); }
+  if (order) {
+    lines.push("");
+    lines.push("Pedido: " + order.id);
+  }
   if (discount && discount.code) lines.push("Cupón: " + discount.code);
 
   lines.push("");
-  lines.push("Gracias!");
-  return encodeURIComponent(lines.join("\n"));
+  lines.push("Gracias.");
+  return encodeURIComponent(lines.join("
+"));
 }
 
 function openWhatsApp(withCart){
@@ -483,7 +482,7 @@ function openWhatsAppForProduct(productId){
     return;
   }
   var p = findProduct(productId);
-  var text = encodeURIComponent("Hola 👋 quiero " + (p ? p.name : "un producto") + ".");
+  var text = encodeURIComponent("Hola, quiero " + (p ? p.name : "un producto") + ".");
   var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
   window.open(url, "_blank");
 }
@@ -621,12 +620,12 @@ function renderCart(){
   var cbHintEl = $("#cashbackHint");
   var cbCheck = $("#useCashback");
 
-  if (subtotalEl) subtotalEl.textContent = totals.subtotal > 0 ? money(totals.subtotal, "PYG") : "A confirmar";
-  if (discountEl) discountEl.textContent = totals.appliedCoupon ? ("-" + money(totals.discountValue, "PYG")) : "—";
-  if (totalEl) totalEl.textContent = totals.subtotal > 0 ? money(totals.total, "PYG") : "A confirmar";
+  if (subtotalEl) subtotalEl.textContent = totals.subtotal > 0 ? moneyTextGs(totals.subtotal) : "A confirmar";
+  if (discountEl) discountEl.textContent = totals.appliedCoupon ? ("-" + moneyTextGs(totals.discountValue)) : "—";
+  if (totalEl) totalEl.textContent = totals.subtotal > 0 ? moneyTextGs(totals.total) : "A confirmar";
   if (couponEl) couponEl.textContent = (discount && discount.code) ? discount.code : "—";
 
-  if (cbAppliedEl) cbAppliedEl.textContent = (totals.cashbackUse > 0) ? ("-" + money(totals.cashbackUse, "PYG")) : "—";
+  if (cbAppliedEl) cbAppliedEl.textContent = (totals.cashbackUse > 0) ? ("-" + moneyTextGs(totals.cashbackUse)) : "—";
   if (cbBalEl) cbBalEl.textContent = String(totals.cashbackBalance || 0);
 
   if (cbHintEl){

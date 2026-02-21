@@ -36,11 +36,11 @@ function showStartupPopup(){
         '<ol class="startSteps">' +
           '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
           '<li><span class="stepDot">2</span> Tocá <b>Añadir al cesto</b> en lo que querés.</li>' +
-          '<li><span class="stepDot">3</span> Abrí el <b>🧺 Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
+          '<li><span class="stepDot">3</span> Abrí el <b>Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
           '<li><span class="stepDot">4</span> Coordinamos <b>pago</b> y <b>entrega</b> (inmediata si hay stock).</li>' +
           '<li><span class="stepDot">5</span> Si tenés <b>cashback</b>, podés activarlo desde el cesto.</li>' +
         '</ol>' +
-        '<div class="startPopupNote">Próximamente habrá más: <b>suscripciones</b>, <b>juegos</b>, <b>keys</b>, <b>gift cards</b> y más. Se cierra sola en <b>18 segundos</b>.</div>' +
+        '<div class="startPopupSoon"><b>Próximamente:</b> más suscripciones, juegos, keys, gift cards y novedades.</div><div class="startPopupNote">Se cierra sola en <b>18 segundos</b>. Podés tocar “Saltar” cuando quieras.</div>' +
       '</div>' +
       '<div class="startPopupActions">' +
         '<button class="btn ghost startSkipBtn" id="startPopupSkip" type="button">Saltar</button>' +
@@ -50,26 +50,32 @@ function showStartupPopup(){
   document.body.appendChild(ov);
 
 
-  function close(){
+  function close(immediate){
     if (!ov) return;
     ov.classList.remove("show");
+    if (immediate){
+      try{ ov.remove(); }catch(e){}
+      return;
+    }
     setTimeout(function(){
       try{ ov.remove(); }catch(e){}
     }, 180);
   }
 
-  ov.addEventListener("click", function(e){ if (e && e.target === ov) close(); });
-  var skip = ov.querySelector("#startPopupSkip");
-  if (skip) skip.addEventListener("click", function(e){ try{ e.preventDefault(); e.stopPropagation(); }catch(_e){} close(); });
-
-  // ESC para cerrar
-  function onKey(e){ if (!e) return; if (e.key === "Escape") close(); }
-  document.addEventListener("keydown", onKey);
-  var oldClose = close;
-  close = function(){ document.removeEventListener("keydown", onKey); oldClose(); };
+  ov.addEventListener("click", function(e){ if (e && e.target === ov) close(true); });
+  var skip = document.getElementById("startPopupSkip");
+  if (skip) skip.addEventListener("click", function(e){ if(e){ e.preventDefault(); e.stopPropagation(); } close(true); });
+  // Fallback por si el botón no engancha en algún móvil
+  ov.addEventListener("click", function(e){
+    var t = e && e.target;
+    if (t && (t.id === "startPopupSkip" || (t.closest && t.closest("#startPopupSkip")))){
+      if(e){ e.preventDefault(); e.stopPropagation(); }
+      close(true);
+    }
+  });
 
   // Mostrar + autocierre
-  setTimeout(function(){ ov.classList.add("show"); }, 0);
+  requestAnimationFrame(function(){ ov.classList.add("show"); });
   setTimeout(close, 18000);
 }
 
