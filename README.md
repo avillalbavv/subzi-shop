@@ -1,24 +1,43 @@
-# SubZi - Sitio (v14)
+# SubZi Shop (con backend gratis - Supabase)
 
-## Estructura (como tienda real)
-- `index.html` = Inicio limpio (solo lo esencial + categorías)
-- Páginas por categoría:
-  - `streaming.html`
-  - `descuentos.html`
-  - `chatgpt.html`
-  - `steam.html`
-  - `edicion.html`
-- Detalle por producto:
-  - `product.html?id=<ID>`
+## Qué se agregó
+- Login/Registro/Recuperación de contraseña por email (Supabase Auth)
+- Sincronización a la nube (por usuario): carrito, cashback, pedidos
 
-## Cesto + WhatsApp
-- El cesto funciona en **todas** las páginas (mismo localStorage).
-- Checkout arma el mensaje y abre WhatsApp.
+## 1) Crear proyecto en Supabase
+1. Crear un proyecto en Supabase
+2. Ir a **SQL Editor** y ejecutar el archivo `supabase.sql`
+3. Ir a **Project Settings → API** y copiar:
+   - `Project URL`
+   - `anon public key`
 
-## Editar contenido
-- `data.js`:
-  - `SUBZI.WHATSAPP_NUMBER`
-  - `SUBZI.products` (productos, imágenes, detalles)
+## 2) Configurar el sitio
+Abrí `config.js` y pegá tus credenciales:
 
-## Deploy
-Subí **todos** los archivos al mismo nivel (raíz del hosting).
+```js
+SUBZI.supabaseConfig = {
+  url: "https://xxxxx.supabase.co",
+  anonKey: "xxxx",
+  redirectTo: "https://subzi.me/reset.html"
+};
+```
+
+## 3) Configurar redirect URL (reset password)
+En Supabase: **Auth → URL Configuration → Redirect URLs**
+Agregá:
+- `https://subzi.me/reset.html` (o tu dominio real)
+
+## 4) Nota sobre emails gratis
+El email sender por defecto de Supabase es para pruebas y suele tener límites.
+Para producción, configurá SMTP propio.
+
+## Páginas
+- `index.html` (inicio)
+- `chatgpt.html` (categoría)
+- `games.html` (categoría)
+- `product.html?id=<ID>` (detalle)
+- `cashback.html` (normas)
+- `reset.html` (recuperación de contraseña)
+
+## Caché
+Si subís nuevas versiones al hosting, probá en incógnito o con Ctrl+F5.

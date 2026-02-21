@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SubZi — Recuperar contraseña</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="bgAnim" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <a class="logo logoLink" href="./index.html" title="SubZi">
+          <img alt="Logo SubZi" src="./assets/logo.jpg" />
+        </a>
+        <div class="brandtext">
+          <div class="name">SubZi</div>
+          <div class="tag">Recuperación de contraseña</div>
+        </div>
+      </div>
+      <div class="hdrRight">
+        <a class="chip primary" href="./index.html">Inicio</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" id="inicio">
+      <div class="card heroMain glowBorder reveal" style="padding:18px;">
+        <h1>Nueva contraseña</h1>
+        <p class="lead">Ingresá tu nueva contraseña para finalizar la recuperación.</p>
+
+        <form id="resetForm" class="authForm" style="max-width:520px;">
+          <div class="authRow">
+            <label>Nueva contraseña</label>
+            <input class="authInput" id="newPass" type="password" placeholder="••••••••" />
+          </div>
+          <div class="authRow">
+            <label>Repetir contraseña</label>
+            <input class="authInput" id="newPass2" type="password" placeholder="••••••••" />
+          </div>
+          <div class="authActions">
+            <button class="btn primary" type="submit">Actualizar contraseña</button>
+          </div>
+          <div class="authMsg" id="resetMsg"></div>
+        </form>
+
+        <p class="note" style="margin-top:10px;">
+          Si tenés problemas, pedí un nuevo enlace desde <b>Cuenta → Recuperar</b>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="footLeft">
+        <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div>
+        <div class="credit">Desarrollo web por <b>Alejandro J. Villalba</b>.</div>
+      </div>
+      <div class="social">
+        <a class="soc" href="./cashback.html"><span class="socIcon">💰</span><span>Cashback</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabaseClient.js"></script>
+  <script>
+    (function(){
+      document.getElementById("year").textContent = new Date().getFullYear();
+      var els = document.querySelectorAll(".reveal");
+      for (var i=0;i<els.length;i++) els[i].classList.add("in");
+
+      var msg = document.getElementById("resetMsg");
+      var sb = (window.SUBZI && SUBZI.supabase) ? SUBZI.supabase : null;
+      if (!sb){
+        if (msg){ msg.textContent = "Falta configurar Supabase (config.js)."; msg.className="authMsg err"; }
+        return;
+      }
+
+      document.getElementById("resetForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        var p1 = document.getElementById("newPass").value || "";
+        var p2 = document.getElementById("newPass2").value || "";
+        if (!p1 || p1.length < 6){
+          msg.textContent = "La contraseña debe tener al menos 6 caracteres.";
+          msg.className="authMsg err";
+          return;
+        }
+        if (p1 !== p2){
+          msg.textContent = "Las contraseñas no coinciden.";
+          msg.className="authMsg err";
+          return;
+        }
+
+        sb.auth.updateUser({ password: p1 }).then(function(res){
+          if (res.error){
+            msg.textContent = res.error.message || "Error al actualizar.";
+            msg.className="authMsg err";
+            return;
+          }
+          msg.textContent = "Contraseña actualizada ✅ Ya podés iniciar sesión.";
+          msg.className="authMsg ok";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

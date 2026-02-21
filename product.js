@@ -30,7 +30,7 @@
     if (!p) p = products[0];
     if (!p) return;
 
-    var imgSrc = p.image || categoryImages[p.category] || categoryImages.streaming;
+    var imgSrc = p.image || categoryImages[p.category] || categoryImages.games;
     var imgEl = byId("detailImg");
     if (imgEl) imgEl.src = imgSrc;
 

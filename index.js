@@ -10,11 +10,8 @@
   // Ej: /index.html#streaming => /streaming.html
   var h = (window.location.hash || "").replace("#","");
   var map = {
-    "streaming": "./streaming.html",
-    "descuentos": "./descuentos.html",
     "chatgpt": "./chatgpt.html",
-    "steam": "./steam.html",
-    "edicion": "./edicion.html"
+    "games": "./games.html"
   };
   if (h && map[h]){
     // mantenemos historial limpio

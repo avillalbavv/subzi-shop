@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SubZi — ChatGPT / IA</title>
-  <meta name="description" content="Servicios de IA: ChatGPT y packs de herramientas." />
+  <title>SubZi — ChatGPT</title>
+  <meta name="description" content="Suscripciones de ChatGPT en SubZi: Plus y Pro." />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -15,17 +15,20 @@
 <header>
     <div class="wrap topbar">
       <div class="brand">
-        <div class="logo" title="SubZi">
-          <img alt="Logo SubZi" src="./assets/logo.jpg" />
-        </div>
+        <a class="logo logoLink" href="./index.html" title="SubZi"><img alt="Logo SubZi" src="./assets/logo.jpg" /></a>
         <div class="brandtext">
           <div class="name">SubZi</div>
-          <div class="tag">Streaming · IA · Steam · Edición · pedidos por WhatsApp</div>
+          <div class="tag">ChatGPT · Juegos · pedidos por WhatsApp</div>
         </div>
       </div>
 
       <div class="hdrRight">
         <div class="chip primary" id="btnWhatsAppHeader">WhatsApp</div>
+
+        <button class="userBtn" id="btnUser" aria-label="Cuenta">
+          <span class="uIcon">👤</span>
+          <span class="uText" id="userLabel">Cuenta</span>
+        </button>
 
         <button class="cartBtn" id="btnCart" aria-label="Abrir cesto">
           <span style="font-weight:900;">🧺 Cesto</span>
@@ -45,11 +48,8 @@
       <!-- Dropdown de categorías -->
       <nav class="navDropdown" id="navMenu" aria-label="Categorías">
         <a class="chip" href="./index.html">🏠 Inicio</a>
-        <a class="chip" href="./streaming.html">📺 Streaming</a>
-        <a class="chip" href="./descuentos.html">🏷️ Descuentos</a>
-        <a class="chip" href="./chatgpt.html">🤖 ChatGPT/IA</a>
-        <a class="chip" href="./steam.html">🎮 Steam</a>
-        <a class="chip" href="./edicion.html">🎬 Edición</a>
+        <a class="chip" href="./chatgpt.html">🤖 ChatGPT</a>
+        <a class="chip" href="./games.html">🎮 Juegos</a>
       </nav>
     </div>
   </header>
@@ -73,13 +73,14 @@
     <div class="wrap foot">
       <div class="footLeft">
         <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div>
-        <div class="credit">Desarrollo web por <b>Universitario Alejandro Cota Villalba</b>.</div>
+        <div class="credit">Desarrollo web por <b>Alejandro J. Villalba</b>.</div>
       </div>
 
       <div class="social">
-        <a class="soc" href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a>
-        <a class="soc" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-        <a class="soc" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a class="soc" href="./cashback.html"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm1 18h-2v-1.3a4.7 4.7 0 0 1-3.2-2l1.7-1a3 3 0 0 0 2.7 1.5c1.1 0 2-.5 2-1.3 0-.8-.5-1.1-2.2-1.5-2.1-.5-3.8-1.2-3.8-3.4 0-1.7 1.3-3 2.8-3.3V5h2v1.2c1 .2 1.8.7 2.5 1.4l-1.4 1.3c-.6-.6-1.4-1-2.4-1-.9 0-1.7.4-1.7 1.2 0 .7.6 1 2.2 1.4 2.2.5 3.8 1.3 3.8 3.6 0 1.7-1.2 3.1-3.3 3.5V19Z"/></svg></span><span>Cashback</span></a>
+        <a class="soc" href="https://www.tiktok.com" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 2h2c.2 2 1.6 4 4 4v2c-1.7 0-3.3-.6-4-1.4V15a7 7 0 1 1-7-7h1v2h-1a5 5 0 1 0 5 5V2Z"/></svg></span><span>TikTok</span></a>
+        <a class="soc" href="https://www.facebook.com" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3H13.5V9c0-.9.3-1.5 1.6-1.5h1.6V4.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7v3h2.7v8h3.8Z"/></svg></span><span>Facebook</span></a>
+        <a class="soc" href="https://www.instagram.com" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.8 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg></span><span>Instagram</span></a>
       </div>
     </div>
   </footer>
@@ -109,6 +110,21 @@
       <div class="totals">
         <div class="label">Descuento</div>
         <div class="val" id="discountValue">—</div>
+      </div>
+
+      <div class="totals">
+        <div class="label">Cashback</div>
+        <div class="val" id="cashbackApplied">—</div>
+      </div>
+      <div class="cashbackRow" id="cashbackRow">
+        <label class="chk">
+          <input type="checkbox" id="useCashback" />
+          Usar cashback
+        </label>
+        <div class="cashInfo">
+          <span class="cashBal">Saldo: <b id="cashbackBalance">0</b></span>
+          <span class="cashHint" id="cashbackHint">Disponible para juegos</span>
+        </div>
       </div>
 
       <div class="totals">
@@ -147,11 +163,8 @@
     </div>
     <div class="chatBody" id="chatBody"></div>
     <div class="chatQuick">
-      <div class="q" data-q="Streaming">Streaming</div>
-      <div class="q" data-q="Descuentos">Descuentos</div>
-      <div class="q" data-q="IA">ChatGPT/IA</div>
-      <div class="q" data-q="Steam">Steam</div>
-      <div class="q" data-q="Edición">Edición</div>
+      <div class="q" data-q="ChatGPT">ChatGPT</div>
+      <div class="q" data-q="Juegos">Juegos</div>
       <div class="q" data-q="Precios">Precios</div>
       <div class="q" data-q="Hablar">Hablar por WhatsApp</div>
     </div>
@@ -161,8 +174,12 @@
     </div>
   </div>
 
+  <script src="./config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabaseClient.js"></script>
   <script src="./data.js"></script>
   <script src="./core.js"></script>
+  <script src="./cloudSync.js"></script>
   <script src="./common.js"></script>
   <script src="./category.js"></script>
   <script src="./chat.js"></script>

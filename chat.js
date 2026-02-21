@@ -1,9 +1,9 @@
 /**
- * Chatbot SubZi (quick replies + input) - ES5
+ * Chatbot SubZi (quick replies + input)
+ * Categorías: ChatGPT + Juegos
  */
 (function(){
   if (!window.SUBZI || !SUBZI.core) return;
-
   var core = SUBZI.core;
 
   function byId(id){ return document.getElementById(id); }
@@ -19,36 +19,37 @@
     body.scrollTop = body.scrollHeight;
   }
 
-  function goPage(page){
-    window.location.href = page;
+  function goPage(url){
+    window.location.href = url;
   }
 
   function answerQuick(key){
     addChatMsg(key, "me");
 
-    var map = {
-      "Precios": "Los precios dependen del servicio y disponibilidad. Decime cuál te interesa y te paso el valor.",
-      "Descuentos": "Tenemos combos y cupones. ¿Querés un combo de 2 o 3 servicios?",
-      "Streaming": "Perfecto: te llevo a Streaming. Elegí el servicio y agregalo al cesto.",
-      "IA": "Te llevo a ChatGPT/IA. Decime qué necesitás (estudio, trabajo, diseño) y lo vemos.",
-      "Steam": "Te llevo a Steam. Pedime juego o carga y te cotizo.",
-      "Edición": "Te llevo a Edición. Decime si es video, foto o diseño.",
-      "Hablar": "Dale, abrimos WhatsApp para atenderte.",
-    };
-
     if (key === "Hablar"){
-      addChatMsg(map[key], "bot");
+      addChatMsg("Dale, abrimos WhatsApp para atenderte.", "bot");
       core.openWhatsApp(false);
       return;
     }
 
-    addChatMsg(map[key] || "Perfecto. ¿Qué servicio querés?", "bot");
+    if (key === "ChatGPT"){
+      addChatMsg("Perfecto 🤖 Te llevo a suscripciones de ChatGPT.", "bot");
+      goPage("./chatgpt.html");
+      return;
+    }
 
-    if (key === "Streaming") goPage("./streaming.html");
-    if (key === "Descuentos") goPage("./descuentos.html");
-    if (key === "IA") goPage("./chatgpt.html");
-    if (key === "Steam") goPage("./steam.html");
-    if (key === "Edición") goPage("./edicion.html");
+    if (key === "Juegos"){
+      addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
+      goPage("./games.html");
+      return;
+    }
+
+    if (key === "Precios"){
+      addChatMsg("Los precios dependen de disponibilidad. Decime qué suscripción/juego querés y te cotizo por WhatsApp.", "bot");
+      return;
+    }
+
+    addChatMsg("Decime si querés ChatGPT o Juegos. También podés escribir el nombre del juego.", "bot");
   }
 
   function handleChatInput(text){
@@ -58,96 +59,86 @@
 
     var low = t.toLowerCase();
 
-    if (low.indexOf("whatsapp") >= 0 || low.indexOf("wpp") >= 0 || low.indexOf("wasap") >= 0){
+    if (low.indexOf("whatsapp") !== -1 || low.indexOf("wpp") !== -1 || low.indexOf("wasap") !== -1){
       addChatMsg("Perfecto, abro WhatsApp 👇", "bot");
       core.openWhatsApp(false);
       return;
     }
 
-    if (low.indexOf("netflix") >= 0){
-      addChatMsg("Dale ✅ Te abro el detalle de Netflix.", "bot");
-      window.location.href = "./product.html?id=netflix-premium";
-      return;
-    }
-
-    if (low.indexOf("chatgpt") >= 0 || low.indexOf("ia") >= 0 || low.indexOf("inteligencia") >= 0){
-      addChatMsg("Dale ✅ Te llevo a ChatGPT/IA.", "bot");
+    if (low.indexOf("chatgpt") !== -1 || low.indexOf("plus") !== -1 || low.indexOf("pro") !== -1){
+      addChatMsg("Dale 🤖 Te llevo a ChatGPT.", "bot");
       goPage("./chatgpt.html");
       return;
     }
 
-    if (low.indexOf("steam") >= 0 || low.indexOf("wallet") >= 0 || low.indexOf("juego") >= 0){
-      addChatMsg("Genial 🎮 Te llevo a Steam.", "bot");
-      goPage("./steam.html");
+    if (low.indexOf("god") !== -1 || low.indexOf("gow") !== -1){
+      addChatMsg("Dale ✅ Te abro God of War (2018).", "bot");
+      goPage("./product.html?id=god-of-war-2018");
       return;
     }
 
-    if (low.indexOf("capcut") >= 0 || low.indexOf("canva") >= 0 || low.indexOf("adobe") >= 0 || low.indexOf("edicion") >= 0 || low.indexOf("edición") >= 0){
-      addChatMsg("Perfecto 🎬 Te llevo a Edición.", "bot");
-      goPage("./edicion.html");
+    if (low.indexOf("silent") !== -1 || low.indexOf("hill") !== -1){
+      addChatMsg("Dale ✅ Te abro Silent Hill f.", "bot");
+      goPage("./product.html?id=silent-hill-f");
       return;
     }
 
-    if (low.indexOf("descuento") >= 0 || low.indexOf("cupon") >= 0 || low.indexOf("cupón") >= 0 || low.indexOf("combo") >= 0){
-      addChatMsg("Buenísimo 🏷️ Te llevo a Descuentos.", "bot");
-      goPage("./descuentos.html");
+    if (low.indexOf("f1") !== -1){
+      addChatMsg("Dale ✅ Te abro F1 25.", "bot");
+      goPage("./product.html?id=f1-25");
       return;
     }
 
-    if (low.indexOf("spotify") >= 0 || low.indexOf("disney") >= 0 || low.indexOf("paramount") >= 0 || low.indexOf("max") >= 0 || low.indexOf("hbo") >= 0 || low.indexOf("stream") >= 0){
-      addChatMsg("Dale 📺 Te llevo a Streaming.", "bot");
-      goPage("./streaming.html");
+    if (low.indexOf("juego") !== -1 || low.indexOf("games") !== -1){
+      addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
+      goPage("./games.html");
       return;
     }
 
-    addChatMsg("Decime qué buscás (Streaming / ChatGPT/IA / Steam / Edición) o tocá una opción rápida 👇", "bot");
+    if (low.indexOf("precio") !== -1 || low.indexOf("cuanto") !== -1 || low.indexOf("cuánto") !== -1){
+      addChatMsg("Decime qué suscripción/juego querés y te cotizo por WhatsApp.", "bot");
+      return;
+    }
+
+    addChatMsg("Decime si querés ChatGPT o Juegos. También podés escribir: God of War, Silent Hill o F1.", "bot");
   }
 
-  function init(){
+  document.addEventListener("DOMContentLoaded", function(){
     var chatPanel = byId("chatPanel");
     var fab = byId("chatFab");
     if (!chatPanel || !fab) return;
 
     fab.addEventListener("click", function(){
-      if (chatPanel.classList.contains("show")) chatPanel.classList.remove("show");
-      else chatPanel.classList.add("show");
-
-      var body = byId("chatBody");
-      if (chatPanel.classList.contains("show") && body && body.children && body.children.length === 0){
+      chatPanel.classList.toggle("show");
+      if (chatPanel.classList.contains("show") && byId("chatBody") && byId("chatBody").children.length === 0){
         addChatMsg("Hola 👋 Soy el asistente de SubZi.", "bot");
         addChatMsg("Escribime o tocá una opción rápida.", "bot");
       }
-      if (chatPanel.classList.contains("show")){
-        var inp = byId("chatInput");
-        if (inp) inp.focus();
-      }
+      var inp = byId("chatInput");
+      if (chatPanel.classList.contains("show") && inp) inp.focus();
     });
 
-    var close = byId("chatClose");
-    if (close) close.addEventListener("click", function(){ chatPanel.classList.remove("show"); });
+    var closeBtn = byId("chatClose");
+    if (closeBtn) closeBtn.addEventListener("click", function(){ chatPanel.classList.remove("show"); });
 
-    var quick = document.querySelectorAll("[data-q]");
-    for (var i=0;i<quick.length;i++){
-      quick[i].addEventListener("click", function(){
-        answerQuick(this.getAttribute("data-q"));
-      });
+    var qs = document.querySelectorAll("[data-q]");
+    for (var i=0;i<qs.length;i++){
+      qs[i].addEventListener("click", function(){ answerQuick(this.getAttribute("data-q")); });
     }
 
-    var input = byId("chatInput");
-    var send = byId("chatSend");
-    function doSend(){
-      var v = input ? String(input.value || "").trim() : "";
+    var chatInput = byId("chatInput");
+    var chatSend = byId("chatSend");
+    function send(){
+      var v = (chatInput && chatInput.value) ? String(chatInput.value).trim() : "";
       if (!v) return;
-      if (input) input.value = "";
+      if (chatInput) chatInput.value = "";
       handleChatInput(v);
     }
-    if (send) send.addEventListener("click", doSend);
-    if (input) input.addEventListener("keydown", function(e){
-      if (e && e.key === "Enter") doSend();
-    });
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
-
+    if (chatSend) chatSend.addEventListener("click", send);
+    if (chatInput){
+      chatInput.addEventListener("keydown", function(e){
+        if (e && e.key === "Enter") send();
+      });
+    }
+  });
 })();
