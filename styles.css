@@ -1552,3 +1552,151 @@ footer .social{
   display:block;
   fill: currentColor;
 }
+
+/* ===== Mobile fixes (proporciones) ===== */
+@media (max-width: 520px){
+  /* Drawer/cesto */
+  .drawer{
+    width: 100vw !important;
+    max-width: 100vw !important;
+    border-radius: 18px 18px 0 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    height: 88vh !important;
+  }
+  .drawerHead{ padding: 14px 14px 10px !important; }
+  .drawerBody{ padding: 10px 14px !important; }
+  .drawerFoot{ padding: 12px 14px 14px !important; }
+  .totals{ font-size: 12px; }
+
+  /* Cart items: evitar overflow */
+  .cartItem{
+    gap: 10px !important;
+    align-items:flex-start !important;
+  }
+  .cartItem h4{
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    word-break: break-word;
+  }
+  .cartItem .meta{ font-size: 11px !important; }
+  .qtyRow{ gap: 8px !important; }
+  .qtyBtn{ width: 34px !important; height: 34px !important; }
+
+  /* Product cards: títulos y botones */
+  .product h3{
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .product .desc{
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .actions{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px !important;
+  }
+  .smallBtn{
+    padding: 10px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  /* Chips/header botones */
+  .chip{ font-size: 12px; padding: 10px 12px; }
+  .menuBtn{ min-width: 120px; }
+  .brand .tag{ display:none; } /* ya estaba, pero reforzamos */
+
+  /* Chat panel en mobile: ancho completo */
+  .chatPanel{
+    width: calc(100% - 16px) !important;
+    right: 8px !important;
+    left: auto !important;
+    bottom: 124px !important;
+  }
+  .chatFab{ right: 8px !important; bottom: 70px !important; }
+}
+
+
+/* ===== Mobile performance + layout fixes ===== */
+@media (max-width: 520px){
+  /* Header layout */
+  .hdrRight{
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    width: 100%;
+    gap: 8px !important;
+  }
+  .userBtn, .cartBtn{
+    flex: 1 1 calc(50% - 4px);
+    justify-content: center !important;
+  }
+  .menuBtn{
+    flex: 1 1 100%;
+    justify-content: center !important;
+  }
+  .brand{
+    align-items: center;
+    gap: 10px;
+  }
+  .logo{
+    width: 64px;
+    height: 64px;
+  }
+  .brandtext .name{ font-size: 20px; }
+  .brandtext .tag{ display: none !important; }
+
+  /* Product tiles: acciones visibles y que entren */
+  .pActions{
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    padding: 8px !important;
+    backdrop-filter: none !important; /* rendimiento */
+  }
+  .pBtn{
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px 12px !important;
+    white-space: normal !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+  }
+
+  /* Drawer/cesto: más cómodo */
+  .drawer{
+    height: 78vh !important;
+  }
+
+  /* Menos costo visual */
+  .noise{ opacity: 0.02 !important; animation: none !important; }
+  .bgAnim{ opacity: 0.22 !important; filter: blur(8px) !important; animation-duration: 26s !important; }
+  .pTile{ box-shadow: none !important; }
+  .pCover img{ filter: none !important; }
+}
+
+/* Preferencias: reducir animación */
+@media (prefers-reduced-motion: reduce){
+  .bgAnim, .noise{ animation: none !important; }
+  *{ scroll-behavior: auto !important; }
+}
