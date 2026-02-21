@@ -14,6 +14,59 @@ SUBZI.categoryImages = {
 SUBZI.categories = [
   { id:"chatgpt", label:"ChatGPT", emoji:"🤖", page:"./chatgpt.html" },
   { id:"games", label:"Juegos", emoji:"🎮", page:"./games.html" }
+  ,
+  {
+    id: "fc-26",
+    category: "games",
+    icon: "⚽",
+    name: "EA SPORTS FC 26",
+    price: 0,
+    currency: "PYG",
+    badge: "Juego",
+    desc: "Activación offline (PC) — consultá stock y precio.",
+    image: "./assets/products/fc-26.png",
+    features: ["Entrega digital", "Soporte", "Consultar"],
+    details: {
+      plan: "EA SPORTS FC 26 (PC) — activación offline.",
+      pagos: "Pago a coordinar por WhatsApp.",
+      how: "Confirmamos stock/precio y te guiamos con la activación."
+    }
+  },
+  {
+    id: "spiderman-remastered",
+    category: "games",
+    icon: "🕷️",
+    name: "Marvel’s Spider-Man Remastered (2018)",
+    price: 0,
+    currency: "PYG",
+    badge: "Juego",
+    desc: "Activación offline (PC) — consultá stock y precio.",
+    image: "./assets/products/spiderman-remastered.png",
+    features: ["Entrega digital", "Soporte", "Consultar"],
+    details: {
+      plan: "Marvel’s Spider-Man Remastered (PC) — activación offline.",
+      pagos: "Pago a coordinar por WhatsApp.",
+      how: "Confirmamos stock/precio y te guiamos con la activación."
+    }
+  },
+  {
+    id: "sons-of-the-forest",
+    category: "games",
+    icon: "🌲",
+    name: "Sons of the Forest",
+    price: 0,
+    currency: "PYG",
+    badge: "Juego",
+    desc: "Activación offline (PC) — consultá stock y precio.",
+    image: "./assets/products/sons-of-the-forest.png",
+    features: ["Entrega digital", "Soporte", "Consultar"],
+    details: {
+      plan: "Sons of the Forest (PC) — activación offline.",
+      pagos: "Pago a coordinar por WhatsApp.",
+      how: "Confirmamos stock/precio y te guiamos con la activación."
+    }
+  }
+
 ];
 
 // Cupones opcionales
@@ -46,8 +99,8 @@ SUBZI.products = [
     category: "chatgpt",
     icon: "✨",
     name: "ChatGPT Plus",
-    price: 0,
-    currency: "USD",
+    price: 39000,
+    currency: "PYG",
     badge: "Suscripción",
     desc: "Suscripción ChatGPT Plus (consulta disponibilidad).",
     image: "./assets/products/chatgpt-plus.png",
@@ -63,79 +116,83 @@ SUBZI.products = [
     category: "chatgpt",
     icon: "⚡",
     name: "ChatGPT Pro",
-    price: 0,
-    currency: "USD",
+    price: 39000,
+    currency: "PYG",
     badge: "Suscripción",
-    desc: "Suscripción ChatGPT Pro (consulta disponibilidad).",
+    desc: "Plan Pro para tu cuenta — te enviamos invitación al correo del cliente.",
     image: "./assets/products/chatgpt-pro.png",
-    features: ["Soporte", "Configuración", "Renovación"],
+    features: ["Prioridad", "Más límites", "Soporte"],
     details: {
-      plan: "Suscripción Pro. Beneficios según el plan vigente.",
+      plan: "ChatGPT Pro (beneficios según el plan vigente).",
       pagos: "Pago por período a coordinar por WhatsApp.",
-      how: "Te asesoramos según tu necesidad y te ayudamos con la activación."
-    }
-  },
-
-  // JUEGOS
-  {
-    id: "god-of-war-2018",
-    category: "games",
-    icon: "🪓",
-    name: "God of War Ragnarök Deluxe Edition",
-    price: 0,
-    currency: "USD",
-    badge: "Juego",
-    desc: "Activación offline en cuenta Steam (PC) — incluye extras Deluxe.",
-    image: "./assets/products/god-of-war-2018.png",
-    features: ["Entrega digital", "Soporte", "Cotización"],
-    details: {
-      plan: "God of War Ragnarök Deluxe Edition (PC) — activación offline en cuenta Steam.",
-      pagos: "Pago a coordinar por WhatsApp (transferencia u otro método).",
-      how: "Agregás al cesto y finalizás por WhatsApp. Te guiamos paso a paso con la activación y el acceso.",
+      how: "Nos pasás tu correo. Te enviamos la invitación al email del cliente y te guiamos para dejarlo funcionando.",
       extraHtml: `<div class="pRich">
-  <h4>🔥 ¿Qué incluye la <span class="pill">Edición Deluxe</span>?</h4>
-  <ul class="pBullets">
-    <li>👉 Versión completa de <b>God of War Ragnarök</b> para <b>PC</b>.</li>
-    <li>👉 DLC <b>Valhalla</b>.</li>
-    <li>👉 Banda sonora digital oficial de God of War Ragnarök.</li>
-    <li>👉 Mini artbook digital (Dark Horse).</li>
-    <li>👉 Armadura <b>Darkdale</b> para Kratos.</li>
-    <li>👉 Atuendo <b>Darkdale</b> para Atreus.</li>
-    <li>👉 Empuñadura del hacha <b>Darkdale</b>.</li>
-    <li>👉 Empuñaduras de las espadas <b>Darkdale</b>.</li>
+  <h4>🚀 <span class="pill">ChatGPT Pro</span> — lo mejor del plan</h4>
+  <ul class="pChecks">
+    <li>✅ <b>Prioridad</b> en horas pico (más estabilidad).</li>
+    <li>✅ <b>Más límites</b> y uso intensivo (según plan vigente).</li>
+    <li>✅ <b>Funciones avanzadas</b> disponibles en el plan.</li>
+    <li>✅ <b>Experiencia premium</b> y respuestas más fluidas.</li>
+    <li>✅ <b>Soporte</b> y guía de configuración.</li>
   </ul>
 
   <div class="pDivider"></div>
 
-  <h4>⁉️ ¿Por qué elegir nuestras <span class="pill">activaciones offline</span>?</h4>
-  <ul class="pChecks">
-    <li>✅ <b>Mejor precio</b>: disfrutá sin costos extra.</li>
-    <li>✅ <b>Bonos y juegos extra</b>: te regalamos títulos adicionales para variar.</li>
-    <li>✅ <b>Cuenta Steam licenciada</b>: solo cuentas oficiales.</li>
-    <li>✅ <b>Sin límite de tiempo</b>: acceso permanente para jugar offline cuando quieras.</li>
-    <li>✅ <b>Acceso a actualizaciones</b>: disfrutá de updates sin perder acceso.</li>
-    <li>✅ <b>Garantía</b>: acceso continuo al juego y sus actualizaciones.</li>
-  </ul>
-
-  <p class="pNote">Además del juego, te llevás una experiencia completa y extras. ¡Aprovechá la oportunidad! 🚀🎮</p>
+  <h4>📩 Activación en tu propia cuenta</h4>
+  <p class="pNote">Te enviamos la <b>invitación al correo del cliente</b> para que se active en su cuenta. Coordinamos por WhatsApp y te guiamos paso a paso.</p>
 </div>`
     }
   },
   {
-    id: "silent-hill-f",
+    id: "fc-26",
     category: "games",
-    icon: "👻",
-    name: "Silent Hill f",
+    icon: "⚽",
+    name: "EA SPORTS FC 26",
     price: 0,
-    currency: "USD",
+    currency: "PYG",
     badge: "Juego",
-    desc: "Reserva/compra (consulta fecha y disponibilidad).",
-    image: "./assets/products/silent-hill-f.png",
-    features: ["Preventa/stock", "Soporte", "Cotización"],
+    desc: "Activación offline (PC) — consultá stock y precio.",
+    image: "./assets/products/fc-26.png",
+    features: ["Entrega digital", "Soporte", "Consultar"],
     details: {
-      plan: "Silent Hill f. Estado (preventa/stock) según disponibilidad.",
+      plan: "EA SPORTS FC 26 (PC) — activación offline.",
       pagos: "Pago a coordinar por WhatsApp.",
-      how: "Confirmamos estado, precio y forma de entrega."
+      how: "Confirmamos stock/precio y te guiamos con la activación."
+    }
+  },
+  {
+    id: "spiderman-remastered",
+    category: "games",
+    icon: "🕷️",
+    name: "Marvel’s Spider-Man Remastered (2018)",
+    price: 0,
+    currency: "PYG",
+    badge: "Juego",
+    desc: "Activación offline (PC) — consultá stock y precio.",
+    image: "./assets/products/spiderman-remastered.png",
+    features: ["Entrega digital", "Soporte", "Consultar"],
+    details: {
+      plan: "Marvel’s Spider-Man Remastered (PC) — activación offline.",
+      pagos: "Pago a coordinar por WhatsApp.",
+      how: "Confirmamos stock/precio y te guiamos con la activación."
+    }
+  },
+  {
+    id: "sons-of-the-forest",
+    category: "games",
+    icon: "🌲",
+    name: "Sons of the Forest",
+    price: 0,
+    currency: "PYG",
+    badge: "Juego",
+    desc: "Activación offline (PC) — consultá stock y precio.",
+    image: "./assets/products/sons-of-the-forest.png",
+    features: ["Entrega digital", "Soporte", "Consultar"],
+    details: {
+      plan: "Sons of the Forest (PC) — activación offline.",
+      pagos: "Pago a coordinar por WhatsApp.",
+      how: "Confirmamos stock/precio y te guiamos con la activación."
     }
   }
+
 ];

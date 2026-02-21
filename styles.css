@@ -46,6 +46,8 @@ button, input{ font-family: inherit; }
 /* Subtle animated noise */
 .noise{
   pointer-events:none;
+  will-change: transform;
+  transform: translateZ(0);
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -185,6 +187,8 @@ header{
 .brandtext .tag{
   font-size: 13px;
   color: var(--muted);
+  white-space: normal;
+  max-width: 72ch;
 }
 
 /* Nav */
@@ -930,7 +934,7 @@ header .menuBtn .mlabel{
 /* ===== Imágenes en cards ===== */
 .pimg{
   width: 100%;
-  height: 128px;
+  height: 150px;
   border-radius: 16px;
   overflow:hidden;
   border: 1px solid rgba(255,255,255,0.10);
@@ -980,6 +984,8 @@ header .menuBtn .mlabel{
 /* ===== Fondo animado persistente ===== */
 .bgAnim{
   pointer-events:none;
+  will-change: transform;
+  transform: translateZ(0);
   position: fixed;
   inset: -20%;
   z-index: 0;
@@ -1007,7 +1013,7 @@ main, footer, .toast{ position: relative; z-index: 1; }
 .catGrid{
   display:grid;
   grid-template-columns: repeat(5, minmax(0,1fr));
-  gap: 12px;
+  gap: 16px;
   margin-top: 10px;
 }
 .catTile{
@@ -1049,18 +1055,18 @@ main, footer, .toast{ position: relative; z-index: 1; }
 .detailGrid{
   display:grid;
   grid-template-columns: 1.25fr 0.75fr;
-  gap: 18px;
+  gap: 22px;
   align-items: start;
 }
 .detailCard{ padding: 18px; }
 .detailTop{
   display:grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 16px;
+  gap: 20px;
   align-items: start;
 }
 .detailImg{
-  height: 220px;
+  height: 260px;
   border-radius: 18px;
   overflow:hidden;
   border: 1px solid rgba(255,255,255,0.10);
@@ -1069,7 +1075,7 @@ main, footer, .toast{ position: relative; z-index: 1; }
 .detailImg img{ width:100%; height:100%; object-fit: cover; display:block; }
 .detailTitle{ margin: 10px 0 8px; }
 .detailActions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-.detailSections{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 12px; }
+.detailSections{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin-top: 16px; }
 .detailBlock{
   padding: 14px;
   border-radius: 18px;
@@ -1130,7 +1136,7 @@ body.lock{ overflow: hidden; }
     min-width: 0;
     flex: 1 1 100%;
   }
-  .brandtext .tag{ display:none; }
+  .brandtext .tag{ display:block; font-size: 11.5px; line-height: 1.2; max-width: 100%; }
   .logo{ width: 76px; height: 76px; border-radius: 18px; }
 
   .hdrRight{
@@ -1619,7 +1625,6 @@ footer .social{
   /* Chips/header botones */
   .chip{ font-size: 12px; padding: 10px 12px; }
   .menuBtn{ min-width: 120px; }
-  .brand .tag{ display:none; } /* ya estaba, pero reforzamos */
 
   /* Chat panel en mobile: ancho completo */
   .chatPanel{
@@ -1658,21 +1663,22 @@ footer .social{
     height: 64px;
   }
   .brandtext .name{ font-size: 20px; }
-  .brandtext .tag{ display: none !important; }
+  .brandtext .tag{ display:block !important; font-size: 11px !important; line-height: 1.2 !important; opacity: 0.9; }
 
-  /* Product tiles: acciones visibles y que entren */
+  /* Product tiles: acciones debajo (sin overlay pegado) */
   .pActions{
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin-top: 10px !important;
     opacity: 1 !important;
     pointer-events: auto !important;
-    transform: translateY(0) !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 8px !important;
-    left: 10px !important;
-    right: 10px !important;
-    bottom: 10px !important;
-    padding: 8px !important;
-    backdrop-filter: none !important; /* rendimiento */
+    transform: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
   }
   .pBtn{
     width: 100% !important;
@@ -1693,6 +1699,12 @@ footer .social{
   .bgAnim{ opacity: 0.22 !important; filter: blur(8px) !important; animation-duration: 26s !important; }
   .pTile{ box-shadow: none !important; }
   .pCover img{ filter: none !important; }
+}
+
+/* ===== Fix: fondo estable en móvil ===== */
+@media (max-width: 560px){
+  .bgAnim{ position: absolute; inset: 0; animation: none; opacity: 0.28; filter: blur(12px); }
+  .noise{ position: absolute; inset: 0; animation: none; opacity: 0.02; }
 }
 
 /* Preferencias: reducir animación */
@@ -1733,18 +1745,18 @@ footer .social{
   font-size: 14px;
 }
 
-/* ===== Mejoras móvil: imágenes sin recorte + acciones no flotantes ===== */
+/* ===== Móvil: imágenes llenas (sin espacios) + acciones sin overlay pegado ===== */
 @media (max-width: 560px){
-  .pimg{ height: auto; aspect-ratio: 16 / 9; }
-  .pimg img{ object-fit: contain; transform: none; }
+  .pimg{ height: 150px; }
+  .pimg img{ object-fit: cover; transform: scale(1.02); }
 
-  .pCover img{ object-fit: contain; transform: none; }
-  .detailImg{ height: auto; aspect-ratio: 16 / 9; }
-  .detailImg img{ object-fit: contain; }
+  .pCover img{ object-fit: cover; transform: none; }
+  .detailImg{ height: 240px; }
+  .detailImg img{ object-fit: cover; }
 
-  .catImg img{ object-fit: contain; }
+  .catImg img{ object-fit: cover; }
 
-  /* Evita que el overlay de acciones quede “pegado” en touch */
+  /* Acciones bajo la card en touch (evita “pegado” por hover) */
   .pActions{
     position: static;
     left: auto;
@@ -1754,65 +1766,11 @@ footer .social{
     transform: none;
     opacity: 1;
     pointer-events: auto;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0,0,0,0.22);
   }
   .pTile:hover .pActions{ transform: none; opacity: 1; }
 
-  /* Si el badge o botones se desbordan en móvil */
   .pBtn{ height: 42px; }
-}
-
-
-
-/* ===== Popup 'Cómo comprar' (auto 5s) ===== */
-
-.startPopupOverlay{
-  position: fixed;
-  inset: 0;
-  z-index: 160;
-  background: rgba(0,0,0,0.60);
-  display:none;
-  padding: 16px;
-}
-.startPopupOverlay.show{ display:block; }
-
-.startPopup{
-  width: min(560px, calc(100vw - 24px));
-  margin: 10vh auto;
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(10,10,10,0.94);
-  box-shadow: 0 30px 120px rgba(0,0,0,0.75);
-  overflow:hidden;
-}
-.startPopupHead{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-}
-.startPopupHead b{ font-size: 14px; }
-.startPopupBody{ padding: 14px 16px 16px; }
-.startSteps{
-  margin: 0;
-  padding-left: 18px;
-  display:flex;
-  flex-direction: column;
-  gap: 8px;
-  color: rgba(255,255,255,0.86);
-  font-size: 13px;
-  line-height: 1.35;
-}
-.startPopupNote{
-  margin-top: 12px;
-  color: rgba(255,255,255,0.60);
-  font-size: 12px;
-}
-
-@media (max-width: 520px){
-  .startPopup{ margin: 6vh auto; }
-  .startSteps{ font-size: 12px; }
 }
 
 
@@ -1822,7 +1780,7 @@ footer .social{
 .startPopupOverlay{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: grid;
@@ -1833,40 +1791,55 @@ footer .social{
   pointer-events: none;
   transition: opacity .18s ease;
 }
-.startPopupOverlay.show{ opacity: 1; pointer-events: auto; display: grid; }
+.startPopupOverlay.show{ opacity: 1; pointer-events: auto; }
 
 .startPopup{
-  width: min(720px, 92vw);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
-  border: 1px solid rgba(255,255,255,0.14);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+  width: min(820px, 94vw);
+  max-height: 88vh;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 22px 80px rgba(0,0,0,0.55);
   overflow: hidden;
   transform: translateY(8px) scale(.98);
   transition: transform .18s ease;
 }
 .startPopupOverlay.show .startPopup{ transform: translateY(0) scale(1); }
 
-.startPopupHead{
+.startPopupHero{
+  padding: 18px 18px 10px;
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-  padding: 14px 14px 12px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
   border-bottom: 1px solid rgba(255,255,255,0.10);
 }
-.startPopupBrand{ display:flex; align-items:center; gap: 12px; }
 .startPopupLogo{
-  width: 42px; height: 42px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.16);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  width: 96px; height: 96px;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
   object-fit: cover;
 }
-.startPopupTitles{ display:flex; flex-direction:column; line-height:1.15; }
-.mutedTiny{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+.startPopupTitle{
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+.startPopupSub{
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.35;
+  max-width: 52ch;
+}
 
-.startPopupBody{ padding: 14px 16px 16px; }
+.startPopupBody{
+  padding: 14px 16px 16px;
+  overflow: auto;
+  max-height: calc(88vh - 210px);
+}
+
 .startSteps{
   margin: 0;
   padding: 0;
@@ -1878,27 +1851,50 @@ footer .social{
   display:flex;
   align-items:flex-start;
   gap: 10px;
-  background: rgba(0,0,0,0.22);
+  background: rgba(0,0,0,0.18);
   border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 12px 12px;
 }
 .stepDot{
   flex: 0 0 auto;
-  width: 26px; height: 26px;
-  border-radius: 10px;
+  width: 28px; height: 28px;
+  border-radius: 12px;
   display:grid;
   place-items:center;
-  font-weight: 800;
+  font-weight: 900;
   color: rgba(0,0,0,0.92);
   background: linear-gradient(135deg, var(--a1), var(--a2));
 }
+
+.startPopupActions{
+  display:flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px 16px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+.startSkipBtn{
+  min-height: 44px;
+  padding: 0 16px;
+}
+
 .startPopupNote{
   margin-top: 12px;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--muted);
   text-align: center;
 }
+
+@media (max-width: 520px){
+  .startPopup{ width: 96vw; }
+  .startPopupLogo{ width: 82px; height: 82px; border-radius: 22px; }
+  .startPopupTitle{ font-size: 18px; }
+  .startPopupBody{ max-height: calc(88vh - 200px); }
+}
+
+
+
 
 /* Rich text in product details */
 .richText h4{
@@ -1928,3 +1924,35 @@ footer .social{
   color: var(--muted);
   font-size: 13px;
 }
+
+
+/* ===== Rich details (product extra) ===== */
+.pRich{
+  margin-top: 6px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.035);
+}
+.pRich h4{ margin: 0 0 10px; font-size: 14px; }
+.pRich ul{ margin: 10px 0 0; padding-left: 18px; }
+.pRich li{ margin: 8px 0; line-height: 1.55; color: rgba(255,255,255,0.86); }
+.pRich .pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(106,224,209,0.25);
+  background: rgba(106,224,209,0.08);
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+  font-size: 12px;
+}
+.pRich hr{
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,0.10);
+  margin: 14px 0;
+}
+.pRich .fine{ color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.55; margin: 10px 0 0; }

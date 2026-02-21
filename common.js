@@ -5,11 +5,15 @@
 (function(){
   function byId(id){ return document.getElementById(id); }
 
+  // Título fijo (pestaña)
+  try{ document.title = "SubZi | Tienda Online"; }catch(e){}
+
   // ===== POPUP 'CÓMO COMPRAR' (se cierra sola en 5s) =====
 
 function shouldShowStartupPopup(){
-  // Solo en inicio (/, /index.html)
+  // Solo en inicio (/, /index.html) y solo una vez por sesión
   try{
+    if (sessionStorage.getItem("subzi_start_popup_shown") === "1") return false;
     var p = (location.pathname || "").split("/").pop();
     return !p || p === "index.html";
   }catch(e){ return false; }
@@ -23,29 +27,26 @@ function showStartupPopup(){
   ov.id = "startPopupOverlay";
   ov.className = "startPopupOverlay";
   ov.innerHTML =
-    '<div class="startPopup startPopupBig" role="dialog" aria-label="Cómo comprar">' +
-      '<div class="startPopupHead">' +
-        '<div class="startPopupBrand">' +
-          '<img class="startPopupLogo" src="./assets/logo.jpg" alt="SubZi" />' +
-          '<div class="startPopupTitles">' +
-            '<b>Cómo comprar</b>' +
-            '<span class="mutedTiny">SubZi · pedidos por WhatsApp</span>' +
-          '</div>' +
-        '</div>' +
-        '<button class="closeBtn" id="startPopupClose" aria-label="Cerrar">✕</button>' +
+    '<div class="startPopup" role="dialog" aria-label="Cómo comprar">' +
+      '<div class="startPopupHero">' +
+        '<img class="startPopupLogo" src="./assets/logo.jpg" alt="SubZi" />' +
+        '<div class="startPopupTitle">Cómo comprar</div>' +
+        '<div class="startPopupSub">Armá tu pedido en el <b>🧺 Cesto</b> y finalizá por <b>WhatsApp</b>. Rápido, seguro y con soporte.</div>' +
       '</div>' +
       '<div class="startPopupBody">' +
         '<ol class="startSteps">' +
           '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
           '<li><span class="stepDot">2</span> Tocá <b>Añadir al cesto</b> en lo que querés.</li>' +
           '<li><span class="stepDot">3</span> Abrí el <b>🧺 Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
-          '<li><span class="stepDot">4</span> Te respondemos para coordinar <b>pago</b> y <b>entrega</b>.</li>' +
+          '<li><span class="stepDot">4</span> Coordinamos <b>pago</b> y <b>entrega</b> (inmediata si hay stock).</li>' +
           '<li><span class="stepDot">5</span> Si tenés <b>cashback</b>, podés activarlo desde el cesto.</li>' +
         '</ol>' +
-        '<div class="startPopupNote">Se cierra solo en <b>5 segundos</b> (o tocá fuera para cerrar).</div>' +
+        '<div class="startPopupNote">Se cierra sola en <b>12 segundos</b>. Podés tocar “Saltar” cuando quieras.</div>' +
+      '</div>' +
+      '<div class="startPopupActions">' +
+        '<button class="btn ghost startSkipBtn" id="startPopupSkip" type="button">Saltar</button>' +
       '</div>' +
     '</div>';
-
 
   document.body.appendChild(ov);
 
@@ -64,7 +65,8 @@ function showStartupPopup(){
 
   // Mostrar + autocierre
   setTimeout(function(){ ov.classList.add("show"); }, 0);
-  setTimeout(close, 5000);
+  setTimeout(close, 12000);
+  try{ sessionStorage.setItem("subzi_start_popup_shown","1"); }catch(e){}
 }
 
 

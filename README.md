@@ -1,43 +1,52 @@
-# SubZi Shop (con backend gratis - Supabase)
+# SubZi | Tienda Online
 
-## Qué se agregó
-- Login/Registro/Recuperación de contraseña por email (Supabase Auth)
-- Sincronización a la nube (por usuario): carrito, cashback, pedidos
+**Premium subscriptions & gaming, delivered fast via WhatsApp.**
 
-## 1) Crear proyecto en Supabase
-1. Crear un proyecto en Supabase
-2. Ir a **SQL Editor** y ejecutar el archivo `supabase.sql`
-3. Ir a **Project Settings → API** y copiar:
-   - `Project URL`
-   - `anon public key`
+This is a lightweight static shop (HTML/CSS/JS) with:
+- 🧺 Persistent cart (guest + logged-in)
+- 💸 Cashback system
+- 🔐 Supabase Auth (sign up / sign in / password reset)
+- ☁️ Cloud sync per user (cart / cashback / orders)
 
-## 2) Configurar el sitio
-Abrí `config.js` y pegá tus credenciales:
+## Quick start (local)
+Open `index.html` with a local server (recommended) or any static host.
+
+## Supabase setup
+### 1) Create a project
+Create a Supabase project and open **SQL Editor**.
+
+### 2) Run the database script
+Run `supabase.sql` (tables + RLS + triggers).
+
+### 3) Configure the site
+Edit `config.js` and paste your credentials:
 
 ```js
 SUBZI.supabaseConfig = {
-  url: "https://xxxxx.supabase.co",
-  anonKey: "xxxx",
-  redirectTo: "https://subzi.me/reset.html"
+  url: "https://YOUR_PROJECT.supabase.co",
+  anonKey: "YOUR_ANON_KEY",
+  // Optional (recommended): where Supabase should redirect after password reset
+  redirectTo: "https://YOUR_DOMAIN/reset.html"
 };
 ```
 
-## 3) Configurar redirect URL (reset password)
-En Supabase: **Auth → URL Configuration → Redirect URLs**
-Agregá:
-- `https://subzi.me/reset.html` (o tu dominio real)
+### 4) Redirect URLs (password reset / email links)
+In Supabase: **Authentication → URL Configuration → Redirect URLs** add:
+- `https://YOUR_DOMAIN/reset.html`
+- (Optional for local testing) `http://localhost:5500/reset.html`
 
-## 4) Nota sobre emails gratis
-El email sender por defecto de Supabase es para pruebas y suele tener límites.
-Para producción, configurá SMTP propio.
+## Email delivery notes
+Supabase has email rate limits (especially on the default sender).
+For production-grade delivery, configure **Custom SMTP** (Resend/SendGrid/Postmark/etc.).
 
-## Páginas
-- `index.html` (inicio)
-- `chatgpt.html` (categoría)
-- `games.html` (categoría)
-- `product.html?id=<ID>` (detalle)
-- `cashback.html` (normas)
-- `reset.html` (recuperación de contraseña)
+## Pages
+- `index.html` — home
+- `chatgpt.html` — category (AI)
+- `games.html` — category (Games)
+- `product.html?id=<ID>` — product detail
+- `cashback.html` — cashback rules
+- `reset.html` — password reset
 
-## Caché
-Si subís nuevas versiones al hosting, probá en incógnito o con Ctrl+F5.
+## Deploy
+Upload the whole folder to any static host (Cloudflare Pages, Netlify, GitHub Pages, etc.).
+If you deploy new versions and don’t see changes, hard refresh (Ctrl+F5) or use Incognito.
