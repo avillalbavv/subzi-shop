@@ -408,7 +408,7 @@ h1{
 
 .heroSide{ padding: 18px; display:flex; flex-direction:column; gap: 12px; }
 .mini{
-  padding: 16px;
+  padding: calc(16px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
   border-radius: 16px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.10);
@@ -462,7 +462,7 @@ h1{
 /* Products */
 .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 16px; }
 .product{
-  padding: 16px;
+  padding: calc(16px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
   border-radius: var(--radius);
   border: 1px solid rgba(255,255,255,0.10);
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
@@ -511,7 +511,7 @@ h1{
   font-size: 16px;
   white-space: nowrap;
 }
-.desc{ margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height:1.45; min-height: 38px; }
+.desc{ margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height:1.55; min-height: 38px; }
 .features{
   margin:0;
   padding:0 0 0 16px;
@@ -636,7 +636,7 @@ h1{
 .overlay.show{ display:block; }
 
 .drawerHead{
-  padding: 16px;
+  padding: calc(16px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
   border-bottom: 1px solid rgba(255,255,255,0.10);
   display:flex;
   align-items:center;
@@ -876,7 +876,7 @@ footer{
   .heroGrid{ grid-template-columns: 1fr; }
   .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
   .bannerRow{ grid-template-columns: 1fr; }
-  .logo{ width: 96px; height: 96px; }
+  .logo{ width: 128px; height: 128px; }
 }
 @media (max-width: 560px){
   .grid{ grid-template-columns: 1fr; }
@@ -1256,7 +1256,7 @@ body.lock{ overflow: hidden; }
   position: relative;
   aspect-ratio: 1 / 1;
   overflow:hidden;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.28);
 }
 .pCover img{
   width:100%;
@@ -1460,7 +1460,7 @@ footer .social{
   display:grid;
   place-items:center;
   border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.28);
 }
 .detailIcon img{ width: 22px; height: 22px; object-fit: contain; }
 
@@ -1780,12 +1780,12 @@ footer .social{
 .startPopupOverlay{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.28);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: grid;
   place-items: center;
-  padding: 16px;
+  padding: calc(16px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
   z-index: 9999;
   opacity: 0;
   pointer-events: none;
@@ -1797,8 +1797,8 @@ footer .social{
   width: min(820px, 94vw);
   max-height: 88vh;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-  border: 1px solid rgba(255,255,255,0.16);
+  background: #0b0f10;
+  border: 1px solid rgba(255,255,255,0.20);
   box-shadow: 0 22px 80px rgba(0,0,0,0.55);
   overflow: hidden;
   transform: translateY(8px) scale(.98);
@@ -1816,8 +1816,8 @@ footer .social{
   border-bottom: 1px solid rgba(255,255,255,0.10);
 }
 .startPopupLogo{
-  width: 96px; height: 96px;
-  border-radius: 26px;
+  width: 128px; height: 128px;
+  border-radius: 30px;
   border: 1px solid rgba(255,255,255,0.18);
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
   object-fit: cover;
@@ -1851,7 +1851,7 @@ footer .social{
   display:flex;
   align-items:flex-start;
   gap: 10px;
-  background: rgba(0,0,0,0.18);
+  background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
   padding: 12px 12px;
@@ -1888,7 +1888,7 @@ footer .social{
 
 @media (max-width: 520px){
   .startPopup{ width: 96vw; }
-  .startPopupLogo{ width: 82px; height: 82px; border-radius: 22px; }
+  .startPopupLogo{ width: 104px; height: 104px; border-radius: 26px; }
   .startPopupTitle{ font-size: 18px; }
   .startPopupBody{ max-height: calc(88vh - 200px); }
 }
@@ -1956,3 +1956,8 @@ footer .social{
   margin: 14px 0;
 }
 .pRich .fine{ color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.55; margin: 10px 0 0; }
+
+/* pRich paragraphs */
+.pRich p{ margin: 8px 0; line-height: 1.6; color: rgba(255,255,255,0.86); }
+.pRich h4 + p{ margin-top: 0; }
+.pRich ul{ display: grid; gap: 8px; }

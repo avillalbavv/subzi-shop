@@ -51,8 +51,22 @@ function useCashbackKey(){ return "subzi_usecashback__" + getCurrentUser(); }
 function ordersStorageKey(){ return "subzi_orders__" + getCurrentUser(); }
 
 function money(n, cur){
-  cur = cur || "ARS";
+  // Moneda principal: Guaraní (PYG)
+  cur = cur || "PYG";
   if (!n || n === 0) return "Consultar";
+
+  // Formato simple y consistente para Paraguay: 39.000 Gs
+  if (cur === "PYG" || cur === "Gs"){
+    try{
+      var s = Math.round(Number(n) || 0).toString();
+      // miles con punto
+      s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return s + " Gs";
+    }catch(e){
+      return String(n) + " Gs";
+    }
+  }
+
   try{
     return new Intl.NumberFormat("es-AR", { style:"currency", currency: cur, maximumFractionDigits: 0 }).format(n);
   }catch(e){
@@ -379,7 +393,7 @@ function confirmOrder(orderId){
 
 /* ===== WhatsApp ===== */
 function makeGreetingFromCart(cart){
-  if (!cart || cart.length === 0) return "Hola 👋 quiero consultar por productos en SubZi.";
+  if (!cart || cart.length === 0) return "Hola, quiero consultar por productos en SubZi.";
 
   var cats = {};
   for (var i=0;i<cart.length;i++){
@@ -390,10 +404,10 @@ function makeGreetingFromCart(cart){
 
   if (list.length === 1){
     var c = list[0];
-    if (c === "chatgpt") return "Hola 👋 quiero ChatGPT.";
-    if (c === "games") return "Hola 👋 quiero un juego.";
+    if (c === "chatgpt") return "Hola, quiero ChatGPT.";
+    if (c === "games") return "Hola, quiero un juego.";
   }
-  return "Hola 👋 quiero estos productos:";
+  return "Hola, quiero estos productos:";
 }
 
 function buildWhatsAppMessage(cart, discount, order){
@@ -416,27 +430,27 @@ function buildWhatsAppMessage(cart, discount, order){
     lines.push("");
 
     if (totals.subtotal === 0){
-      lines.push("✅ (Precios a confirmar) ¿Me confirmás disponibilidad y total?");
+      lines.push("(Precios a confirmar) ¿Me confirmás disponibilidad y total?");
     } else {
-      lines.push("Subtotal: " + money(totals.subtotal, "ARS"));
-      if (totals.appliedCoupon) lines.push("Descuento (" + discount.code + "): -" + money(totals.discountValue, "ARS"));
-      if (totals.cashbackUse > 0) lines.push("Cashback usado: -" + money(totals.cashbackUse, "ARS"));
-      lines.push("Total: " + money(totals.total, "ARS"));
+      lines.push("Subtotal: " + money(totals.subtotal, "PYG"));
+      if (totals.appliedCoupon) lines.push("Descuento (" + discount.code + "): -" + money(totals.discountValue, "PYG"));
+      if (totals.cashbackUse > 0) lines.push("Cashback usado: -" + money(totals.cashbackUse, "PYG"));
+      lines.push("Total: " + money(totals.total, "PYG"));
       lines.push("¿Me confirmás disponibilidad y el total final?");
     }
 
     if (order && order.cashbackToEarn && order.cashbackToEarn > 0){
       lines.push("");
-      lines.push("Cashback a acreditar (al confirmar pago): " + money(order.cashbackToEarn, "ARS"));
+      lines.push("Cashback a acreditar (al confirmar pago): " + money(order.cashbackToEarn, "PYG"));
     }
   }
 
-  if (order) lines.push("\\nPedido: " + order.id);
+  if (order) { lines.push(""); lines.push("Pedido: " + order.id); }
   if (discount && discount.code) lines.push("Cupón: " + discount.code);
 
   lines.push("");
   lines.push("Gracias!");
-  return encodeURIComponent(lines.join("\\n"));
+  return encodeURIComponent(lines.join("\n"));
 }
 
 function openWhatsApp(withCart){
@@ -455,9 +469,9 @@ function openWhatsApp(withCart){
     var text = buildWhatsAppMessage(cart, discount, order);
     var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
     window.open(url, "_blank");
-    toast("Pedido listo ✅ (WhatsApp)");
+    toast("Pedido listo (WhatsApp)");
   } else {
-    var text2 = encodeURIComponent("Hola 👋 Quiero consultar por productos en SubZi.");
+    var text2 = encodeURIComponent("Hola, quiero consultar por productos en SubZi.");
     var url2 = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text2;
     window.open(url2, "_blank");
   }
@@ -607,12 +621,12 @@ function renderCart(){
   var cbHintEl = $("#cashbackHint");
   var cbCheck = $("#useCashback");
 
-  if (subtotalEl) subtotalEl.textContent = totals.subtotal > 0 ? money(totals.subtotal, "ARS") : "A confirmar";
-  if (discountEl) discountEl.textContent = totals.appliedCoupon ? ("-" + money(totals.discountValue, "ARS")) : "—";
-  if (totalEl) totalEl.textContent = totals.subtotal > 0 ? money(totals.total, "ARS") : "A confirmar";
+  if (subtotalEl) subtotalEl.textContent = totals.subtotal > 0 ? money(totals.subtotal, "PYG") : "A confirmar";
+  if (discountEl) discountEl.textContent = totals.appliedCoupon ? ("-" + money(totals.discountValue, "PYG")) : "—";
+  if (totalEl) totalEl.textContent = totals.subtotal > 0 ? money(totals.total, "PYG") : "A confirmar";
   if (couponEl) couponEl.textContent = (discount && discount.code) ? discount.code : "—";
 
-  if (cbAppliedEl) cbAppliedEl.textContent = (totals.cashbackUse > 0) ? ("-" + money(totals.cashbackUse, "ARS")) : "—";
+  if (cbAppliedEl) cbAppliedEl.textContent = (totals.cashbackUse > 0) ? ("-" + money(totals.cashbackUse, "PYG")) : "—";
   if (cbBalEl) cbBalEl.textContent = String(totals.cashbackBalance || 0);
 
   if (cbHintEl){
