@@ -52,6 +52,20 @@
     var how = byId("detailHow");
     if (how) how.textContent = (p.details && p.details.how) ? p.details.how : "A definir.";
 
+    var extra = byId("detailExtra");
+    var extraBlock = byId("detailExtraBlock");
+    if (extra && extraBlock){
+      var html = (p.details && p.details.extraHtml) ? String(p.details.extraHtml) : "";
+      if (html){
+        extra.innerHTML = html;
+        extraBlock.style.display = "";
+      } else {
+        extra.innerHTML = "";
+        extraBlock.style.display = "none";
+      }
+    }
+
+
     var list = byId("detailFeatures");
     if (list){
       list.innerHTML = "";

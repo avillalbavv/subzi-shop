@@ -23,24 +23,32 @@ function showStartupPopup(){
   ov.id = "startPopupOverlay";
   ov.className = "startPopupOverlay";
   ov.innerHTML =
-    '<div class="startPopup" role="dialog" aria-label="Cómo comprar">' +
+    '<div class="startPopup startPopupBig" role="dialog" aria-label="Cómo comprar">' +
       '<div class="startPopupHead">' +
-        '<b>Cómo comprar</b>' +
+        '<div class="startPopupBrand">' +
+          '<img class="startPopupLogo" src="./assets/logo.jpg" alt="SubZi" />' +
+          '<div class="startPopupTitles">' +
+            '<b>Cómo comprar</b>' +
+            '<span class="mutedTiny">SubZi · pedidos por WhatsApp</span>' +
+          '</div>' +
+        '</div>' +
         '<button class="closeBtn" id="startPopupClose" aria-label="Cerrar">✕</button>' +
       '</div>' +
       '<div class="startPopupBody">' +
         '<ol class="startSteps">' +
-          '<li>Entrá a <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
-          '<li>Tocá <b>Añadir al cesto</b> en lo que querés.</li>' +
-          '<li>Abrí el <b>🧺 Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
-          '<li>Te respondemos para coordinar el pago y la entrega.</li>' +
-          '<li>Si tenés <b>cashback</b>, podés activarlo desde el cesto.</li>' +
+          '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
+          '<li><span class="stepDot">2</span> Tocá <b>Añadir al cesto</b> en lo que querés.</li>' +
+          '<li><span class="stepDot">3</span> Abrí el <b>🧺 Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
+          '<li><span class="stepDot">4</span> Te respondemos para coordinar <b>pago</b> y <b>entrega</b>.</li>' +
+          '<li><span class="stepDot">5</span> Si tenés <b>cashback</b>, podés activarlo desde el cesto.</li>' +
         '</ol>' +
-        '<div class="startPopupNote">Este mensaje se cierra solo en 5 segundos (o tocá fuera para cerrar).</div>' +
+        '<div class="startPopupNote">Se cierra solo en <b>5 segundos</b> (o tocá fuera para cerrar).</div>' +
       '</div>' +
     '</div>';
 
+
   document.body.appendChild(ov);
+
 
   function close(){
     if (!ov) return;

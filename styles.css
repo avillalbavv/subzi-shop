@@ -1814,3 +1814,117 @@ footer .social{
   .startPopup{ margin: 6vh auto; }
   .startSteps{ font-size: 12px; }
 }
+
+
+/* =========================
+   Start popup (Cómo comprar)
+   ========================= */
+.startPopupOverlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+.startPopupOverlay.show{ opacity: 1; pointer-events: auto; display: grid; }
+
+.startPopup{
+  width: min(720px, 92vw);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+  overflow: hidden;
+  transform: translateY(8px) scale(.98);
+  transition: transform .18s ease;
+}
+.startPopupOverlay.show .startPopup{ transform: translateY(0) scale(1); }
+
+.startPopupHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.startPopupBrand{ display:flex; align-items:center; gap: 12px; }
+.startPopupLogo{
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  object-fit: cover;
+}
+.startPopupTitles{ display:flex; flex-direction:column; line-height:1.15; }
+.mutedTiny{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.startPopupBody{ padding: 14px 16px 16px; }
+.startSteps{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.startSteps li{
+  display:flex;
+  align-items:flex-start;
+  gap: 10px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 12px;
+}
+.stepDot{
+  flex: 0 0 auto;
+  width: 26px; height: 26px;
+  border-radius: 10px;
+  display:grid;
+  place-items:center;
+  font-weight: 800;
+  color: rgba(0,0,0,0.92);
+  background: linear-gradient(135deg, var(--a1), var(--a2));
+}
+.startPopupNote{
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Rich text in product details */
+.richText h4{
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+.richText .pill{
+  display:inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(106,224,209,0.16);
+  border: 1px solid rgba(106,224,209,0.25);
+}
+.richText ul{
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+.richText .pDivider{
+  height: 1px;
+  margin: 12px 0;
+  background: rgba(255,255,255,0.12);
+}
+.richText .pNote{
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}

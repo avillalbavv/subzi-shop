@@ -81,17 +81,44 @@ SUBZI.products = [
     id: "god-of-war-2018",
     category: "games",
     icon: "🪓",
-    name: "God of War (2018)",
+    name: "God of War Ragnarök Deluxe Edition",
     price: 0,
     currency: "USD",
     badge: "Juego",
-    desc: "Compra digital (consulta plataforma y disponibilidad).",
+    desc: "Activación offline en cuenta Steam (PC) — incluye extras Deluxe.",
     image: "./assets/products/god-of-war-2018.png",
     features: ["Entrega digital", "Soporte", "Cotización"],
     details: {
-      plan: "Juego God of War (2018). Plataforma a confirmar.",
+      plan: "God of War Ragnarök Deluxe Edition (PC) — activación offline en cuenta Steam.",
       pagos: "Pago a coordinar por WhatsApp (transferencia u otro método).",
-      how: "Nos indicás plataforma y región. Te cotizamos y coordinamos entrega."
+      how: "Agregás al cesto y finalizás por WhatsApp. Te guiamos paso a paso con la activación y el acceso.",
+      extraHtml: `<div class="pRich">
+  <h4>🔥 ¿Qué incluye la <span class="pill">Edición Deluxe</span>?</h4>
+  <ul class="pBullets">
+    <li>👉 Versión completa de <b>God of War Ragnarök</b> para <b>PC</b>.</li>
+    <li>👉 DLC <b>Valhalla</b>.</li>
+    <li>👉 Banda sonora digital oficial de God of War Ragnarök.</li>
+    <li>👉 Mini artbook digital (Dark Horse).</li>
+    <li>👉 Armadura <b>Darkdale</b> para Kratos.</li>
+    <li>👉 Atuendo <b>Darkdale</b> para Atreus.</li>
+    <li>👉 Empuñadura del hacha <b>Darkdale</b>.</li>
+    <li>👉 Empuñaduras de las espadas <b>Darkdale</b>.</li>
+  </ul>
+
+  <div class="pDivider"></div>
+
+  <h4>⁉️ ¿Por qué elegir nuestras <span class="pill">activaciones offline</span>?</h4>
+  <ul class="pChecks">
+    <li>✅ <b>Mejor precio</b>: disfrutá sin costos extra.</li>
+    <li>✅ <b>Bonos y juegos extra</b>: te regalamos títulos adicionales para variar.</li>
+    <li>✅ <b>Cuenta Steam licenciada</b>: solo cuentas oficiales.</li>
+    <li>✅ <b>Sin límite de tiempo</b>: acceso permanente para jugar offline cuando quieras.</li>
+    <li>✅ <b>Acceso a actualizaciones</b>: disfrutá de updates sin perder acceso.</li>
+    <li>✅ <b>Garantía</b>: acceso continuo al juego y sus actualizaciones.</li>
+  </ul>
+
+  <p class="pNote">Además del juego, te llevás una experiencia completa y extras. ¡Aprovechá la oportunidad! 🚀🎮</p>
+</div>`
     }
   },
   {
