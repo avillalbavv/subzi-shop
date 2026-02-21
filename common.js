@@ -663,8 +663,24 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     core.setupReveal();
   }
 
+
+  // ===== Header fijo: evitar que tape el contenido (offset dinámico) =====
+  function syncHeaderOffset(){
+    var header = document.querySelector("header");
+    if (!header) return;
+    // altura real del header (incluye safe-area si aplica)
+    var h = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--header-h", h + "px");
+  }
+
   // Run init
   document.addEventListener("DOMContentLoaded", function(){
+    try{ syncHeaderOffset(); }catch(e){}
+    window.addEventListener("resize", function(){ try{ syncHeaderOffset(); }catch(e){} });
+    window.addEventListener("orientationchange", function(){ try{ syncHeaderOffset(); }catch(e){} });
+    setTimeout(function(){ try{ syncHeaderOffset(); }catch(e){} }, 200);
+    setTimeout(function(){ try{ syncHeaderOffset(); }catch(e){} }, 900);
+
     initAuth();
     initCoreBits();
 
