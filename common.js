@@ -32,7 +32,7 @@ function showStartupPopup(){
         '<div class="startPopupCopy">' +
           '<div class="startPopupKicker">SubZi Store</div>' +
           '<div class="startPopupTitle">Comprá rápido y sin vueltas</div>' +
-          '<p class="startPopupSub">Entrá a <b>Descuentos</b>, elegí tu plan de <b>ChatGPT</b>, tus <b>Steam Keys</b>, <b>Juegos</b> o <b>Streaming</b>, agregá al cesto y cerrá por WhatsApp.</p>' +
+          '<p class="startPopupSub">Entrá a <b>Descuentos</b>, elegí tu plan de <b>ChatGPT</b>, tus <b>Steam Keys</b> o <b>Juegos</b>, agregá al cesto y cerrá por WhatsApp. Streaming queda en su apartado propio.</p>' +
           '<div class="startPopupTags">' +
             '<span>⚡ Entrega rápida</span>' +
             '<span>🧺 Cesto</span>' +
@@ -84,6 +84,66 @@ function currentPageName(){
     var p = (location.pathname || "").split("/").pop();
     return p || "index.html";
   }catch(e){ return "index.html"; }
+}
+
+
+function getSteamStockItems(){
+  try{
+    var all = (window.SUBZI && Array.isArray(SUBZI.products)) ? SUBZI.products : [];
+    var out = [];
+    for (var i=0;i<all.length;i++){
+      var p = all[i];
+      if (!p || p.category !== "steam") continue;
+      out.push({ id: p.id, name: p.name });
+    }
+    return out;
+  }catch(e){ return []; }
+}
+
+function ensureSteamMenuStock(){
+  var nav = byId("navMenu");
+  if (!nav || nav.querySelector(".steamMenuShelf")) return;
+  var items = getSteamStockItems();
+  if (!items.length) return;
+
+  var shelf = document.createElement("div");
+  shelf.className = "steamMenuShelf";
+  shelf.innerHTML =
+    '<div class="steamMenuShelfHead">' +
+      '<strong>Steam Keys en stock</strong>' +
+      '<span>Elegí un juego directo desde el menú</span>' +
+    '</div>' +
+    '<div class="steamMenuShelfRow"></div>';
+
+  var row = shelf.querySelector('.steamMenuShelfRow');
+  for (var i=0;i<items.length;i++){
+    var a = document.createElement('a');
+    a.className = 'steamMenuChip';
+    a.href = './product.html?id=' + encodeURIComponent(items[i].id);
+    a.textContent = items[i].name;
+    row.appendChild(a);
+  }
+
+  nav.appendChild(shelf);
+}
+
+function ensureSteamPageStockRail(){
+  var body = document.body;
+  if (!body || body.getAttribute('data-category') !== 'steam') return;
+  var rail = byId('steamStockRail');
+  if (!rail || rail.getAttribute('data-hydrated') === '1') return;
+  var items = getSteamStockItems();
+  if (!items.length) return;
+
+  rail.innerHTML = '';
+  for (var i=0;i<items.length;i++){
+    var a = document.createElement('a');
+    a.className = 'steamStockChip';
+    a.href = './product.html?id=' + encodeURIComponent(items[i].id);
+    a.innerHTML = '<span class="steamStockChipIcon">🔑</span><span>' + items[i].name + '</span>';
+    rail.appendChild(a);
+  }
+  rail.setAttribute('data-hydrated', '1');
 }
 
 function ensurePageTabs(){
@@ -866,6 +926,8 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     try{ ensurePageTabs(); }catch(e){}
     try{ ensureFooterLayout(); }catch(e){}
     try{ ensureUtilityShell(); }catch(e){}
+    try{ ensureSteamMenuStock(); }catch(e){}
+    try{ ensureSteamPageStockRail(); }catch(e){}
 
     try{ syncHeaderOffset(); }catch(e){}
     window.addEventListener("resize", function(){ try{ syncHeaderOffset(); }catch(e){} });
