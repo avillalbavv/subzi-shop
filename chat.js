@@ -32,6 +32,12 @@
       return;
     }
 
+    if (key === "Descuentos"){
+      addChatMsg("Buenísimo 🏷️ Te llevo a descuentos y promos activas.", "bot");
+      goPage("./descuentos.html");
+      return;
+    }
+
     if (key === "ChatGPT"){
       addChatMsg("Perfecto 🤖 Te llevo a suscripciones de ChatGPT.", "bot");
       goPage("./chatgpt.html");
@@ -55,7 +61,7 @@
       return;
     }
 
-    addChatMsg("Decime si querés ChatGPT, Juegos o Steam Keys. También podés escribir el nombre del juego.", "bot");
+    addChatMsg("Decime si querés Descuentos, ChatGPT, Juegos o Steam Keys. También podés escribir el nombre del juego.", "bot");
   }
 
   function handleChatInput(text){
@@ -68,6 +74,12 @@
     if (low.indexOf("whatsapp") !== -1 || low.indexOf("wpp") !== -1 || low.indexOf("wasap") !== -1){
       addChatMsg("Perfecto, abro WhatsApp 👇", "bot");
       core.openWhatsApp(false);
+      return;
+    }
+
+    if (low.indexOf("descuento") !== -1 || low.indexOf("promo") !== -1 || low.indexOf("oferta") !== -1){
+      addChatMsg("Dale 🏷️ Te llevo a la parte de descuentos.", "bot");
+      goPage("./descuentos.html");
       return;
     }
 
@@ -106,7 +118,7 @@
       return;
     }
 
-    addChatMsg("Decime si querés ChatGPT, Juegos o Steam Keys. También podés escribir: God of War, Silent Hill o F1.", "bot");
+    addChatMsg("Decime si querés Descuentos, ChatGPT, Juegos o Steam Keys. También podés escribir: God of War, Silent Hill o F1.", "bot");
   }
 
   document.addEventListener("DOMContentLoaded", function(){
@@ -114,18 +126,37 @@
     var fab = byId("chatFab");
     if (!chatPanel || !fab) return;
 
-    fab.addEventListener("click", function(){
-      chatPanel.classList.toggle("show");
-      if (chatPanel.classList.contains("show") && byId("chatBody") && byId("chatBody").children.length === 0){
+    function openChat(){
+      chatPanel.classList.add("show");
+      if (byId("chatBody") && byId("chatBody").children.length === 0){
         addChatMsg("Hola 👋 Soy el asistente de SubZi.", "bot");
-        addChatMsg("Escribime o tocá una opción rápida.", "bot");
+        addChatMsg("Te ayudo con descuentos, ChatGPT, juegos, Steam Keys o WhatsApp.", "bot");
       }
       var inp = byId("chatInput");
-      if (chatPanel.classList.contains("show") && inp) inp.focus();
+      if (inp) inp.focus();
+    }
+    function closeChat(){ chatPanel.classList.remove("show"); }
+
+    fab.addEventListener("click", function(e){
+      if (e) e.stopPropagation();
+      if (chatPanel.classList.contains("show")) closeChat();
+      else openChat();
     });
 
     var closeBtn = byId("chatClose");
-    if (closeBtn) closeBtn.addEventListener("click", function(){ chatPanel.classList.remove("show"); });
+    if (closeBtn) closeBtn.addEventListener("click", function(e){ if (e) e.stopPropagation(); closeChat(); });
+
+    document.addEventListener("keydown", function(e){
+      if (e && e.key === "Escape") closeChat();
+    });
+
+    document.addEventListener("click", function(e){
+      if (!chatPanel.classList.contains("show")) return;
+      var t = e && e.target;
+      if (!t) return;
+      if (t === fab || fab.contains(t) || chatPanel.contains(t)) return;
+      closeChat();
+    });
 
     var qs = document.querySelectorAll("[data-q]");
     for (var i=0;i<qs.length;i++){

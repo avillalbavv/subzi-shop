@@ -2476,3 +2476,330 @@ body.popupOpen{ overflow: hidden; }
   }
   .steamMiniCard{ min-width: 78%; }
 }
+
+
+/* ===== UI fix pack v5 ===== */
+:root{ --header-h: 138px; }
+@media (max-width: 960px){ :root{ --header-h: 170px; } }
+@media (max-width: 560px){ :root{ --header-h: 156px; } }
+
+header{ background: rgba(5,8,14,0.92); backdrop-filter: blur(12px); }
+main{ min-height: calc(100vh - 220px); }
+
+.pageTabsWrap{
+  padding: 0 0 12px;
+}
+.pageTabs{
+  display:flex;
+  gap: 10px;
+  overflow:auto;
+  padding: 2px 0 2px;
+  scrollbar-width: none;
+}
+.pageTabs::-webkit-scrollbar{ display:none; }
+.pageTab{
+  flex: 0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.055);
+  color: rgba(255,255,255,0.84);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .12px;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.pageTab:hover{ transform: translateY(-1px); border-color: rgba(106,224,209,.35); }
+.pageTab.active{
+  color: rgba(255,255,255,.95);
+  border-color: rgba(106,224,209,.35);
+  background: linear-gradient(135deg, rgba(106,224,209,.18), rgba(10,156,194,.14));
+}
+
+footer{
+  margin-top: 42px;
+  padding: 30px 0 calc(34px + env(safe-area-inset-bottom));
+  background: rgba(5,8,14,0.8);
+}
+footer .foot,
+.footEnhanced{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 24px 42px;
+  flex-wrap: wrap;
+}
+footer .footLeft{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  max-width: 520px;
+  line-height: 1.55;
+}
+footer .social{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+footer .soc{
+  min-height: 44px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.05);
+}
+footer .socIcon{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.08);
+}
+
+.steamKeysBand{
+  margin-top: 26px;
+  padding: 24px;
+}
+.steamKeysMiniRow{
+  display:grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  margin-top: 18px;
+}
+.steamMiniCard{
+  min-height: 118px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.steamMiniCard span{ font-size: 24px; }
+.steamMiniCard strong{ font-size: 15px; }
+.steamMiniCard small{ color: var(--muted); line-height: 1.4; }
+
+.discountShowcase{
+  display:grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+.discountShowcaseHead{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.discountShowcaseHead h2{ margin: 0; }
+.discountShowcaseHead p{ margin: 4px 0 0; color: var(--muted); }
+.discountRail{
+  display:grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: 14px;
+  overflow:auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.discountCard{
+  position: relative;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(240px 180px at 0% 0%, rgba(106,224,209,.16), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  box-shadow: 0 16px 50px rgba(0,0,0,.35);
+}
+.discountCard .eyebrow{
+  display:inline-flex;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.28);
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: 12px;
+  font-weight: 800;
+}
+.discountCard h3{ margin: 0 0 8px; font-size: 20px; }
+.discountCard p{ margin: 0 0 16px; color: rgba(255,255,255,.78); line-height: 1.5; }
+.discountMeta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  margin-top: 14px;
+  color: rgba(255,255,255,.74);
+  font-size: 13px;
+}
+.discountCard .btn{ width: 100%; justify-content:center; }
+.discountCard.primaryDeal{
+  background:
+    radial-gradient(320px 220px at 12% 15%, rgba(124,92,255,.28), transparent 64%),
+    linear-gradient(135deg, rgba(34,31,90,.85), rgba(8,10,18,.96));
+}
+.discountCard.secondaryDeal{
+  background:
+    radial-gradient(260px 180px at 12% 10%, rgba(106,224,209,.18), transparent 60%),
+    linear-gradient(135deg, rgba(9,26,38,.88), rgba(8,10,18,.96));
+}
+.discountCard.tertiaryDeal{
+  background:
+    radial-gradient(220px 160px at 0% 0%, rgba(255,173,73,.18), transparent 58%),
+    linear-gradient(135deg, rgba(30,20,10,.84), rgba(8,10,18,.96));
+}
+
+.startPopupOverlay{
+  background: rgba(0,0,0,.48);
+  padding: calc(14px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom));
+}
+.startPopupCompact{
+  width: min(560px, 94vw);
+  max-height: none;
+  border-radius: 26px;
+  overflow: hidden;
+  background:
+    radial-gradient(320px 220px at 0% 0%, rgba(124,92,255,.22), transparent 65%),
+    linear-gradient(180deg, rgba(16,18,28,.98), rgba(8,10,16,.98));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 25px 80px rgba(0,0,0,.45);
+}
+.startPopupHeaderLine{
+  height: 4px;
+  background: linear-gradient(90deg, #7c5cff, #27d7ff, #7c5cff);
+}
+.startPopupShell{
+  display:flex;
+  gap: 16px;
+  align-items:flex-start;
+  padding: 22px 22px 10px;
+}
+.startPopupLogo.compact{
+  width: 78px;
+  height: 78px;
+  border-radius: 22px;
+}
+.startPopupCopy{ flex: 1; min-width: 0; }
+.startPopupKicker{
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  color: rgba(255,255,255,.62);
+  margin-bottom: 8px;
+}
+.startPopupCompact .startPopupTitle{
+  font-size: 28px;
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+.startPopupCompact .startPopupSub{
+  max-width: none;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.startPopupTags{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.startPopupTags span{
+  display:inline-flex;
+  align-items:center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: 12px;
+  font-weight: 700;
+}
+.startPopupClose{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+}
+.startPopupActions.compact{
+  display:flex;
+  justify-content:flex-start;
+  gap: 12px;
+  padding: 10px 22px 16px;
+  border-top: none;
+}
+.startPopupTimer{
+  padding: 0 22px 20px;
+  color: rgba(255,255,255,.7);
+  font-size: 12px;
+}
+.startPopupProgress{
+  margin-top: 10px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.startPopupProgress i{
+  display:block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #7c5cff, #27d7ff);
+  transform-origin: left center;
+  animation: popupTimer 5s linear forwards;
+}
+@keyframes popupTimer{ from{ transform: scaleX(1); } to{ transform: scaleX(0); } }
+
+.section.compactPage{ padding-top: 10px; }
+.pageHeroCard{
+  padding: 22px;
+  border-radius: 24px;
+}
+.pageHeroCard h1,
+.pageHeroCard h2{ margin-top: 0; }
+.pageLead{ color: var(--muted); line-height: 1.6; }
+.dealsPageGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.dealMiniCard{
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.045);
+}
+.dealMiniCard h3{ margin: 0 0 8px; }
+.dealMiniCard p{ margin: 0 0 14px; color: var(--muted); line-height: 1.45; }
+.dealMiniCard .btn{ width: 100%; justify-content:center; }
+
+@media (max-width: 920px){
+  .steamKeysMiniRow,
+  .dealsPageGrid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 720px){
+  .startPopupCompact .startPopupTitle{ font-size: 23px; }
+  .startPopupShell{ flex-direction: column; padding: 18px 18px 8px; }
+  .startPopupActions.compact{ padding: 8px 18px 14px; flex-direction: column; }
+  .startPopupActions.compact .btn{ width: 100%; justify-content:center; }
+  .startPopupTimer{ padding: 0 18px 18px; }
+}
+@media (max-width: 560px){
+  footer .social{ justify-content:flex-start; }
+  .discountRail{ grid-auto-columns: 88%; }
+  .chatPanel{ bottom: 124px !important; }
+  .chatFab{ bottom: 74px !important; }
+  .waFloat{ bottom: 14px !important; right: 12px !important; }
+  .chatFab{ right: 12px !important; }
+  .startPopupOverlay{ place-items: start center; }
+  .startPopupCompact{ margin-top: 8px; }
+  .sectionHead{ gap: 8px; }
+}

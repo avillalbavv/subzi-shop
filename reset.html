@@ -15,21 +15,45 @@
   <header>
     <div class="wrap topbar">
       <div class="brand">
-        <a class="logo logoLink" href="./index.html" title="SubZi">
-          <img alt="Logo SubZi" src="./assets/logo.jpg" />
-        </a>
+        <a class="logo logoLink" href="./index.html" title="SubZi"><img alt="Logo SubZi" src="./assets/logo.jpg" /></a>
         <div class="brandtext">
           <div class="name">SubZi</div>
           <div class="tag">🎮 Suscripciones & Gaming Premium ✨ 🤖 ChatGPT Pro/Plus • 🔑 Keys • 🎁 Gift Cards ⚡️Entrega inmediata • 🔒Compra segura</div>
         </div>
       </div>
+
       <div class="hdrRight">
-        <a class="chip primary" href="./index.html">Inicio</a>
+        <button class="userBtn" id="btnUser" aria-label="Cuenta">
+          <span class="uIcon">👤</span>
+          <span class="uText" id="userLabel">Cuenta</span>
+        </button>
+
+        <button class="cartBtn" id="btnCart" aria-label="Abrir cesto">
+          <span style="font-weight:900;">🧺 Cesto</span>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="menuBtn" id="btnMenu" aria-label="Abrir categorías" aria-expanded="false" title="Categorías">
+          <span class="mwrap" aria-hidden="true">
+            <span class="mbar"></span>
+            <span class="mbar"></span>
+            <span class="mbar"></span>
+          </span>
+          <span class="mlabel">Categorías</span>
+        </button>
       </div>
+
+      <nav class="navDropdown" id="navMenu" aria-label="Categorías">
+        <a class="chip" href="./index.html">🏠 Inicio</a>
+        <a class="chip" href="./chatgpt.html">🤖 ChatGPT</a>
+        <a class="chip" href="./games.html">🎮 Juegos</a>
+        <a class="chip" href="./steam.html">🔑 Steam Keys</a>
+      </nav>
     </div>
   </header>
 
-  <main class="wrap">
+  <div class="menuOverlay" id="menuOverlay" aria-hidden="true"></div>
+<main class="wrap">
     <section class="section" id="inicio">
       <div class="card heroMain glowBorder reveal tiltCard" data-tilt style="padding:18px;">
         <h1>Nueva contraseña</h1>
@@ -63,9 +87,7 @@
         <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div>
         <div class="credit">Desarrollo Web: <b>Univ. Alejandro J. Villalba</b>.</div>
       </div>
-      <div class="social">
-        <a class="soc" href="./cashback.html"><span class="socIcon">💰</span><span>Cashback</span></a>
-      </div>
+      <div class="social"></div>
     </div>
   </footer>
 
@@ -74,6 +96,11 @@
   <script src="./config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./supabaseClient.js"></script>
+  <script src="./data.js"></script>
+  <script src="./core.js"></script>
+  <script src="./cloudSync.js"></script>
+  <script src="./common.js"></script>
+  <script src="./chat.js"></script>
   <script>
     (function(){
       document.getElementById("year").textContent = new Date().getFullYear();

@@ -8,10 +8,9 @@
   // Título fijo (pestaña)
   try{ document.title = "SubZi | Tienda Online"; }catch(e){}
 
-  // ===== POPUP 'CÓMO COMPRAR' (se cierra sola en 5s) =====
+  // ===== POPUP INICIAL (compacto, nuevo y 5s) =====
 
 function shouldShowStartupPopup(){
-  // Solo en inicio (/, /index.html). Debe mostrarse cada vez que volvés al inicio.
   try{
     var p = (location.pathname || "").split("/").pop();
     return !p || p === "index.html";
@@ -25,70 +24,181 @@ function showStartupPopup(){
   ov.id = "startPopupOverlay";
   ov.className = "startPopupOverlay";
   ov.innerHTML =
-    '<div class="startPopup" role="dialog" aria-modal="true" aria-label="Cómo comprar">' +
+    '<div class="startPopup startPopupCompact" role="dialog" aria-modal="true" aria-label="Bienvenido a SubZi">' +
       '<button class="startPopupClose" id="startPopupClose" type="button" aria-label="Cerrar">✕</button>' +
-      '<div class="startPopupHero">' +
-        '<img class="startPopupLogo" src="./assets/favicon.png" alt="SubZi" />' +
-        '<div class="startPopupTitle">Cómo comprar</div>' +
-        '<div class="startPopupSub">Armá tu pedido en el <b>Cesto</b>, activá tu producto ideal y finalizá por <b>WhatsApp</b> con soporte rápido.</div>' +
+      '<div class="startPopupHeaderLine"></div>' +
+      '<div class="startPopupShell">' +
+        '<img class="startPopupLogo compact" src="./assets/favicon.png" alt="SubZi" />' +
+        '<div class="startPopupCopy">' +
+          '<div class="startPopupKicker">SubZi Store</div>' +
+          '<div class="startPopupTitle">Comprá rápido y sin vueltas</div>' +
+          '<p class="startPopupSub">Entrá a <b>Descuentos</b>, elegí tu plan de <b>ChatGPT</b>, <b>Juegos</b> o <b>Steam Keys</b>, agregá al cesto y cerrá por WhatsApp.</p>' +
+          '<div class="startPopupTags">' +
+            '<span>⚡ Entrega rápida</span>' +
+            '<span>🧺 Cesto</span>' +
+            '<span>💬 Soporte</span>' +
+          '</div>' +
+        '</div>' +
       '</div>' +
-      '<div class="startPopupBody">' +
-        '<ol class="startSteps">' +
-          '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b>, <b>Juegos</b> o <b>Steam Keys</b>.</li>' +
-          '<li><span class="stepDot">2</span> Tocá <b>Agregar</b> en lo que querés comprar.</li>' +
-          '<li><span class="stepDot">3</span> Abrí el <b>Cesto</b> desde arriba y revisá tu pedido.</li>' +
-          '<li><span class="stepDot">4</span> Presioná <b>Finalizar por WhatsApp</b> para coordinar pago y entrega.</li>' +
-          '<li><span class="stepDot">5</span> Si tenés <b>cashback</b>, activalo desde el mismo cesto.</li>' +
-        '</ol>' +
-        '<div class="startPopupSoon"><b>Próximamente:</b> más suscripciones, gift cards, keys y novedades gamer.</div>' +
-        '<div class="startPopupNote">Se cierra sola en <b>12 segundos</b> y en móvil ya no se sale de la pantalla.</div>' +
+      '<div class="startPopupActions compact">' +
+        '<a class="btn primary startPopupCta" href="./descuentos.html">Ver descuentos</a>' +
+        '<button class="btn ghost startSkipBtn" id="startPopupSkip" type="button">Cerrar</button>' +
       '</div>' +
-      '<div class="startPopupActions">' +
-        '<button class="btn ghost startSkipBtn" id="startPopupSkip" type="button">Saltar</button>' +
-      '</div>' +
+      '<div class="startPopupTimer"><span>Se cierra sola en 5 segundos</span><div class="startPopupProgress"><i></i></div></div>' +
     '</div>';
 
   document.body.appendChild(ov);
   try{ document.body.classList.add("popupOpen"); }catch(e){}
 
+  var closed = false;
   function close(immediate){
-    if (!ov) return;
+    if (closed) return;
+    closed = true;
     ov.classList.remove("show");
     try{ document.body.classList.remove("popupOpen"); }catch(e){}
-    if (immediate){
-      try{ ov.remove(); }catch(e){}
-      return;
-    }
-    setTimeout(function(){
-      try{ ov.remove(); }catch(e){}
-    }, 180);
+    var done = function(){ try{ ov.remove(); }catch(e){} };
+    if (immediate) done();
+    else setTimeout(done, 180);
   }
 
   ov.addEventListener("click", function(e){ if (e && e.target === ov) close(true); });
-
   var skip = document.getElementById("startPopupSkip");
   if (skip) skip.addEventListener("click", function(e){ if(e){ e.preventDefault(); e.stopPropagation(); } close(true); });
-
   var closeBtn = document.getElementById("startPopupClose");
   if (closeBtn) closeBtn.addEventListener("click", function(e){ if(e){ e.preventDefault(); e.stopPropagation(); } close(true); });
 
-  ov.addEventListener("click", function(e){
-    var t = e && e.target;
-    if (t && (t.id === "startPopupSkip" || t.id === "startPopupClose" || (t.closest && (t.closest("#startPopupSkip") || t.closest("#startPopupClose"))))){
-      if(e){ e.preventDefault(); e.stopPropagation(); }
-      close(true);
-    }
-  });
-
-  document.addEventListener("keydown", function escHandler(e){
+  function escHandler(e){
     if (e && e.key === "Escape"){
       close(true);
       document.removeEventListener("keydown", escHandler);
     }
-  });
+  }
+  document.addEventListener("keydown", escHandler);
 
   requestAnimationFrame(function(){ ov.classList.add("show"); });
-  setTimeout(close, 12000);
+  setTimeout(function(){ close(false); }, 5000);
+}
+
+function currentPageName(){
+  try{
+    var p = (location.pathname || "").split("/").pop();
+    return p || "index.html";
+  }catch(e){ return "index.html"; }
+}
+
+function ensurePageTabs(){
+  var header = document.querySelector("header");
+  if (!header || header.querySelector(".pageTabsWrap")) return;
+
+  var current = currentPageName();
+  var nav = document.createElement("div");
+  nav.className = "wrap pageTabsWrap";
+  nav.innerHTML =
+    '<nav class="pageTabs" aria-label="Secciones">' +
+      '<a class="pageTab' + ((current === 'index.html') ? ' active' : '') + '" href="./index.html">Inicio</a>' +
+      '<a class="pageTab' + ((current === 'descuentos.html') ? ' active' : '') + '" href="./descuentos.html">Descuentos</a>' +
+      '<a class="pageTab' + ((current === 'chatgpt.html') ? ' active' : '') + '" href="./chatgpt.html">ChatGPT</a>' +
+      '<a class="pageTab' + ((current === 'games.html') ? ' active' : '') + '" href="./games.html">Juegos</a>' +
+      '<a class="pageTab' + ((current === 'steam.html') ? ' active' : '') + '" href="./steam.html">Steam Keys</a>' +
+      '<a class="pageTab' + ((current === 'cashback.html') ? ' active' : '') + '" href="./cashback.html">Cashback</a>' +
+    '</nav>';
+  header.appendChild(nav);
+}
+
+function ensureFooterLayout(){
+  var foot = document.querySelector("footer .foot");
+  if (!foot) return;
+  foot.classList.add("footEnhanced");
+
+  var social = foot.querySelector(".social");
+  if (social){
+    social.innerHTML =
+      '<a class="soc" href="./cashback.html"><span class="socIcon">💰</span><span>Cashback</span></a>' +
+      '<a class="soc" href="./descuentos.html"><span class="socIcon">🏷️</span><span>Descuentos</span></a>' +
+      '<a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener"><span class="socIcon">🎵</span><span>TikTok</span></a>' +
+      '<a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener"><span class="socIcon">📘</span><span>Facebook</span></a>' +
+      '<a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener"><span class="socIcon">📷</span><span>Instagram</span></a>';
+  }
+}
+
+function ensureUtilityShell(){
+  if (!document.getElementById("btnWhatsAppFloat")) {
+    var wa = document.createElement("div");
+    wa.className = "waFloat";
+    wa.id = "btnWhatsAppFloat";
+    wa.title = "Abrir WhatsApp";
+    wa.innerHTML = '<div class="waDot"></div><span>WhatsApp</span>';
+    document.body.appendChild(wa);
+  }
+
+  if (!document.getElementById("chatFab")) {
+    var fab = document.createElement("button");
+    fab.className = "chatFab";
+    fab.id = "chatFab";
+    fab.setAttribute("aria-label", "Abrir chatbot");
+    fab.title = "Chatbot";
+    fab.textContent = '🤖';
+    document.body.appendChild(fab);
+  }
+
+  if (!document.getElementById("chatPanel")) {
+    var panel = document.createElement("div");
+    panel.className = "chatPanel";
+    panel.id = "chatPanel";
+    panel.setAttribute("aria-label", "Chatbot");
+    panel.innerHTML =
+      '<div class="chatHead">' +
+        '<div class="t"><b>Asistente SubZi</b><small>FAQ + navegación + WhatsApp</small></div>' +
+        '<button class="closeBtn" id="chatClose" aria-label="Cerrar chat">✕</button>' +
+      '</div>' +
+      '<div class="chatBody" id="chatBody"></div>' +
+      '<div class="chatQuick">' +
+        '<div class="q" data-q="Descuentos">Descuentos</div>' +
+        '<div class="q" data-q="ChatGPT">ChatGPT</div>' +
+        '<div class="q" data-q="Juegos">Juegos</div>' +
+        '<div class="q" data-q="Steam Keys">Steam Keys</div>' +
+        '<div class="q" data-q="Hablar">WhatsApp</div>' +
+      '</div>' +
+      '<div class="chatInputRow">' +
+        '<input class="chatInput" id="chatInput" placeholder="Ej: quiero una key de Steam" />' +
+        '<button class="chatSend" id="chatSend" aria-label="Enviar">Enviar</button>' +
+      '</div>';
+    document.body.appendChild(panel);
+  }
+
+  if (!document.getElementById("overlay") && window.SUBZI && SUBZI.core) {
+    var ov = document.createElement("div");
+    ov.className = "overlay";
+    ov.id = "overlay";
+    document.body.appendChild(ov);
+  }
+
+  if (!document.getElementById("drawer") && window.SUBZI && SUBZI.core) {
+    var drawer = document.createElement("aside");
+    drawer.className = "drawer";
+    drawer.id = "drawer";
+    drawer.setAttribute("aria-label", "Cesto de compras");
+    drawer.innerHTML =
+      '<div class="drawerHead">' +
+        '<h3>Tu cesto</h3>' +
+        '<button class="closeBtn" id="btnClose" aria-label="Cerrar">✕</button>' +
+      '</div>' +
+      '<div class="drawerBody" id="cartItems"></div>' +
+      '<div class="drawerFoot">' +
+        '<div class="totals"><div class="label">Subtotal</div><div class="val" id="subtotalValue">A confirmar</div></div>' +
+        '<div class="totals"><div class="label">Descuento</div><div class="val" id="discountValue">—</div></div>' +
+        '<div class="totals"><div class="label">Cashback</div><div class="val" id="cashbackApplied">—</div></div>' +
+        '<div class="cashbackRow" id="cashbackRow">' +
+          '<label class="chk"><input type="checkbox" id="useCashback" /> Usar cashback</label>' +
+          '<div class="cashInfo"><span class="cashBal">Saldo: <b id="cashbackBalance">0</b></span><span class="cashHint" id="cashbackHint">Disponible para juegos</span></div>' +
+        '</div>' +
+        '<div class="totals"><div class="label">Total</div><div class="val" id="totalValue">A confirmar</div></div>' +
+        '<div class="discountRow"><input class="input" id="couponInput" placeholder="Cupón (ej: SUBZI10)" /><button class="btn ghost" id="btnApplyCoupon">Aplicar</button></div>' +
+        '<button class="btn primary" style="width:100%; justify-content:center;" id="btnCheckout">Finalizar por WhatsApp <span aria-hidden="true">📲</span></button>' +
+        '<p class="note">Nota: Si el precio está en “Consultar”, te confirmamos por WhatsApp.</p>' +
+      '</div>';
+    document.body.appendChild(drawer);
+  }
 }
 
 
@@ -741,6 +851,10 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
 
   // Run init
   document.addEventListener("DOMContentLoaded", function(){
+    try{ ensurePageTabs(); }catch(e){}
+    try{ ensureFooterLayout(); }catch(e){}
+    try{ ensureUtilityShell(); }catch(e){}
+
     try{ syncHeaderOffset(); }catch(e){}
     window.addEventListener("resize", function(){ try{ syncHeaderOffset(); }catch(e){} });
     window.addEventListener("orientationchange", function(){ try{ syncHeaderOffset(); }catch(e){} });
@@ -753,7 +867,6 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     try{ if (shouldShowStartupPopup()) showStartupPopup(); }catch(e){}
     try{ initMotionFX(); }catch(e){}
 
-    // Año
     try{
       var y = byId("year");
       if (y) y.textContent = String(new Date().getFullYear());
