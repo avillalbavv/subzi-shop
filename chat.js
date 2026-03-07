@@ -1,6 +1,6 @@
 /**
  * Chatbot SubZi (quick replies + input)
- * Categorías: ChatGPT + Juegos + Steam Keys
+ * Categorías: ChatGPT + Juegos + Steam Keys + Streaming
  */
 (function(){
   if (!window.SUBZI || !SUBZI.core) return;
@@ -71,6 +71,31 @@
 
     var low = t.toLowerCase();
 
+    var allProducts = (window.SUBZI && SUBZI.products) ? SUBZI.products : [];
+    for (var pi=0; pi<allProducts.length; pi++){
+      var prod = allProducts[pi];
+      if (!prod || !prod.name) continue;
+      var prodName = String(prod.name).toLowerCase();
+      if (low.length >= 4 && prodName.indexOf(low) !== -1){
+        addChatMsg("Te abro " + prod.name + ".", "bot");
+        goPage("./product.html?id=" + encodeURIComponent(prod.id));
+        return;
+      }
+      var words = low.split(/\s+/);
+      if (words.length >= 2){
+        var hits = 0;
+        for (var wi=0; wi<words.length; wi++){
+          var w = words[wi];
+          if (w && w.length > 2 && prodName.indexOf(w) !== -1) hits++;
+        }
+        if (hits >= 2){
+          addChatMsg("Encontré " + prod.name + ".", "bot");
+          goPage("./product.html?id=" + encodeURIComponent(prod.id));
+          return;
+        }
+      }
+    }
+
     if (low.indexOf("whatsapp") !== -1 || low.indexOf("wpp") !== -1 || low.indexOf("wasap") !== -1){
       addChatMsg("Perfecto, abro WhatsApp 👇", "bot");
       core.openWhatsApp(false);
@@ -107,6 +132,12 @@
       return;
     }
 
+    if (low.indexOf("netflix") !== -1 || low.indexOf("disney") !== -1 || low.indexOf("paramount") !== -1 || low.indexOf("prime video") !== -1 || low.indexOf("crunchyroll") !== -1 || low.indexOf("hbo") !== -1 || low.indexOf("streaming") !== -1){
+      addChatMsg("Vamos 📺 Te llevo al apartado de streaming.", "bot");
+      goPage("./streaming.html");
+      return;
+    }
+
     if (low.indexOf("juego") !== -1 || low.indexOf("games") !== -1){
       addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
       goPage("./games.html");
@@ -118,7 +149,7 @@
       return;
     }
 
-    addChatMsg("Decime si querés Descuentos, ChatGPT, Juegos o Steam Keys. También podés escribir: God of War, Silent Hill o F1.", "bot");
+    addChatMsg("Decime si querés Descuentos, ChatGPT, Juegos, Steam Keys o Streaming. También podés escribir el nombre exacto del juego y te lo abro.", "bot");
   }
 
   document.addEventListener("DOMContentLoaded", function(){
@@ -130,7 +161,7 @@
       chatPanel.classList.add("show");
       if (byId("chatBody") && byId("chatBody").children.length === 0){
         addChatMsg("Hola 👋 Soy el asistente de SubZi.", "bot");
-        addChatMsg("Te ayudo con descuentos, ChatGPT, juegos, Steam Keys o WhatsApp.", "bot");
+        addChatMsg("Te ayudo con descuentos, ChatGPT, juegos, Steam Keys, streaming o WhatsApp.", "bot");
       }
       var inp = byId("chatInput");
       if (inp) inp.focus();

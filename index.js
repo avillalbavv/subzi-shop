@@ -12,7 +12,9 @@
   var map = {
     "chatgpt": "./chatgpt.html",
     "games": "./games.html",
-    "steam": "./steam.html"
+    "steam": "./steam.html",
+    "streaming": "./streaming.html",
+    "descuentos": "./descuentos.html"
   };
   if (h && map[h]){
     // mantenemos historial limpio
@@ -23,6 +25,13 @@
   var steamBtn = document.getElementById("btnWhatsAppSteamBand");
   if (steamBtn){
     steamBtn.addEventListener("click", function(){
+      SUBZI.core.openWhatsApp(false);
+    });
+  }
+
+  var streamingBtn = document.getElementById("btnWhatsAppStreamingBand");
+  if (streamingBtn){
+    streamingBtn.addEventListener("click", function(){
       SUBZI.core.openWhatsApp(false);
     });
   }

@@ -10,6 +10,7 @@ SUBZI.categoryImages = {
   chatgpt: "./assets/products/chatgpt.png",
   games: "./assets/products/games.png",
   steam: "./assets/products/steam.png",
+  streaming: "./assets/products/streaming.png",
 };
 
 // Categorías (solo navegación)
@@ -17,6 +18,7 @@ SUBZI.categories = [
   { id: "chatgpt", label: "ChatGPT", emoji: "🤖", page: "./chatgpt.html" },
   { id: "games", label: "Juegos", emoji: "🎮", page: "./games.html" },
   { id: "steam", label: "Steam Keys", emoji: "🔑", page: "./steam.html" },
+  { id: "streaming", label: "Streaming", emoji: "📺", page: "./streaming.html" },
 ];
 
 // Cupones opcionales
@@ -229,63 +231,561 @@ SUBZI.products = [
   // STEAM KEYS
   // =========================
   {
-    id: "steam-key-a-pedido",
+    id: "resident-evil-requiem",
     category: "steam",
-    icon: "🔑",
-    name: "Steam Key a pedido",
+    icon: "🧟",
+    name: "Resident Evil Requiem",
     price: 0,
     currency: "PYG",
-    badge: "Steam Key",
-    desc: "Pedinos cualquier juego de Steam y te cotizamos la key según disponibilidad.",
+    badge: "Horror",
+    desc: "Volvé al survival horror con una Steam Key original lista para canjear apenas confirmemos tu pago.",
     image: "./assets/products/steam.png",
-    features: ["Entrega digital", "Soporte", "Consulta rápida"],
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
-      plan: "Key digital para activar directamente en Steam.",
-      pagos: "Precio y pago a coordinar por WhatsApp según el juego que busques.",
-      how: "Nos escribís qué juego querés, te confirmamos disponibilidad, te pasamos el total y te entregamos la key con guía de activación.",
-      extraHtml: `<div class="pRich">
-  <h4>🎯 Steam Keys por pedido</h4>
-  <p>Ideal si querés comprar un juego puntual sin depender de cuentas compartidas. Te cotizamos la <span class="pill">key oficial</span> según stock y región disponible.</p>
-  <ul class="pChecks">
-    <li>✅ Activación directa en tu cuenta de Steam</li>
-    <li>✅ Entrega digital y soporte por WhatsApp</li>
-    <li>✅ Consultá lanzamientos, ofertas y juegos AAA</li>
+      plan: "Steam Key original de Resident Evil Requiem. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Resident Evil Requiem</h4>
+  <p>Resident Evil Requiem está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
   </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
 </div>`,
     },
   },
   {
-    id: "steam-key-aaa",
+    id: "detroit-become-human",
     category: "steam",
-    icon: "🚀",
-    name: "Steam Keys AAA",
+    icon: "🤖",
+    name: "Detroit Become Human",
     price: 0,
     currency: "PYG",
-    badge: "Top ventas",
-    desc: "Consultá por lanzamientos, precompras y juegos AAA con activación en Steam.",
+    badge: "Narrativa",
+    desc: "Experiencia narrativa premium con Steam Key para activarla directamente en tu propia cuenta.",
     image: "./assets/products/steam.png",
-    features: ["AAA", "Preventa", "Steam"],
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
-      plan: "Keys para títulos premium y lanzamientos nuevos.",
-      pagos: "Cotización variable según juego y disponibilidad.",
-      how: "Agregás al cesto o escribís por WhatsApp con el nombre del juego. Te respondemos con stock, precio y entrega.",
+      plan: "Steam Key original de Detroit Become Human. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Detroit Become Human</h4>
+  <p>Detroit Become Human está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
     },
   },
   {
-    id: "steam-key-ofertas",
+    id: "outlast-2",
     category: "steam",
-    icon: "🔥",
-    name: "Steam Keys en oferta",
+    icon: "🩸",
+    name: "Outlast 2",
     price: 0,
     currency: "PYG",
-    badge: "Ofertas",
-    desc: "Bundles, ofertas y keys recomendadas para jugar en PC con mejor precio.",
+    badge: "Terror",
+    desc: "Terror psicológico en PC con entrega inmediata de key según disponibilidad de stock.",
     image: "./assets/products/steam.png",
-    features: ["Bundles", "Ofertas", "PC"],
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
-      plan: "Selección de keys en oferta y recomendaciones para PC.",
-      pagos: "Se confirma según la promo disponible al momento de tu consulta.",
-      how: "Te mostramos opciones activables en Steam y cerrás el pedido por WhatsApp.",
+      plan: "Steam Key original de Outlast 2. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Outlast 2</h4>
+  <p>Outlast 2 está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "mortal-kombat-11-ultimate",
+    category: "steam",
+    icon: "🥋",
+    name: "Mortal Kombat 11 Ultimate",
+    price: 0,
+    currency: "PYG",
+    badge: "Fighting",
+    desc: "Edición completa para Steam con key digital y soporte para que la actives sin complicaciones.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Mortal Kombat 11 Ultimate. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Mortal Kombat 11 Ultimate</h4>
+  <p>Mortal Kombat 11 Ultimate está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "batman-arkham-origins",
+    category: "steam",
+    icon: "🦇",
+    name: "Batman Arkham Origins",
+    price: 0,
+    currency: "PYG",
+    badge: "Acción",
+    desc: "Sumá Gotham a tu biblioteca con una Steam Key original y activación 100% en tu cuenta.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Batman Arkham Origins. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Batman Arkham Origins</h4>
+  <p>Batman Arkham Origins está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "injustice-2-legendary-edition",
+    category: "steam",
+    icon: "⚡",
+    name: "Injustice 2 Legendary Edition",
+    price: 0,
+    currency: "PYG",
+    badge: "Legendary",
+    desc: "La edición más completa de Injustice 2 lista para entrar a tu cuenta de Steam.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Injustice 2 Legendary Edition. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Injustice 2 Legendary Edition</h4>
+  <p>Injustice 2 Legendary Edition está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "assetto-corsa",
+    category: "steam",
+    icon: "🏎️",
+    name: "Assetto Corsa",
+    price: 0,
+    currency: "PYG",
+    badge: "Sim Racing",
+    desc: "Simulador ideal para fanáticos del automovilismo con entrega digital inmediata.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Assetto Corsa. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Assetto Corsa</h4>
+  <p>Assetto Corsa está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "human-fall-flat",
+    category: "steam",
+    icon: "🧩",
+    name: "Human Fall Flat",
+    price: 0,
+    currency: "PYG",
+    badge: "Co-op",
+    desc: "Diversión cooperativa con Steam Key original y guía rápida de canje.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Human Fall Flat. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Human Fall Flat</h4>
+  <p>Human Fall Flat está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "buckshot-roulette",
+    category: "steam",
+    icon: "🔫",
+    name: "Buckshot Roulette",
+    price: 0,
+    currency: "PYG",
+    badge: "Indie",
+    desc: "Indie viral con entrega en key para activarlo al instante en tu biblioteca de Steam.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Buckshot Roulette. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Buckshot Roulette</h4>
+  <p>Buckshot Roulette está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "silent-hill-homecoming",
+    category: "steam",
+    icon: "👁️",
+    name: "Silent Hill Homecoming",
+    price: 0,
+    currency: "PYG",
+    badge: "Survival Horror",
+    desc: "Terror clásico para PC con Steam Key lista para entrega inmediata.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Silent Hill Homecoming. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Silent Hill Homecoming</h4>
+  <p>Silent Hill Homecoming está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "tomb-raider-definitive-survival-trilogy",
+    category: "steam",
+    icon: "🏹",
+    name: "Tomb Raider Definitive Survival Trilogy",
+    price: 0,
+    currency: "PYG",
+    badge: "Trilogía",
+    desc: "La trilogía de Lara Croft en una sola compra con activación directa en tu cuenta.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Tomb Raider Definitive Survival Trilogy. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Tomb Raider Definitive Survival Trilogy</h4>
+  <p>Tomb Raider Definitive Survival Trilogy está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "wrc-9",
+    category: "steam",
+    icon: "🏁",
+    name: "WRC 9",
+    price: 0,
+    currency: "PYG",
+    badge: "Rally",
+    desc: "Rally competitivo para Steam con key digital y soporte postventa.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de WRC 9. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de WRC 9</h4>
+  <p>WRC 9 está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "the-evil-within",
+    category: "steam",
+    icon: "🕯️",
+    name: "The Evil Within",
+    price: 0,
+    currency: "PYG",
+    badge: "Terror",
+    desc: "Shinji Mikami en tu biblioteca con canje directo y sin compartir contraseñas.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de The Evil Within. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de The Evil Within</h4>
+  <p>The Evil Within está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+  {
+    id: "martha-is-dead",
+    category: "steam",
+    icon: "🪦",
+    name: "Martha is Dead",
+    price: 0,
+    currency: "PYG",
+    badge: "Thriller",
+    desc: "Thriller oscuro con key oficial para activar en tu cuenta al terminar el pago.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
+    details: {
+      plan: "Steam Key original de Martha is Dead. Stock disponible para venta inmediata.",
+      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Entrega inmediata de Martha is Dead</h4>
+  <p>Martha is Dead está disponible como <span class=\"pill\">Steam Key original</span> para venta inmediata. Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, <b>sin contraseñas</b>, y una vez activada queda en tu biblioteca para siempre.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Key digital entregada por WhatsApp</li>
+    <li>✅ Canje directo en tu propia cuenta de Steam</li>
+    <li>✅ Sin cuentas compartidas y sin pasar contraseñas</li>
+    <li>✅ Soporte durante el proceso de activación</li>
+  </ul>
+  <p class=\"pNote\">Cuando nos pases el comprobante, te enviamos la key y te guiamos si necesitás ayuda para canjearla.</p>
+</div>`,
+    },
+  },
+
+  // =========================
+  // STREAMING
+  // =========================
+  {
+    id: "netflix",
+    category: "streaming",
+    icon: "🎬",
+    name: "Netflix",
+    price: 0,
+    currency: "PYG",
+    badge: "Streaming",
+    desc: "Planes de acceso a Netflix con entrega y coordinación rápida por WhatsApp.",
+    image: "./assets/products/streaming.png",
+    features: ["Streaming", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Suscripción o acceso a Netflix según disponibilidad.",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Nos escribís, confirmamos el plan disponible y te guiamos para dejarlo activo.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Netflix en SubZi</h4>
+  <p>Coordinamos tu acceso a <span class=\"pill\">Netflix</span> de forma simple, con asistencia por WhatsApp y entrega rápida según el plan disponible.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Atención rápida por WhatsApp</li>
+    <li>✅ Confirmación de disponibilidad antes de cobrar</li>
+    <li>✅ Guía para dejarlo funcionando</li>
+  </ul>
+  <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
+</div>`,
+    },
+  },
+  {
+    id: "disney-plus",
+    category: "streaming",
+    icon: "✨",
+    name: "Disney+",
+    price: 0,
+    currency: "PYG",
+    badge: "Streaming",
+    desc: "Disney+ para tu cuenta o acceso coordinado según disponibilidad.",
+    image: "./assets/products/streaming.png",
+    features: ["Streaming", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Suscripción o acceso a Disney+ según disponibilidad.",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Nos escribís, confirmamos el plan disponible y te guiamos para dejarlo activo.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Disney+ en SubZi</h4>
+  <p>Coordinamos tu acceso a <span class=\"pill\">Disney+</span> de forma simple, con asistencia por WhatsApp y entrega rápida según el plan disponible.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Atención rápida por WhatsApp</li>
+    <li>✅ Confirmación de disponibilidad antes de cobrar</li>
+    <li>✅ Guía para dejarlo funcionando</li>
+  </ul>
+  <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
+</div>`,
+    },
+  },
+  {
+    id: "paramount-plus",
+    category: "streaming",
+    icon: "🎞️",
+    name: "Paramount+",
+    price: 0,
+    currency: "PYG",
+    badge: "Streaming",
+    desc: "Paramount+ con activación guiada y soporte simple por WhatsApp.",
+    image: "./assets/products/streaming.png",
+    features: ["Streaming", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Suscripción o acceso a Paramount+ según disponibilidad.",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Nos escribís, confirmamos el plan disponible y te guiamos para dejarlo activo.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Paramount+ en SubZi</h4>
+  <p>Coordinamos tu acceso a <span class=\"pill\">Paramount+</span> de forma simple, con asistencia por WhatsApp y entrega rápida según el plan disponible.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Atención rápida por WhatsApp</li>
+    <li>✅ Confirmación de disponibilidad antes de cobrar</li>
+    <li>✅ Guía para dejarlo funcionando</li>
+  </ul>
+  <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
+</div>`,
+    },
+  },
+  {
+    id: "prime-video",
+    category: "streaming",
+    icon: "📦",
+    name: "Prime Video",
+    price: 0,
+    currency: "PYG",
+    badge: "Streaming",
+    desc: "Prime Video listo para coordinar según el plan disponible en stock.",
+    image: "./assets/products/streaming.png",
+    features: ["Streaming", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Suscripción o acceso a Prime Video según disponibilidad.",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Nos escribís, confirmamos el plan disponible y te guiamos para dejarlo activo.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Prime Video en SubZi</h4>
+  <p>Coordinamos tu acceso a <span class=\"pill\">Prime Video</span> de forma simple, con asistencia por WhatsApp y entrega rápida según el plan disponible.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Atención rápida por WhatsApp</li>
+    <li>✅ Confirmación de disponibilidad antes de cobrar</li>
+    <li>✅ Guía para dejarlo funcionando</li>
+  </ul>
+  <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
+</div>`,
+    },
+  },
+  {
+    id: "crunchyroll",
+    category: "streaming",
+    icon: "🍥",
+    name: "Crunchyroll",
+    price: 0,
+    currency: "PYG",
+    badge: "Anime",
+    desc: "Crunchyroll para fans del anime con activación rápida y soporte.",
+    image: "./assets/products/streaming.png",
+    features: ["Streaming", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Suscripción o acceso a Crunchyroll según disponibilidad.",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Nos escribís, confirmamos el plan disponible y te guiamos para dejarlo activo.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>Crunchyroll en SubZi</h4>
+  <p>Coordinamos tu acceso a <span class=\"pill\">Crunchyroll</span> de forma simple, con asistencia por WhatsApp y entrega rápida según el plan disponible.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Atención rápida por WhatsApp</li>
+    <li>✅ Confirmación de disponibilidad antes de cobrar</li>
+    <li>✅ Guía para dejarlo funcionando</li>
+  </ul>
+  <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
+</div>`,
+    },
+  },
+  {
+    id: "hbo-max",
+    category: "streaming",
+    icon: "🍿",
+    name: "HBO Max",
+    price: 0,
+    currency: "PYG",
+    badge: "Streaming",
+    desc: "HBO Max para sumar a tu cuenta con asistencia durante la activación.",
+    image: "./assets/products/streaming.png",
+    features: ["Streaming", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Suscripción o acceso a HBO Max según disponibilidad.",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Nos escribís, confirmamos el plan disponible y te guiamos para dejarlo activo.",
+      extraHtml: `<div class=\"pRich\">
+  <h4>HBO Max en SubZi</h4>
+  <p>Coordinamos tu acceso a <span class=\"pill\">HBO Max</span> de forma simple, con asistencia por WhatsApp y entrega rápida según el plan disponible.</p>
+  <ul class=\"pChecks\">
+    <li>✅ Atención rápida por WhatsApp</li>
+    <li>✅ Confirmación de disponibilidad antes de cobrar</li>
+    <li>✅ Guía para dejarlo funcionando</li>
+  </ul>
+  <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
+</div>`,
     },
   },
 

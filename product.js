@@ -43,6 +43,16 @@
     var b = byId("detailBadge");
     if (b) b.textContent = p.badge;
 
+    var iconWrap = byId("detailIcon");
+    if (iconWrap){
+      var iconVal = p.icon || "";
+      if (iconVal && (iconVal.indexOf("/") !== -1 || iconVal.indexOf(".") !== -1)){
+        iconWrap.innerHTML = '<img alt="" src="' + iconVal + '" />';
+      } else {
+        iconWrap.textContent = iconVal;
+      }
+    }
+
     var plan = byId("detailPlan");
     if (plan) plan.textContent = (p.details && p.details.plan) ? p.details.plan : "A definir.";
 
