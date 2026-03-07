@@ -34,7 +34,7 @@ function showStartupPopup(){
       '</div>' +
       '<div class="startPopupBody">' +
         '<ol class="startSteps">' +
-          '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
+          '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b>, <b>Juegos</b> o <b>Steam Keys</b>.</li>' +
           '<li><span class="stepDot">2</span> Tocá <b>Agregar</b> en lo que querés comprar.</li>' +
           '<li><span class="stepDot">3</span> Abrí el <b>Cesto</b> desde arriba y revisá tu pedido.</li>' +
           '<li><span class="stepDot">4</span> Presioná <b>Finalizar por WhatsApp</b> para coordinar pago y entrega.</li>' +

@@ -11,7 +11,8 @@
   var h = (window.location.hash || "").replace("#","");
   var map = {
     "chatgpt": "./chatgpt.html",
-    "games": "./games.html"
+    "games": "./games.html",
+    "steam": "./steam.html"
   };
   if (h && map[h]){
     // mantenemos historial limpio
@@ -19,7 +20,13 @@
     return;
   }
 
-  // Nada más por ahora (inicio intencionalmente limpio)
+  var steamBtn = document.getElementById("btnWhatsAppSteamBand");
+  if (steamBtn){
+    steamBtn.addEventListener("click", function(){
+      SUBZI.core.openWhatsApp(false);
+    });
+  }
+
   // Popup inicial manejado desde common.js
 
 })();

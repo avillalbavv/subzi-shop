@@ -9,12 +9,14 @@ SUBZI.WHATSAPP_NUMBER = "595983929719"; // sin + para wa.me
 SUBZI.categoryImages = {
   chatgpt: "./assets/products/chatgpt.png",
   games: "./assets/products/games.png",
+  steam: "./assets/products/steam.png",
 };
 
 // Categorías (solo navegación)
 SUBZI.categories = [
   { id: "chatgpt", label: "ChatGPT", emoji: "🤖", page: "./chatgpt.html" },
   { id: "games", label: "Juegos", emoji: "🎮", page: "./games.html" },
+  { id: "steam", label: "Steam Keys", emoji: "🔑", page: "./steam.html" },
 ];
 
 // Cupones opcionales
@@ -223,4 +225,68 @@ SUBZI.products = [
       how: "Confirmamos stock/precio y te guiamos con la activación.",
     },
   },
+  // =========================
+  // STEAM KEYS
+  // =========================
+  {
+    id: "steam-key-a-pedido",
+    category: "steam",
+    icon: "🔑",
+    name: "Steam Key a pedido",
+    price: 0,
+    currency: "PYG",
+    badge: "Steam Key",
+    desc: "Pedinos cualquier juego de Steam y te cotizamos la key según disponibilidad.",
+    image: "./assets/products/steam.png",
+    features: ["Entrega digital", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Key digital para activar directamente en Steam.",
+      pagos: "Precio y pago a coordinar por WhatsApp según el juego que busques.",
+      how: "Nos escribís qué juego querés, te confirmamos disponibilidad, te pasamos el total y te entregamos la key con guía de activación.",
+      extraHtml: `<div class="pRich">
+  <h4>🎯 Steam Keys por pedido</h4>
+  <p>Ideal si querés comprar un juego puntual sin depender de cuentas compartidas. Te cotizamos la <span class="pill">key oficial</span> según stock y región disponible.</p>
+  <ul class="pChecks">
+    <li>✅ Activación directa en tu cuenta de Steam</li>
+    <li>✅ Entrega digital y soporte por WhatsApp</li>
+    <li>✅ Consultá lanzamientos, ofertas y juegos AAA</li>
+  </ul>
+</div>`,
+    },
+  },
+  {
+    id: "steam-key-aaa",
+    category: "steam",
+    icon: "🚀",
+    name: "Steam Keys AAA",
+    price: 0,
+    currency: "PYG",
+    badge: "Top ventas",
+    desc: "Consultá por lanzamientos, precompras y juegos AAA con activación en Steam.",
+    image: "./assets/products/steam.png",
+    features: ["AAA", "Preventa", "Steam"],
+    details: {
+      plan: "Keys para títulos premium y lanzamientos nuevos.",
+      pagos: "Cotización variable según juego y disponibilidad.",
+      how: "Agregás al cesto o escribís por WhatsApp con el nombre del juego. Te respondemos con stock, precio y entrega.",
+    },
+  },
+  {
+    id: "steam-key-ofertas",
+    category: "steam",
+    icon: "🔥",
+    name: "Steam Keys en oferta",
+    price: 0,
+    currency: "PYG",
+    badge: "Ofertas",
+    desc: "Bundles, ofertas y keys recomendadas para jugar en PC con mejor precio.",
+    image: "./assets/products/steam.png",
+    features: ["Bundles", "Ofertas", "PC"],
+    details: {
+      plan: "Selección de keys en oferta y recomendaciones para PC.",
+      pagos: "Se confirma según la promo disponible al momento de tu consulta.",
+      how: "Te mostramos opciones activables en Steam y cerrás el pedido por WhatsApp.",
+    },
+  },
+
 ];

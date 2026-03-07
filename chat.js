@@ -1,6 +1,6 @@
 /**
  * Chatbot SubZi (quick replies + input)
- * Categorías: ChatGPT + Juegos
+ * Categorías: ChatGPT + Juegos + Steam Keys
  */
 (function(){
   if (!window.SUBZI || !SUBZI.core) return;
@@ -44,12 +44,18 @@
       return;
     }
 
-    if (key === "Precios"){
-      addChatMsg("Los precios dependen de disponibilidad. Decime qué suscripción/juego querés y te cotizo por WhatsApp.", "bot");
+    if (key === "Steam Keys"){
+      addChatMsg("Vamos 🔑 Te llevo a Steam Keys.", "bot");
+      goPage("./steam.html");
       return;
     }
 
-    addChatMsg("Decime si querés ChatGPT o Juegos. También podés escribir el nombre del juego.", "bot");
+    if (key === "Precios"){
+      addChatMsg("Los precios dependen de disponibilidad. Decime qué suscripción, juego o Steam Key querés y te cotizo por WhatsApp.", "bot");
+      return;
+    }
+
+    addChatMsg("Decime si querés ChatGPT, Juegos o Steam Keys. También podés escribir el nombre del juego.", "bot");
   }
 
   function handleChatInput(text){
@@ -83,6 +89,12 @@
       return;
     }
 
+    if (low.indexOf("steam") !== -1 || low.indexOf("key") !== -1 || low.indexOf("keys") !== -1){
+      addChatMsg("Vamos 🔑 Te llevo a Steam Keys.", "bot");
+      goPage("./steam.html");
+      return;
+    }
+
     if (low.indexOf("juego") !== -1 || low.indexOf("games") !== -1){
       addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
       goPage("./games.html");
@@ -90,11 +102,11 @@
     }
 
     if (low.indexOf("precio") !== -1 || low.indexOf("cuanto") !== -1 || low.indexOf("cuánto") !== -1){
-      addChatMsg("Decime qué suscripción/juego querés y te cotizo por WhatsApp.", "bot");
+      addChatMsg("Decime qué suscripción, juego o Steam Key querés y te cotizo por WhatsApp.", "bot");
       return;
     }
 
-    addChatMsg("Decime si querés ChatGPT o Juegos. También podés escribir: God of War, Silent Hill o F1.", "bot");
+    addChatMsg("Decime si querés ChatGPT, Juegos o Steam Keys. También podés escribir: God of War, Silent Hill o F1.", "bot");
   }
 
   document.addEventListener("DOMContentLoaded", function(){

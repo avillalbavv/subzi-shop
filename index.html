@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SubZi | Tienda Online</title>
-  <meta name="description" content="SubZi: suscripciones de ChatGPT y juegos. Comprá por WhatsApp." />
+  <meta name="description" content="SubZi: ChatGPT, juegos y Steam Keys. Comprá por WhatsApp." />
   <link rel="stylesheet" href="./styles.css" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link rel="apple-touch-icon" href="./assets/favicon.png" />
@@ -53,6 +53,7 @@
         <a class="chip" href="./index.html">🏠 Inicio</a>
         <a class="chip" href="./chatgpt.html">🤖 ChatGPT</a>
         <a class="chip" href="./games.html">🎮 Juegos</a>
+        <a class="chip" href="./steam.html">🔑 Steam Keys</a>
       </nav>
     </div>
   </header>
@@ -79,13 +80,14 @@
 
         <h1>SubZi <span>Gaming, suscripciones y compras al toque</span></h1>
         <p class="lead">
-          <b>SubZi</b> es tu pase directo a lo <b>premium</b>: suscripciones, gaming, keys y recargas con una experiencia más
+          <b>SubZi</b> es tu pase directo a lo <b>premium</b>: suscripciones, gaming, <b>Steam Keys</b> y recargas con una experiencia más
           dinámica, más visual y lista para cerrar tu pedido por <b>WhatsApp</b> en segundos.
         </p>
 
         <div class="heroPills reveal" data-stagger>
           <span class="heroPill">🔐 Compra segura</span>
           <span class="heroPill">🎁 Gift Cards</span>
+          <span class="heroPill">🔑 Steam Keys</span>
           <span class="heroPill">🎮 Juegos premium</span>
           <span class="heroPill">⚙️ Soporte rápido</span>
           <span class="heroPill">💬 WhatsApp directo</span>
@@ -117,6 +119,7 @@
           <span>🔥 Deals gamers</span>
           <span>🎮 Juegos</span>
           <span>🤖 ChatGPT</span>
+          <span>🔑 Steam Keys</span>
           <span>🎁 Gift Cards</span>
           <span>⚡ Entrega inmediata</span>
           <span>💬 WhatsApp</span>
@@ -124,6 +127,7 @@
           <span>🔥 Deals gamers</span>
           <span>🎮 Juegos</span>
           <span>🤖 ChatGPT</span>
+          <span>🔑 Steam Keys</span>
           <span>🎁 Gift Cards</span>
           <span>⚡ Entrega inmediata</span>
           <span>💬 WhatsApp</span>
@@ -133,7 +137,7 @@
 
       <div class="sectionHead reveal" style="margin-top:16px;">
         <h2>Categorías</h2>
-        <p class="hint">Entrá a ChatGPT o Juegos, agregá al cesto y cerrá tu pedido por WhatsApp.</p>
+        <p class="hint">Entrá a ChatGPT, Juegos o Steam Keys, agregá al cesto y cerrá tu pedido por WhatsApp.</p>
       </div>
 
       <div class="catGrid" id="categoryTiles">
@@ -154,7 +158,45 @@
             <span class="go">Ver Juegos →</span>
           </div>
         </a>
+
+        <a class="catTile reveal tiltCard" data-tilt href="./steam.html">
+          <div class="catImg"><img alt="Steam Keys" src="./assets/products/steam.png" /></div>
+          <div class="catBody">
+            <b>🔑 Steam Keys</b>
+            <p>Keys digitales para activar en tu propia cuenta. Consultá AAA, ofertas y pedidos a medida.</p>
+            <span class="go">Ver Steam Keys →</span>
+          </div>
+        </a>
       </div>
+
+      <section class="steamKeysBand reveal glowBorder" aria-label="Sección destacada de Steam Keys">
+        <div class="steamKeysBandText">
+          <span class="steamKeysEyebrow">Nuevo en SubZi</span>
+          <h3>Steam Keys en horizontal, listas para vender sin romper el diseño móvil</h3>
+          <p>Mostrá una sección clara para keys de Steam con CTA directo, cards compactas y acceso rápido a consultas por WhatsApp.</p>
+          <div class="steamKeysActions">
+            <a class="btn primary" href="./steam.html">Ver Steam Keys</a>
+            <button class="btn ghost" id="btnWhatsAppSteamBand" type="button">Consultar por Steam Keys</button>
+          </div>
+        </div>
+        <div class="steamKeysMiniRow">
+          <article class="steamMiniCard">
+            <span>🔑</span>
+            <strong>Keys a pedido</strong>
+            <small>Pedinos cualquier juego</small>
+          </article>
+          <article class="steamMiniCard">
+            <span>🚀</span>
+            <strong>AAA y lanzamientos</strong>
+            <small>Consultá disponibilidad</small>
+          </article>
+          <article class="steamMiniCard">
+            <span>🔥</span>
+            <strong>Ofertas</strong>
+            <small>Bundles y promos PC</small>
+          </article>
+        </div>
+      </section>
 
       <div class="divider"></div>
     </section>
@@ -262,6 +304,7 @@
     <div class="chatQuick">
       <div class="q" data-q="ChatGPT">ChatGPT</div>
       <div class="q" data-q="Juegos">Juegos</div>
+      <div class="q" data-q="Steam Keys">Steam Keys</div>
       <div class="q" data-q="Precios">Precios</div>
       <div class="q" data-q="Hablar">Hablar por WhatsApp</div>
     </div>

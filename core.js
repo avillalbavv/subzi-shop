@@ -401,6 +401,7 @@ function makeGreetingFromCart(cart){
     var c = list[0];
     if (c === "chatgpt") return "Hola, quiero ChatGPT.";
     if (c === "games") return "Hola, quiero un juego.";
+    if (c === "steam") return "Hola, quiero una Steam Key.";
   }
   return "Hola, quiero estos productos:";
 }
