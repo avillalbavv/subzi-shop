@@ -19,8 +19,13 @@
 
 function shouldShowStartupPopup(){
   try{
-    var p = (location.pathname || "").split("/").pop();
-    return !p || p === "index.html";
+    // Solo en la home real. Evita que aparezca en rutas tipo /steam/ o /streaming/
+    // donde el ultimo segmento puede ser "".
+    var path = (location.pathname || "/" );
+    var seg = path.split("/" ).filter(Boolean);
+    if (seg.length === 0) return true;
+    if (seg.length === 1 && seg[0] === "index.html") return true;
+    return false;
   }catch(e){ return false; }
 }
 
@@ -197,20 +202,32 @@ function ensurePageTabs(){
 function ensureFooterLayout(){
   var foot = document.querySelector("footer .foot");
   if (!foot) return;
-  // Footer minimalista: solo derechos + redes.
+
+  // Footer minimalista: derechos + crédito de desarrollo + redes (logos)
   foot.classList.add("footMinimal");
 
-  // Quitar elementos extra si existen (crédito, links rápidos, etc.)
-  var credit = foot.querySelector('.credit');
-  if (credit) credit.remove();
+  // Remover bloques extra si existen
   var quick = foot.querySelector('.footQuickLinks');
   if (quick) quick.remove();
+
+  // Asegurar crédito del desarrollador (pedido)
+  var footLeft = foot.querySelector('.footLeft');
+  if (footLeft){
+    var dev = footLeft.querySelector('.devCredit');
+    if (!dev){
+      dev = document.createElement('div');
+      dev.className = 'devCredit';
+      dev.innerHTML = 'Desarrollo web por <b>Alejandro J. Villalba</b>';
+      footLeft.appendChild(dev);
+    }
+  }
 
   var social = foot.querySelector(".social");
   if (social){
     social.innerHTML = getFooterSocialHTML();
   }
 }
+
 
 function ensureUtilityShell(){
   if (!document.getElementById("btnWhatsAppFloat")) {
