@@ -111,7 +111,7 @@ function ensureSteamMenuStock(){
   shelf.innerHTML =
     '<div class="steamMenuShelfHead">' +
       '<strong>Steam Keys en stock</strong>' +
-      '<span>Elegí un juego directo desde el menú</span>' +
+      '<span>Acceso directo a todos los juegos disponibles desde el menú.</span>' +
     '</div>' +
     '<div class="steamMenuShelfRow"></div>';
 
@@ -120,7 +120,7 @@ function ensureSteamMenuStock(){
     var a = document.createElement('a');
     a.className = 'steamMenuChip';
     a.href = './product.html?id=' + encodeURIComponent(items[i].id);
-    a.textContent = items[i].name;
+    a.innerHTML = '<span class="steamMenuChipIcon">🔑</span><span class="steamMenuChipLabel">' + items[i].name + '</span>';
     row.appendChild(a);
   }
 
@@ -138,12 +138,19 @@ function ensureSteamPageStockRail(){
   rail.innerHTML = '';
   for (var i=0;i<items.length;i++){
     var a = document.createElement('a');
-    a.className = 'steamStockChip';
+    a.className = 'steamStockCard';
     a.href = './product.html?id=' + encodeURIComponent(items[i].id);
-    a.innerHTML = '<span class="steamStockChipIcon">🔑</span><span>' + items[i].name + '</span>';
+    a.innerHTML = '<span class="steamStockCardKicker">Disponible ahora</span><strong class="steamStockCardName">' + items[i].name + '</strong><small class="steamStockCardMeta">Steam Key digital · entrega inmediata</small>';
     rail.appendChild(a);
   }
   rail.setAttribute('data-hydrated', '1');
+}
+
+function getFooterSocialHTML(){
+  return '' +
+    '<a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener" aria-label="TikTok de SubZi"><span class="socIcon"><img class="socialLogo" src="./assets/social/tiktok.svg" alt="TikTok" /></span><span>TikTok</span></a>' +
+    '<a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener" aria-label="Facebook de SubZi"><span class="socIcon"><img class="socialLogo" src="./assets/social/facebook.svg" alt="Facebook" /></span><span>Facebook</span></a>' +
+    '<a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener" aria-label="Instagram de SubZi"><span class="socIcon"><img class="socialLogo" src="./assets/social/instagram.svg" alt="Instagram" /></span><span>Instagram</span></a>';
 }
 
 function ensurePageTabs(){
@@ -185,10 +192,7 @@ function ensureFooterLayout(){
 
   var social = foot.querySelector(".social");
   if (social){
-    social.innerHTML =
-      '<a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 2h2c.2 2 1.6 4 4 4v2c-1.7 0-3.3-.6-4-1.4V15a7 7 0 1 1-7-7h1v2h-1a5 5 0 1 0 5 5V2Z"/></svg></span><span>TikTok</span></a>' +
-      '<a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3H13.5V9c0-.9.3-1.5 1.6-1.5h1.6V4.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7v3h2.7v8h3.8Z"/></svg></span><span>Facebook</span></a>' +
-      '<a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.8 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg></span><span>Instagram</span></a>';
+    social.innerHTML = getFooterSocialHTML();
   }
 }
 
