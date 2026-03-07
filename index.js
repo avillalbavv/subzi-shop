@@ -7,14 +7,14 @@
   var core = SUBZI.core;
 
   // Si el usuario viene con hash, lo redirigimos a la página correcta.
-  // Ej: /index.html#streaming => /streaming.html
+  // Ej: /index.html#streaming => /streaming/
   var h = (window.location.hash || "").replace("#","");
   var map = {
-    "chatgpt": "./chatgpt.html",
-    "games": "./games.html",
-    "steam": "./steam.html",
-    "streaming": "./streaming.html",
-    "descuentos": "./descuentos.html"
+    "chatgpt": core.path("chatgpt/"),
+    "games": core.path("games/"),
+    "steam": core.path("steam/"),
+    "streaming": core.path("streaming/"),
+    "descuentos": core.path("descuentos/")
   };
   if (h && map[h]){
     // mantenemos historial limpio

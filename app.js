@@ -90,7 +90,7 @@ function renderProductsGrid(categoryId, selector){
   for (var b=0;b<viewBtns.length;b++){
     viewBtns[b].addEventListener("click", function(){
       var id = this.getAttribute("data-view");
-      window.location.href = "./product.html?id=" + encodeURIComponent(id);
+      window.location.href = core.path("product.html?id=" + encodeURIComponent(id));
     });
   }
 }

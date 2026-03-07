@@ -14,6 +14,21 @@
 
 window.SUBZI = window.SUBZI || {};
 
+// Base path para hosting en subcarpeta (por defecto: raíz del dominio)
+// Ejemplo para GitHub Pages: SUBZI.BASE_PATH = "/subzi-shop";
+var __BASE_PATH__ = (window.SUBZI && SUBZI.BASE_PATH) ? String(SUBZI.BASE_PATH) : "";
+if (__BASE_PATH__ && __BASE_PATH__.charAt(__BASE_PATH__.length-1) === "/") __BASE_PATH__ = __BASE_PATH__.slice(0,-1);
+
+function sitePath(p){
+  p = String(p || "");
+  // si ya es URL absoluta
+  if (/^https?:\/\//i.test(p)) return p;
+  // normalizar
+  p = p.replace(/^\.(\/|\\)/, "");
+  if (p.charAt(0) !== "/") p = "/" + p;
+  return (__BASE_PATH__ || "") + p;
+}
+
 var WHATSAPP_NUMBER = SUBZI.WHATSAPP_NUMBER || "";
 var products = SUBZI.products || [];
 var coupons = SUBZI.coupons || {};
@@ -701,6 +716,7 @@ function setupReveal(){
 /* Expose */
 SUBZI.core = {
   $, $all, escapeHtml, money, toast,
+  path: sitePath,
   getCurrentUser,
   saveCart, loadCart, saveDiscount, loadDiscount,
   openWhatsApp, openWhatsAppForProduct,

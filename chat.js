@@ -34,25 +34,25 @@
 
     if (key === "Descuentos"){
       addChatMsg("Buenísimo 🏷️ Te llevo a descuentos y promos activas.", "bot");
-      goPage("./descuentos.html");
+      goPage(core.path("descuentos/"));
       return;
     }
 
     if (key === "ChatGPT"){
       addChatMsg("Perfecto 🤖 Te llevo a suscripciones de ChatGPT.", "bot");
-      goPage("./chatgpt.html");
+      goPage(core.path("chatgpt/"));
       return;
     }
 
     if (key === "Juegos"){
       addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
-      goPage("./games.html");
+      goPage(core.path("games/"));
       return;
     }
 
     if (key === "Steam Keys"){
       addChatMsg("Vamos 🔑 Te llevo a Steam Keys.", "bot");
-      goPage("./steam.html");
+      goPage(core.path("steam/"));
       return;
     }
 
@@ -78,7 +78,7 @@
       var prodName = String(prod.name).toLowerCase();
       if (low.length >= 4 && prodName.indexOf(low) !== -1){
         addChatMsg("Te abro " + prod.name + ".", "bot");
-        goPage("./product.html?id=" + encodeURIComponent(prod.id));
+        goPage(core.path("product.html?id=" + encodeURIComponent(prod.id)));
         return;
       }
       var words = low.split(/\s+/);
@@ -90,7 +90,7 @@
         }
         if (hits >= 2){
           addChatMsg("Encontré " + prod.name + ".", "bot");
-          goPage("./product.html?id=" + encodeURIComponent(prod.id));
+          goPage(core.path("product.html?id=" + encodeURIComponent(prod.id)));
           return;
         }
       }
@@ -104,43 +104,43 @@
 
     if (low.indexOf("descuento") !== -1 || low.indexOf("promo") !== -1 || low.indexOf("oferta") !== -1){
       addChatMsg("Dale 🏷️ Te llevo a la parte de descuentos.", "bot");
-      goPage("./descuentos.html");
+      goPage(core.path("descuentos/"));
       return;
     }
 
     if (low.indexOf("chatgpt") !== -1 || low.indexOf("plus") !== -1 || low.indexOf("pro") !== -1){
       addChatMsg("Dale 🤖 Te llevo a ChatGPT.", "bot");
-      goPage("./chatgpt.html");
+      goPage(core.path("chatgpt/"));
       return;
     }
 
     if (low.indexOf("god") !== -1 || low.indexOf("gow") !== -1){
       addChatMsg("Dale ✅ Te abro God of War (2018).", "bot");
-      goPage("./product.html?id=god-of-war-2018");
+      goPage(core.path("product.html?id=god-of-war-2018"));
       return;
     }
 
     if (low.indexOf("silent") !== -1 || low.indexOf("hill") !== -1){
       addChatMsg("Dale ✅ Te abro Silent Hill f.", "bot");
-      goPage("./product.html?id=silent-hill-f");
+      goPage(core.path("product.html?id=silent-hill-f"));
       return;
     }
 
     if (low.indexOf("steam") !== -1 || low.indexOf("key") !== -1 || low.indexOf("keys") !== -1){
       addChatMsg("Vamos 🔑 Te llevo a Steam Keys.", "bot");
-      goPage("./steam.html");
+      goPage(core.path("steam/"));
       return;
     }
 
     if (low.indexOf("netflix") !== -1 || low.indexOf("disney") !== -1 || low.indexOf("paramount") !== -1 || low.indexOf("prime video") !== -1 || low.indexOf("crunchyroll") !== -1 || low.indexOf("hbo") !== -1 || low.indexOf("streaming") !== -1){
       addChatMsg("Vamos 📺 Te llevo al apartado de streaming.", "bot");
-      goPage("./streaming.html");
+      goPage(core.path("streaming/"));
       return;
     }
 
     if (low.indexOf("juego") !== -1 || low.indexOf("games") !== -1){
       addChatMsg("Genial 🎮 Te llevo a Juegos.", "bot");
-      goPage("./games.html");
+      goPage(core.path("games/"));
       return;
     }
 

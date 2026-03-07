@@ -6,7 +6,7 @@ window.SUBZI = window.SUBZI || {};
 
 SUBZI.WHATSAPP_NUMBER = "595983929719"; // sin + para wa.me
 
-SUBZI.BUILD = "v10";
+SUBZI.BUILD = "v11";
 
 SUBZI.categoryImages = {
   chatgpt: "./assets/products/chatgpt.png",
@@ -17,10 +17,10 @@ SUBZI.categoryImages = {
 
 // Categorías (solo navegación)
 SUBZI.categories = [
-  { id: "chatgpt", label: "ChatGPT", emoji: "🤖", page: "./chatgpt.html" },
-  { id: "games", label: "Juegos", emoji: "🎮", page: "./games.html" },
-  { id: "steam", label: "Steam Keys", emoji: "🔑", page: "./steam.html" },
-  { id: "streaming", label: "Streaming", emoji: "📺", page: "./streaming.html" },
+  { id: "chatgpt", label: "ChatGPT", emoji: "🤖", page: "/chatgpt/" },
+  { id: "games", label: "Juegos", emoji: "🎮", page: "/games/" },
+  { id: "steam", label: "Steam Keys", emoji: "🔑", page: "/steam/" },
+  { id: "streaming", label: "Streaming", emoji: "📺", page: "/streaming/" },
 ];
 
 // Cupones opcionales

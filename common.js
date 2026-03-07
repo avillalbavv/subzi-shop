@@ -5,6 +5,13 @@
 (function(){
   function byId(id){ return document.getElementById(id); }
 
+  // Helper de rutas: soporta páginas en carpetas (/streaming, /steam, etc.)
+  function P(p){
+    try{ if (window.SUBZI && SUBZI.core && SUBZI.core.path) return SUBZI.core.path(p); }
+    catch(e){}
+    return p;
+  }
+
   // Título fijo (pestaña)
   try{ document.title = "SubZi | Tienda Online"; }catch(e){}
 
@@ -28,7 +35,7 @@ function showStartupPopup(){
       '<button class="startPopupClose" id="startPopupClose" type="button" aria-label="Cerrar">✕</button>' +
       '<div class="startPopupHeaderLine"></div>' +
       '<div class="startPopupShell">' +
-        '<img class="startPopupLogo compact" src="./assets/favicon.png" alt="SubZi" />' +
+        '<img class="startPopupLogo compact" src="' + P('assets/favicon.png') + '" alt="SubZi" />' +
         '<div class="startPopupCopy">' +
           '<div class="startPopupKicker">SubZi Store</div>' +
           '<div class="startPopupTitle">Comprá rápido y sin vueltas</div>' +
@@ -41,7 +48,7 @@ function showStartupPopup(){
         '</div>' +
       '</div>' +
       '<div class="startPopupActions compact">' +
-        '<a class="btn primary startPopupCta" href="./descuentos.html">Ver descuentos</a>' +
+        '<a class="btn primary startPopupCta" href="' + P('descuentos/') + '">Ver descuentos</a>' +
         '<button class="btn ghost startSkipBtn" id="startPopupSkip" type="button">Cerrar</button>' +
       '</div>' +
       '<div class="startPopupTimer"><span>Se cierra sola en 5 segundos</span><div class="startPopupProgress"><i></i></div></div>' +
@@ -119,7 +126,7 @@ function ensureSteamMenuStock(){
   for (var i=0;i<items.length;i++){
     var a = document.createElement('a');
     a.className = 'steamMenuChip';
-    a.href = './product.html?id=' + encodeURIComponent(items[i].id);
+    a.href = P('product.html?id=' + encodeURIComponent(items[i].id));
     a.innerHTML = '<span class="steamMenuChipIcon">SK</span><span class="steamMenuChipText"><span class="steamMenuChipLabel">' + items[i].name + '</span><small class="steamMenuChipMeta">Steam Key original · entrega inmediata</small></span>';
     row.appendChild(a);
   }
@@ -139,7 +146,7 @@ function ensureSteamPageStockRail(){
   for (var i=0;i<items.length;i++){
     var a = document.createElement('a');
     a.className = 'steamStockCard';
-    a.href = './product.html?id=' + encodeURIComponent(items[i].id);
+    a.href = P('product.html?id=' + encodeURIComponent(items[i].id));
     a.innerHTML = '<span class="steamStockCardKicker">Disponible ahora</span><strong class="steamStockCardName">' + items[i].name + '</strong><small class="steamStockCardMeta">Steam Key original · canje directo en tu cuenta</small>';
     rail.appendChild(a);
   }
@@ -155,15 +162,15 @@ function socialSVG(kind){
 function getFooterSocialHTML(){
   return `
     <a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener" aria-label="TikTok de SubZi">
-      <span class="socIcon"><img class="socialLogo" alt="" src="./assets/social/tiktok.svg" /></span>
+      <span class="socIcon"><img class="socialLogo" alt="" src="${P('assets/social/tiktok.svg')}" /></span>
       <span>TikTok</span>
     </a>
     <a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener" aria-label="Facebook de SubZi">
-      <span class="socIcon"><img class="socialLogo" alt="" src="./assets/social/facebook.svg" /></span>
+      <span class="socIcon"><img class="socialLogo" alt="" src="${P('assets/social/facebook.svg')}" /></span>
       <span>Facebook</span>
     </a>
     <a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener" aria-label="Instagram de SubZi">
-      <span class="socIcon"><img class="socialLogo" alt="" src="./assets/social/instagram.svg" /></span>
+      <span class="socIcon"><img class="socialLogo" alt="" src="${P('assets/social/instagram.svg')}" /></span>
       <span>Instagram</span>
     </a>`;
 }
@@ -178,13 +185,13 @@ function ensurePageTabs(){
   nav.className = "wrap pageTabsWrap";
   nav.innerHTML =
     '<nav class="pageTabs" aria-label="Secciones">' +
-      '<a class="pageTab' + ((current === 'index.html') ? ' active' : '') + '" href="./index.html">Inicio</a>' +
-      '<a class="pageTab' + ((current === 'descuentos.html') ? ' active' : '') + '" href="./descuentos.html">Descuentos</a>' +
-      '<a class="pageTab' + ((current === 'chatgpt.html') ? ' active' : '') + '" href="./chatgpt.html">ChatGPT</a>' +
-      '<a class="pageTab' + ((current === 'games.html') ? ' active' : '') + '" href="./games.html">Juegos</a>' +
-      '<a class="pageTab' + ((current === 'steam.html') ? ' active' : '') + '" href="./steam.html">Steam Keys</a>' +
-      '<a class="pageTab' + ((current === 'streaming.html') ? ' active' : '') + '" href="./streaming.html">Streaming</a>' +
-      '<a class="pageTab' + ((current === 'cashback.html') ? ' active' : '') + '" href="./cashback.html">Cashback</a>'  +
+      '<a class="pageTab' + ((current === 'index.html') ? ' active' : '') + '" href="' + P('index.html') + '">Inicio</a>' +
+      '<a class="pageTab' + ((current === 'descuentos.html') ? ' active' : '') + '" href="' + P('descuentos/') + '">Descuentos</a>' +
+      '<a class="pageTab' + ((current === 'chatgpt.html') ? ' active' : '') + '" href="' + P('chatgpt/') + '">ChatGPT</a>' +
+      '<a class="pageTab' + ((current === 'games.html') ? ' active' : '') + '" href="' + P('games/') + '">Juegos</a>' +
+      '<a class="pageTab' + ((current === 'steam.html') ? ' active' : '') + '" href="' + P('steam/') + '">Steam Keys</a>' +
+      '<a class="pageTab' + ((current === 'streaming.html') ? ' active' : '') + '" href="' + P('streaming/') + '">Streaming</a>' +
+      '<a class="pageTab' + ((current === 'cashback.html') ? ' active' : '') + '" href="' + P('cashback/') + '">Cashback</a>'  +
     '</nav>';
   header.appendChild(nav);
 }
@@ -198,7 +205,7 @@ function ensureFooterLayout(){
   if (left && !foot.querySelector(".footQuickLinks")){
     var quick = document.createElement("div");
     quick.className = "footQuickLinks";
-    quick.innerHTML = '<a href="./descuentos.html">Descuentos</a><a href="./steam.html">Steam Keys</a><a href="./streaming.html">Streaming</a><a href="./cashback.html">Cashback</a>';
+    quick.innerHTML = '<a href="' + P('descuentos/') + '">Descuentos</a><a href="' + P('steam/') + '">Steam Keys</a><a href="' + P('streaming/') + '">Streaming</a><a href="' + P('cashback/') + '">Cashback</a>';
     left.appendChild(quick);
   }
 
@@ -392,7 +399,7 @@ function ensureUtilityShell(){
 
             '<div class="cashPanel">' +
               '<div class="cashLine"><span>Saldo cashback:</span> <b id="cashUserBal">0</b></div>' +
-              '<a class="soc" href="./cashback.html" target="_blank" rel="noopener">Ver normas</a>' +
+              '<a class="soc" href="' + P('cashback/') + '" target="_blank" rel="noopener">Ver normas</a>' +
               '<div class="ordersWrap">' +
                 '<div class="ordersTitle">Pedidos</div>' +
                 '<div class="orderList" id="orderList"></div>' +

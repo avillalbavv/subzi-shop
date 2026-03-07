@@ -32,7 +32,7 @@
 
     var imgSrc = p.image || categoryImages[p.category] || categoryImages.games;
     var imgEl = byId("detailImg");
-    if (imgEl) imgEl.src = imgSrc;
+    if (imgEl) imgEl.src = core.path(imgSrc);
 
     var t = byId("detailTitle");
     if (t) t.textContent = p.name;
@@ -47,7 +47,7 @@
     if (iconWrap){
       var iconVal = p.icon || "";
       if (iconVal && (iconVal.indexOf("/") !== -1 || iconVal.indexOf(".") !== -1)){
-        iconWrap.innerHTML = '<img alt="" src="' + iconVal + '" />';
+        iconWrap.innerHTML = '<img alt="" src="' + core.path(iconVal) + '" />';
       } else {
         iconWrap.textContent = iconVal;
       }

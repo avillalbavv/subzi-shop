@@ -19,7 +19,7 @@
     if (!icon) return "";
     // si parece una ruta de imagen
     if (icon.indexOf("/") !== -1 || icon.indexOf(".") !== -1){
-      return '<div class="pIconBadge"><img alt="" src="' + core.escapeHtml(icon) + '" /></div>';
+      return '<div class="pIconBadge"><img alt="" src="' + core.escapeHtml(core.path(icon)) + '" /></div>';
     }
     return '<div class="pIconBadge">' + core.escapeHtml(icon) + '</div>';
   }
@@ -51,7 +51,7 @@
       card.setAttribute("data-tilt", "");
       card.setAttribute("data-open", p.id);
 
-      var imgSrc = getImg(p);
+      var imgSrc = core.path(getImg(p));
 
       card.innerHTML =
         '<div class="pCover">' +
@@ -98,7 +98,7 @@
       views[k].addEventListener("click", function(e){
         if (e) e.stopPropagation();
         var id2 = this.getAttribute("data-view");
-        window.location.href = "./product.html?id=" + encodeURIComponent(id2);
+        window.location.href = core.path("product.html?id=" + encodeURIComponent(id2));
       });
     }
 
@@ -109,7 +109,7 @@
         var target = e ? e.target : null;
         if (target && (target.tagName === "BUTTON" || isInside(target, "pAct"))) return;
         var id3 = this.getAttribute("data-open");
-        window.location.href = "./product.html?id=" + encodeURIComponent(id3);
+        window.location.href = core.path("product.html?id=" + encodeURIComponent(id3));
       });
     }
 

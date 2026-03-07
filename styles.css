@@ -3456,27 +3456,27 @@ footer .socIcon img.socialLogo{ display:none !important; }
    v10 - Catalogo + Espaciado
    ============================= */
 :root{
-  --section-pad: 42px;
-  --section-gap: 28px;
+  --section-pad: 56px;
+  --section-gap: 34px;
 }
 
 .section{
   padding: var(--section-pad);
-  margin-top: 28px;
+  margin-top: 34px;
 }
-.sectionHead{ margin-bottom: 22px; }
-.divider{ margin: 36px 0; }
+.sectionHead{ margin-bottom: 28px; }
+.divider{ margin: 46px 0; }
 
 .pageTabsWrap{ margin-top: 16px; }
 .pageTabs{
-  gap: 14px;
-  padding: 14px 10px;
+  gap: 18px;
+  padding: 16px 12px;
 }
 .pageTab{ padding: 12px 18px; }
 
 .navDropdown{
-  padding: 18px;
-  gap: 14px;
+  padding: 22px;
+  gap: 18px;
   max-height: 78vh;
   overflow: auto;
 }
@@ -3486,19 +3486,19 @@ footer .socIcon img.socialLogo{ display:none !important; }
 .steamMenuShelf{ margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.10); }
 .steamMenuShelfRow{
   display: flex;
-  gap: 14px;
+  gap: 18px;
   overflow-x: auto;
   padding: 6px 2px 10px;
   scroll-snap-type: x mandatory;
 }
 .steamMenuChip{
-  min-width: 300px;
+  min-width: 330px;
   scroll-snap-align: start;
 }
 
 /* Grillas mas aire */
-.grid{ gap: 28px; }
-.catalogGrid{ gap: 30px; }
+.grid{ gap: 34px; }
+.catalogGrid{ gap: 36px; }
 
 /* Descuentos mas separados */
 .promoFlyerBig{ margin-top: 28px; margin-bottom: 34px; }
@@ -3541,8 +3541,12 @@ footer .socIcon.socialMark svg{ display:none; }
 /* Streaming: asegurar grilla visible */
 .streamingCatalogShell{ gap: 26px; padding: 30px; }
 
+/* Fix fuerte: si por algún motivo el navegador cacheó CSS viejo, forzamos layout del stock */
+.steamStockRow{ display: grid !important; }
+.steamStockRow > .steamStockCard{ display: flex !important; }
+
 @media (max-width: 520px){
-  :root{ --section-pad: 26px; }
+  :root{ --section-pad: 30px; }
   .navDropdown{ padding: 16px; }
   .steamMenuChip{ min-width: 260px; }
   footer .social{ justify-content:flex-start; }
