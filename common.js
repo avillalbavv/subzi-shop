@@ -872,6 +872,12 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     var waStreaming = byId("btnWhatsAppStreaming");
     if (waStreaming) waStreaming.addEventListener("click", function(){ core.openWhatsApp(false); });
 
+    var waChat = byId("btnWhatsAppChatgpt");
+    if (waChat) waChat.addEventListener("click", function(){ core.openWhatsApp(false); });
+
+    var waGames = byId("btnWhatsAppGames");
+    if (waGames) waGames.addEventListener("click", function(){ core.openWhatsApp(false); });
+
     var waFloat = byId("btnWhatsAppFloat");
     if (waFloat) waFloat.addEventListener("click", function(){ core.openWhatsApp(false); });
 
