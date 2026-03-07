@@ -153,11 +153,21 @@ function socialSVG(kind){
 }
 
 function getFooterSocialHTML(){
-  return '' +
-    '<a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener" aria-label="TikTok de SubZi"><span class="socIcon socialMark">' + socialSVG("tiktok") + '</span><span>TikTok</span></a>' +
-    '<a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener" aria-label="Facebook de SubZi"><span class="socIcon socialMark">' + socialSVG("facebook") + '</span><span>Facebook</span></a>' +
-    '<a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener" aria-label="Instagram de SubZi"><span class="socIcon socialMark">' + socialSVG("instagram") + '</span><span>Instagram</span></a>';
+  return `
+    <a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener" aria-label="TikTok de SubZi">
+      <span class="socIcon"><img class="socialLogo" alt="" src="./assets/social/tiktok.svg" /></span>
+      <span>TikTok</span>
+    </a>
+    <a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener" aria-label="Facebook de SubZi">
+      <span class="socIcon"><img class="socialLogo" alt="" src="./assets/social/facebook.svg" /></span>
+      <span>Facebook</span>
+    </a>
+    <a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener" aria-label="Instagram de SubZi">
+      <span class="socIcon"><img class="socialLogo" alt="" src="./assets/social/instagram.svg" /></span>
+      <span>Instagram</span>
+    </a>`;
 }
+
 
 function ensurePageTabs(){
   var header = document.querySelector("header");
@@ -196,6 +206,18 @@ function ensureFooterLayout(){
   if (social){
     social.innerHTML = getFooterSocialHTML();
   }
+
+  try{
+    var c = foot.querySelector(".credit");
+    if (c && !c.querySelector(".buildTag")){
+      var s = document.createElement("span");
+      s.className = "buildTag";
+      var b = (window.SUBZI && SUBZI.BUILD) ? (" " + SUBZI.BUILD) : "";
+      s.textContent = "Build" + b;
+      c.appendChild(document.createTextNode(" · "));
+      c.appendChild(s);
+    }
+  }catch(e){}
 }
 
 function ensureUtilityShell(){

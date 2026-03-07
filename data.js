@@ -6,6 +6,8 @@ window.SUBZI = window.SUBZI || {};
 
 SUBZI.WHATSAPP_NUMBER = "595983929719"; // sin + para wa.me
 
+SUBZI.BUILD = "v10";
+
 SUBZI.categoryImages = {
   chatgpt: "./assets/products/chatgpt.png",
   games: "./assets/products/games.png",

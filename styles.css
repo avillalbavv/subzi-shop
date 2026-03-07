@@ -3451,3 +3451,103 @@ footer .socIcon img.socialLogo{ display:none !important; }
   .steamStockShowcase{ padding-left: 18px; padding-right: 18px; }
   footer .soc{ min-width: 100%; }
 }
+
+/* =============================
+   v10 - Catalogo + Espaciado
+   ============================= */
+:root{
+  --section-pad: 42px;
+  --section-gap: 28px;
+}
+
+.section{
+  padding: var(--section-pad);
+  margin-top: 28px;
+}
+.sectionHead{ margin-bottom: 22px; }
+.divider{ margin: 36px 0; }
+
+.pageTabsWrap{ margin-top: 16px; }
+.pageTabs{
+  gap: 14px;
+  padding: 14px 10px;
+}
+.pageTab{ padding: 12px 18px; }
+
+.navDropdown{
+  padding: 18px;
+  gap: 14px;
+  max-height: 78vh;
+  overflow: auto;
+}
+.navDropdown .chip{ padding: 12px 16px; }
+
+/* Steam Keys: stock menu + separacion */
+.steamMenuShelf{ margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.10); }
+.steamMenuShelfRow{
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 2px 10px;
+  scroll-snap-type: x mandatory;
+}
+.steamMenuChip{
+  min-width: 300px;
+  scroll-snap-align: start;
+}
+
+/* Grillas mas aire */
+.grid{ gap: 28px; }
+.catalogGrid{ gap: 30px; }
+
+/* Descuentos mas separados */
+.promoFlyerBig{ margin-top: 28px; margin-bottom: 34px; }
+
+/* Footer: logos claros (no emojis) */
+footer .social{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content:flex-end;
+}
+footer .soc{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+footer .socIcon{
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+footer .socIcon svg{ width: 26px; height: 26px; display:block; }
+footer .socIcon img.socialLogo{ width: 26px; height: 26px; display:block !important; }
+footer .socIcon.socialMark svg{ display:none; }
+
+.buildTag{
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 700;
+}
+
+/* Streaming: asegurar grilla visible */
+.streamingCatalogShell{ gap: 26px; padding: 30px; }
+
+@media (max-width: 520px){
+  :root{ --section-pad: 26px; }
+  .navDropdown{ padding: 16px; }
+  .steamMenuChip{ min-width: 260px; }
+  footer .social{ justify-content:flex-start; }
+}
+
+/* v10: footer quicklinks mas aire */
+footer .footQuickLinks{ gap: 14px; }
+footer .footQuickLinks a{ padding: 10px 14px; }
