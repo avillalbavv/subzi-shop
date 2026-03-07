@@ -3431,6 +3431,33 @@ footer .socIcon img.socialLogo{ display:none !important; }
   .steamMenuShelfRow,
   .steamStockRow{ grid-template-columns: 1fr; }
 }
+
+/* =========================
+   SubZi v12 – Ajustes pedidos
+   - Quitar banda horizontal de Steam Keys en el menú
+   - Footer minimalista (solo derechos + redes)
+========================= */
+
+/* Si por alguna razón se inyecta, no mostrar la banda de stock en el desplegable */
+.steamMenuShelf{ display:none !important; }
+
+/* Footer minimalista */
+footer .foot.footMinimal{ padding: 18px 0; display:flex; align-items:center; justify-content:space-between; gap: 14px; }
+footer .foot.footMinimal .footLeft{ display:flex; flex-direction:column; gap: 6px; }
+footer .foot.footMinimal .footQuickLinks{ display:none !important; }
+footer .foot.footMinimal .credit{ display:none !important; }
+
+footer .foot.footMinimal .social{ display:flex; gap: 14px; align-items:center; justify-content:flex-end; flex-wrap:nowrap; }
+footer .foot.footMinimal .soc{ min-width:auto !important; min-height:auto !important; padding: 0 !important; gap: 0 !important; border: none !important; background: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
+footer .foot.footMinimal .soc:after{ display:none !important; }
+footer .foot.footMinimal .soc:hover{ transform: translateY(-1px); }
+footer .foot.footMinimal .socIcon{ width: 26px !important; height: 26px !important; }
+footer .foot.footMinimal .socIcon img.socialLogo{ width: 26px !important; height: 26px !important; display:block !important; }
+
+@media (max-width: 720px){
+  footer .foot.footMinimal{ flex-direction:column; align-items:flex-start; }
+  footer .foot.footMinimal .social{ justify-content:flex-start; }
+}
 @media (max-width: 720px){
   .section{ padding: 28px 0 54px; }
   .grid{ gap: 22px; }

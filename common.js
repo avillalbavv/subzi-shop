@@ -160,18 +160,16 @@ function socialSVG(kind){
 }
 
 function getFooterSocialHTML(){
+  // Footer minimalista: solo iconos (logos), sin texto ni botones.
   return `
-    <a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener" aria-label="TikTok de SubZi">
+    <a class="soc socIconOnly" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener" aria-label="TikTok de SubZi" title="TikTok">
       <span class="socIcon"><img class="socialLogo" alt="" src="${P('assets/social/tiktok.svg')}" /></span>
-      <span>TikTok</span>
     </a>
-    <a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener" aria-label="Facebook de SubZi">
+    <a class="soc socIconOnly" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener" aria-label="Facebook de SubZi" title="Facebook">
       <span class="socIcon"><img class="socialLogo" alt="" src="${P('assets/social/facebook.svg')}" /></span>
-      <span>Facebook</span>
     </a>
-    <a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener" aria-label="Instagram de SubZi">
+    <a class="soc socIconOnly" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener" aria-label="Instagram de SubZi" title="Instagram">
       <span class="socIcon"><img class="socialLogo" alt="" src="${P('assets/social/instagram.svg')}" /></span>
-      <span>Instagram</span>
     </a>`;
 }
 
@@ -199,32 +197,19 @@ function ensurePageTabs(){
 function ensureFooterLayout(){
   var foot = document.querySelector("footer .foot");
   if (!foot) return;
-  foot.classList.add("footEnhanced");
+  // Footer minimalista: solo derechos + redes.
+  foot.classList.add("footMinimal");
 
-  var left = foot.querySelector(".footLeft");
-  if (left && !foot.querySelector(".footQuickLinks")){
-    var quick = document.createElement("div");
-    quick.className = "footQuickLinks";
-    quick.innerHTML = '<a href="' + P('descuentos/') + '">Descuentos</a><a href="' + P('steam/') + '">Steam Keys</a><a href="' + P('streaming/') + '">Streaming</a><a href="' + P('cashback/') + '">Cashback</a>';
-    left.appendChild(quick);
-  }
+  // Quitar elementos extra si existen (crédito, links rápidos, etc.)
+  var credit = foot.querySelector('.credit');
+  if (credit) credit.remove();
+  var quick = foot.querySelector('.footQuickLinks');
+  if (quick) quick.remove();
 
   var social = foot.querySelector(".social");
   if (social){
     social.innerHTML = getFooterSocialHTML();
   }
-
-  try{
-    var c = foot.querySelector(".credit");
-    if (c && !c.querySelector(".buildTag")){
-      var s = document.createElement("span");
-      s.className = "buildTag";
-      var b = (window.SUBZI && SUBZI.BUILD) ? (" " + SUBZI.BUILD) : "";
-      s.textContent = "Build" + b;
-      c.appendChild(document.createTextNode(" · "));
-      c.appendChild(s);
-    }
-  }catch(e){}
 }
 
 function ensureUtilityShell(){
@@ -961,7 +946,9 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     try{ ensurePageTabs(); }catch(e){}
     try{ ensureFooterLayout(); }catch(e){}
     try{ ensureUtilityShell(); }catch(e){}
-    try{ ensureSteamMenuStock(); }catch(e){}
+    // Menú limpio: no inyectar la banda horizontal de stock en el desplegable.
+    // (El stock queda visible en la página de Steam Keys.)
+    // try{ ensureSteamMenuStock(); }catch(e){}
     try{ ensureSteamPageStockRail(); }catch(e){}
 
     try{ syncHeaderOffset(); }catch(e){}
