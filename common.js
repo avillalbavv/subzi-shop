@@ -217,7 +217,7 @@ function ensureFooterLayout(){
     if (!dev){
       dev = document.createElement('div');
       dev.className = 'devCredit';
-      dev.innerHTML = 'Desarrollo web por <b>Alejandro J. Villalba</b>';
+      dev.innerHTML = 'Desarrollo Web: <b>Alejandro J. Villalba</b>.';
       footLeft.appendChild(dev);
     }
   }
@@ -856,6 +856,12 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
 
     var waHero = byId("btnWhatsAppHero");
     if (waHero) waHero.addEventListener("click", function(){ core.openWhatsApp(false); });
+
+    var waSteam = byId("btnWhatsAppSteam");
+    if (waSteam) waSteam.addEventListener("click", function(){ core.openWhatsApp(false); });
+
+    var waStreaming = byId("btnWhatsAppStreaming");
+    if (waStreaming) waStreaming.addEventListener("click", function(){ core.openWhatsApp(false); });
 
     var waFloat = byId("btnWhatsAppFloat");
     if (waFloat) waFloat.addEventListener("click", function(){ core.openWhatsApp(false); });

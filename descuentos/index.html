@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SubZi | Descuentos</title>
   <meta name="description" content="Promos y descuentos destacados de SubZi." />
-  <link rel="stylesheet" href="../styles.css?v=v13" />
+  <link rel="stylesheet" href="../styles.css?v=v14" />
   <link rel="icon" type="image/png" href="../assets/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/favicon.png" />
 </head>
@@ -45,11 +45,11 @@
       <div class="card pageHeroCard glowBorder reveal tiltCard" data-tilt>
         <h1>Descuentos y promos</h1>
         <p class="pageLead">La promo principal de SubZi ahora es un flyer visible de <b>25% OFF en ChatGPT Pro</b>. Desde acá también saltás a Steam Keys, Streaming, Juegos y cashback.</p>
-        <div class="promoFlyer promoFlyerBig reveal">
+        <div class="promoFlyer promoFlyerBig reveal" data-flyer>
           <div class="promoFlyerCopy">
             <span class="promoFlyerTag">PROMO DESTACADA</span>
             <h2>25% de descuento en ChatGPT Pro</h2>
-            <p>Ideal para dejar visible tu primer flyer de descuentos. Cuando me pases la imagen final, este bloque se puede reemplazar por el flyer gráfico sin tocar la estructura.</p>
+            <p>Ideal para dejar visible tu primer flyer de descuentos. Podés usar tu propio flyer reemplazando <code>assets/flyers/main-flyer.png</code> por tu imagen (mismo nombre).</p>
             <div class="flyerDealMeta">
               <span>🤖 ChatGPT Pro</span>
               <span>⚡ Promo activa</span>
@@ -60,7 +60,10 @@
               <button class="btn ghost" id="btnPromoWhatsApp" type="button">Consultar promo</button>
             </div>
           </div>
-          <div class="promoFlyerBadge">25<span>%</span><small>OFF</small></div>
+          <div class="promoFlyerVisual">
+            <img class="flyerImgLarge" src="../assets/flyers/main-flyer.png?v=v14" alt="Flyer de descuento" loading="lazy" onerror="this.closest('.promoFlyerVisual').classList.add('missing')" />
+            <div class="promoFlyerBadge" aria-hidden="true">25<span>%</span><small>OFF</small></div>
+          </div>
         </div>
 
         <div class="dealsPageGrid">
@@ -94,14 +97,14 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="../config.js?v=v13"></script>
+  <script src="../config.js?v=v14"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../supabaseClient.js?v=v13"></script>
-  <script src="../data.js?v=v13"></script>
-  <script src="../core.js?v=v13"></script>
-  <script src="../cloudSync.js?v=v13"></script>
-  <script src="../common.js?v=v13"></script>
-  <script src="../chat.js?v=v13"></script>
+  <script src="../supabaseClient.js?v=v14"></script>
+  <script src="../data.js?v=v14"></script>
+  <script src="../core.js?v=v14"></script>
+  <script src="../cloudSync.js?v=v14"></script>
+  <script src="../common.js?v=v14"></script>
+  <script src="../chat.js?v=v14"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SubZi | Tienda Online</title>
   <meta name="description" content="SubZi: ChatGPT, juegos y Steam Keys. Comprá por WhatsApp." />
-  <link rel="stylesheet" href="./styles.css?v=v13" />
+  <link rel="stylesheet" href="./styles.css?v=v14" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link rel="apple-touch-icon" href="./assets/favicon.png" />
   <script>
@@ -171,36 +171,6 @@
         </a>
       </div>
 
-      <section class="steamKeysBand reveal glowBorder" aria-label="Sección destacada de Steam Keys">
-        <div class="steamKeysBandText">
-          <span class="steamKeysEyebrow">Nuevo en SubZi</span>
-          <h3>Steam Keys en stock disponibles para entrega inmediata</h3>
-          <p>Cargamos títulos reales en stock para venta inmediata y cada juego ahora tiene su propia ficha con canje directo en tu cuenta.</p>
-          <div class="steamKeysActions">
-            <a class="btn primary" href="./steam/">Ver Steam Keys</a>
-            <button class="btn ghost" id="btnWhatsAppSteamBand" type="button">Consultar por Steam Keys</button>
-          </div>
-        </div>
-        <div class="steamKeysMiniRow">
-          <article class="steamMiniCard">
-            <span>🎮</span>
-            <strong>Resident Evil Requiem</strong>
-            <small>Y más títulos en stock</small>
-          </article>
-          <article class="steamMiniCard">
-            <span>🔑</span>
-            <strong>Keys originales</strong>
-            <small>Canje en tu propia cuenta</small>
-          </article>
-          <article class="steamMiniCard">
-            <span>⚡</span>
-            <strong>Venta inmediata</strong>
-            <small>Entrega por WhatsApp</small>
-          </article>
-        </div>
-      </section>
-
-      
       
       <section class="discountShowcase reveal" aria-label="Descuentos destacados">
         <div class="discountShowcaseHead">
@@ -212,15 +182,19 @@
         </div>
 
         <div class="discountRail discountRailSingle">
-          <article class="discountCard flyerDeal reveal">
+          <article class="discountCard flyerDeal reveal" data-flyer>
             <span class="eyebrow">Flyer principal</span>
             <div class="flyerDealTop">
               <div>
                 <h3>25% OFF en ChatGPT Pro</h3>
                 <p>Primer descuento activo de la tienda. Entrá a ChatGPT Pro, consultá disponibilidad y cerrá por WhatsApp.</p>
               </div>
-              <div class="flyerPercent">25<span>%</span></div>
+              <div class="flyerMedia">
+                <img class="flyerImg" src="./assets/flyers/main-flyer.png?v=v14" alt="Flyer de descuento" loading="lazy" onerror="this.closest('.flyerMedia').classList.add('missing')" />
+                <div class="flyerPercent" aria-hidden="true">25<span>%</span></div>
+              </div>
             </div>
+            <p class="flyerHint">Para usar tu propio flyer: reemplazá <code>assets/flyers/main-flyer.png</code> por tu imagen (mismo nombre).</p>
             <div class="flyerDealMeta">
               <span>🤖 ChatGPT Pro</span>
               <span>⚡ Promo visible</span>
@@ -345,15 +319,15 @@
     </div>
   </div>
 
-  <script src="./config.js?v=v13"></script>
+  <script src="./config.js?v=v14"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabaseClient.js?v=v13"></script>
-  <script src="./data.js?v=v13"></script>
-  <script src="./core.js?v=v13"></script>
-  <script src="./cloudSync.js?v=v13"></script>
-  <script src="./common.js?v=v13"></script>
-  <script src="./index.js?v=v13"></script>
-  <script src="./chat.js?v=v13"></script>
+  <script src="./supabaseClient.js?v=v14"></script>
+  <script src="./data.js?v=v14"></script>
+  <script src="./core.js?v=v14"></script>
+  <script src="./cloudSync.js?v=v14"></script>
+  <script src="./common.js?v=v14"></script>
+  <script src="./index.js?v=v14"></script>
+  <script src="./chat.js?v=v14"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 
 </body>

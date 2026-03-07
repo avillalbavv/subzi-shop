@@ -2765,6 +2765,38 @@ footer .socIcon{
 .pageHeroCard h1,
 .pageHeroCard h2{ margin-top: 0; }
 .pageLead{ color: var(--muted); line-height: 1.6; }
+
+/* Hero compacto para páginas de categoría (Steam / Streaming) */
+.categoryHeroCard{
+  margin: 6px 0 18px;
+  padding: 26px;
+  border-radius: 28px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 18px;
+  background: linear-gradient(135deg, rgba(35, 32, 86, 0.65), rgba(10, 12, 26, 0.98));
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.categoryHeroCopy .eyebrow{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  font-weight: 800;
+  letter-spacing: .06em;
+  font-size: .78rem;
+}
+.categoryHeroTitle{ margin: 12px 0 10px; font-size: clamp(1.7rem, 2.6vw, 2.35rem); }
+.categoryHeroCard .lead{ margin: 0; max-width: 70ch; }
+.categoryHeroActions{ display:flex; gap: 12px; flex-wrap: wrap; justify-content:flex-end; }
+
+@media (max-width: 920px){
+  .categoryHeroCard{ padding: 20px; flex-direction: column; align-items: stretch; }
+  .categoryHeroActions{ justify-content:flex-start; }
+  .categoryHeroActions .btn{ width: 100%; justify-content:center; }
+}
 .dealsPageGrid{
   display:grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
@@ -2829,6 +2861,41 @@ footer .socIcon{
   justify-content:space-between;
   gap:18px;
 }
+
+/* Flyer (imagen opcional) */
+.flyerMedia{
+  position:relative;
+  flex:0 0 auto;
+  width:220px;
+  height:140px;
+  border-radius:26px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.10);
+  background:rgba(0,0,0,0.22);
+  box-shadow:0 18px 45px rgba(0,0,0,0.28);
+}
+.flyerImg{ width:100%; height:100%; object-fit:cover; display:block; }
+.flyerMedia.missing .flyerImg{ display:none; }
+.flyerMedia .flyerPercent{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  min-width:92px;
+  min-height:92px;
+  border-radius:26px;
+}
+.flyerHint{
+  margin-top:12px;
+  font-size:.92rem;
+  opacity:.78;
+  line-height:1.35;
+}
+.flyerHint code{
+  padding:2px 7px;
+  border-radius:10px;
+  background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.08);
+}
 .flyerPercent,
 .promoFlyerBadge{
   flex:0 0 auto;
@@ -2889,7 +2956,7 @@ footer .socIcon{
 }
 .promoFlyer{
   display:grid;
-  grid-template-columns:minmax(0,1.2fr) auto;
+  grid-template-columns:minmax(0,1.15fr) minmax(240px, 420px);
   gap:18px;
   align-items:center;
   padding:24px;
@@ -2898,6 +2965,19 @@ footer .socIcon{
   background:linear-gradient(135deg, rgba(111, 62, 255, 0.28), rgba(11, 12, 28, 0.96));
   border:1px solid rgba(177,160,255,0.24);
 }
+
+.promoFlyerVisual{
+  position:relative;
+  width:100%;
+  aspect-ratio: 4 / 3;
+  border-radius:34px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(0,0,0,0.22);
+}
+.flyerImgLarge{ width:100%; height:100%; object-fit:cover; display:block; }
+.promoFlyerVisual.missing .flyerImgLarge{ display:none; }
+.promoFlyerVisual .promoFlyerBadge{ position:absolute; right:16px; bottom:16px; }
 .promoFlyerBig{ margin-top:20px; margin-bottom:26px; }
 .promoFlyerTag{
   display:inline-flex;
@@ -2926,6 +3006,8 @@ footer .socIcon{
     display:grid;
   }
   .flyerDealTop{ gap:14px; }
+  .flyerMedia{ width:100%; height:200px; }
+  .flyerMedia .flyerPercent{ right:14px; bottom:14px; }
   .streamingMiniRow{ grid-template-columns:1fr; }
   .flyerPercent,
   .promoFlyerBadge{ min-width:92px; min-height:92px; justify-self:flex-start; }
@@ -3362,7 +3444,13 @@ footer .socIcon img.socialLogo{
 .pageTab{ min-height: 50px; padding: 0 22px; }
 .grid{ gap: 28px; }
 .catalogGrid{ margin-top: 18px; }
-.catalogTitleBlock{ margin: 18px 0 18px; }
+.catalogTitleBlock{
+  margin: 18px 0 18px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+}
 .catalogTitleBlock h3{ margin: 0 0 8px; font-size: 1.35rem; }
 .catalogTitleBlock p{ margin: 0; color: var(--muted); line-height: 1.7; max-width: 72ch; }
 .catalogEmpty{ display:grid; gap:8px; padding:24px; border-radius:22px; border:1px dashed rgba(255,255,255,.18); background:rgba(255,255,255,.03); color:rgba(255,255,255,.86); }

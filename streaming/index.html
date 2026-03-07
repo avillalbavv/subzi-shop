@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SubZi | Tienda Online</title>
   <meta name="description" content="Netflix, Disney+, Paramount+, Prime Video, Crunchyroll y HBO Max en SubZi." />
-  <link rel="stylesheet" href="../styles.css?v=v13" />
+  <link rel="stylesheet" href="../styles.css?v=v14" />
   <link rel="icon" type="image/png" href="../assets/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/favicon.png" />
 </head>
@@ -54,6 +54,18 @@
 
   <main class="wrap">
     <section class="section">
+      <div class="card categoryHeroCard glowBorder reveal tiltCard" data-tilt>
+        <div class="categoryHeroCopy">
+          <span class="eyebrow">📺 Streaming</span>
+          <h1 class="categoryHeroTitle">Suscripciones de streaming</h1>
+          <p class="lead">Servicios listos para coordinar por WhatsApp. Te guiamos en la activación y dejamos todo funcionando para que disfrutes sin vueltas.</p>
+        </div>
+        <div class="categoryHeroActions">
+          <button class="btn primary" id="btnWhatsAppStreaming" type="button">Consultar por WhatsApp</button>
+          <a class="btn ghost" href="../descuentos/">Ver descuentos</a>
+        </div>
+      </div>
+
       <div class="sectionHead reveal">
         <h2>Streaming</h2>
         <p class="hint">Cada servicio ya entra con el mismo estilo de card animada que el resto del catálogo: cuadrado visual, hover y acceso directo a su ficha.</p>
@@ -180,15 +192,15 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="../config.js?v=v13"></script>
+  <script src="../config.js?v=v14"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../supabaseClient.js?v=v13"></script>
-  <script src="../data.js?v=v13"></script>
-  <script src="../core.js?v=v13"></script>
-  <script src="../cloudSync.js?v=v13"></script>
-  <script src="../common.js?v=v13"></script>
-  <script src="../category.js?v=v13"></script>
-  <script src="../chat.js?v=v13"></script>
+  <script src="../supabaseClient.js?v=v14"></script>
+  <script src="../data.js?v=v14"></script>
+  <script src="../core.js?v=v14"></script>
+  <script src="../cloudSync.js?v=v14"></script>
+  <script src="../common.js?v=v14"></script>
+  <script src="../category.js?v=v14"></script>
+  <script src="../chat.js?v=v14"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
