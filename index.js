@@ -20,18 +20,6 @@
   }
 
   // Nada más por ahora (inicio intencionalmente limpio)
-
-  // Popup "Cómo comprar" (5s) al inicio
-  try{
-    var pop = document.getElementById("howPopup");
-    if (pop){
-      pop.style.display = "";
-      var t = setTimeout(function(){ pop.style.display = "none"; }, 5000);
-      pop.addEventListener("click", function(){
-        clearTimeout(t);
-        pop.style.display = "none";
-      });
-    }
-  }catch(e){}
+  // Popup inicial manejado desde common.js
 
 })();

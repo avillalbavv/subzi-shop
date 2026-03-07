@@ -61,26 +61,83 @@
   <div class="menuOverlay" id="menuOverlay" aria-hidden="true"></div>
 
   <main class="wrap">
-    <section class="hero" id="inicio">
-      <div class="heroClean card heroMain glowBorder reveal">
-        <h1>SubZi</h1>
+    <section class="hero heroEneba" id="inicio">
+      <div class="heroClean card heroMain glowBorder reveal tiltCard" data-tilt data-tilt-depth="12">
+        <div class="heroAmbient" aria-hidden="true">
+          <span class="heroOrb orbA"></span>
+          <span class="heroOrb orbB"></span>
+          <span class="heroOrb orbC"></span>
+          <span class="heroFloatBadge badgeA">⚡ Entrega inmediata</span>
+          <span class="heroFloatBadge badgeB">🎮 Gaming premium</span>
+          <span class="heroFloatBadge badgeC">🤖 ChatGPT Plus / Pro</span>
+        </div>
+
+        <div class="heroEyebrow">
+          <span class="heroEyebrowDot"></span>
+          Marketplace gamer con look premium tipo Eneba
+        </div>
+
+        <h1>SubZi <span>Gaming, suscripciones y compras al toque</span></h1>
         <p class="lead">
-          <b>SubZi</b> es tu pase directo a lo <b>premium</b>: suscripciones y gaming <b>al toque</b>.
-          Armá tu pedido en el cesto y finalizá por <b>WhatsApp</b>.
+          <b>SubZi</b> es tu pase directo a lo <b>premium</b>: suscripciones, gaming, keys y recargas con una experiencia más
+          dinámica, más visual y lista para cerrar tu pedido por <b>WhatsApp</b> en segundos.
         </p>
-        <div class="ctaRow">
+
+        <div class="heroPills reveal" data-stagger>
+          <span class="heroPill">🔐 Compra segura</span>
+          <span class="heroPill">🎁 Gift Cards</span>
+          <span class="heroPill">🎮 Juegos premium</span>
+          <span class="heroPill">⚙️ Soporte rápido</span>
+          <span class="heroPill">💬 WhatsApp directo</span>
+        </div>
+
+        <div class="ctaRow heroActions">
           <button class="btn primary" onclick="SUBZI.core.goToAnchor('#categoryTiles')">Ver categorías</button>
           <button class="btn ghost" id="btnWhatsAppHero">Consultar por WhatsApp 💬</button>
+        </div>
+
+        <div class="heroStats reveal" data-stagger>
+          <div class="heroStat">
+            <strong>Entrega</strong>
+            <span>rápida y guiada</span>
+          </div>
+          <div class="heroStat">
+            <strong>Pagos</strong>
+            <span>coordinados al instante</span>
+          </div>
+          <div class="heroStat">
+            <strong>Catálogo</strong>
+            <span>gaming + suscripciones</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dealStrip reveal" aria-label="Marquesina de categorías destacadas">
+        <div class="dealTrack">
+          <span>🔥 Deals gamers</span>
+          <span>🎮 Juegos</span>
+          <span>🤖 ChatGPT</span>
+          <span>🎁 Gift Cards</span>
+          <span>⚡ Entrega inmediata</span>
+          <span>💬 WhatsApp</span>
+          <span>🛒 Cesto rápido</span>
+          <span>🔥 Deals gamers</span>
+          <span>🎮 Juegos</span>
+          <span>🤖 ChatGPT</span>
+          <span>🎁 Gift Cards</span>
+          <span>⚡ Entrega inmediata</span>
+          <span>💬 WhatsApp</span>
+          <span>🛒 Cesto rápido</span>
         </div>
       </div>
 
       <div class="sectionHead reveal" style="margin-top:16px;">
         <h2>Categorías</h2>
-        <p class="hint">Entrá a ChatGPT o Juegos y agregá al cesto para pedir por WhatsApp.</p>
+        <p class="hint">Entrá a ChatGPT o Juegos, agregá al cesto y cerrá tu pedido por WhatsApp.</p>
       </div>
 
       <div class="catGrid" id="categoryTiles">
-        <a class="catTile reveal" href="./chatgpt.html">
+        <a class="catTile reveal tiltCard" data-tilt href="./chatgpt.html">
           <div class="catImg"><img alt="ChatGPT" src="./assets/products/chatgpt.png" /></div>
           <div class="catBody">
             <b>🤖 ChatGPT</b>
@@ -89,7 +146,7 @@
           </div>
         </a>
 
-        <a class="catTile reveal" href="./games.html">
+        <a class="catTile reveal tiltCard" data-tilt href="./games.html">
           <div class="catImg"><img alt="Juegos" src="./assets/products/games.png" /></div>
           <div class="catBody">
             <b>🎮 Juegos</b>
@@ -114,9 +171,9 @@
 
       <div class="social">
         <a class="soc" href="./cashback.html"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm1 18h-2v-1.3a4.7 4.7 0 0 1-3.2-2l1.7-1a3 3 0 0 0 2.7 1.5c1.1 0 2-.5 2-1.3 0-.8-.5-1.1-2.2-1.5-2.1-.5-3.8-1.2-3.8-3.4 0-1.7 1.3-3 2.8-3.3V5h2v1.2c1 .2 1.8.7 2.5 1.4l-1.4 1.3c-.6-.6-1.4-1-2.4-1-.9 0-1.7.4-1.7 1.2 0 .7.6 1 2.2 1.4 2.2.5 3.8 1.3 3.8 3.6 0 1.7-1.2 3.1-3.3 3.5V19Z"/></svg></span><span>Cashback</span></a>
-        <a class="soc" href="https://www.tiktok.com" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 2h2c.2 2 1.6 4 4 4v2c-1.7 0-3.3-.6-4-1.4V15a7 7 0 1 1-7-7h1v2h-1a5 5 0 1 0 5 5V2Z"/></svg></span><span>TikTok</span></a>
-        <a class="soc" href="https://www.facebook.com" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3H13.5V9c0-.9.3-1.5 1.6-1.5h1.6V4.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7v3h2.7v8h3.8Z"/></svg></span><span>Facebook</span></a>
-        <a class="soc" href="https://www.instagram.com" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.8 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg></span><span>Instagram</span></a>
+        <a class="soc" href="https://www.tiktok.com/@subzi.py" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 2h2c.2 2 1.6 4 4 4v2c-1.7 0-3.3-.6-4-1.4V15a7 7 0 1 1-7-7h1v2h-1a5 5 0 1 0 5 5V2Z"/></svg></span><span>TikTok</span></a>
+        <a class="soc" href="https://www.facebook.com/profile.php?id=61588504561058" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3H13.5V9c0-.9.3-1.5 1.6-1.5h1.6V4.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7v3h2.7v8h3.8Z"/></svg></span><span>Facebook</span></a>
+        <a class="soc" href="https://www.instagram.com/subzishop/" target="_blank" rel="noopener"><span class="socIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.8 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg></span><span>Instagram</span></a>
       </div>
     </div>
   </footer>
@@ -224,14 +281,6 @@
   <script src="./index.js"></script>
   <script src="./chat.js"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-
-  <!-- Popup: Cómo comprar (auto-cierra en 5s) -->
-  <div id="howPopup" class="howPopup" role="dialog" aria-modal="true" aria-label="Cómo comprar" style="display:none;">
-    <div class="howPopupCard">
-      <div class="howPopupTitle">Cómo comprar</div>
-      <div class="howPopupText">1) Elegí tu producto · 2) Agregá al cesto · 3) Finalizá por WhatsApp</div>
-    </div>
-  </div>
 
 </body>
 </html>

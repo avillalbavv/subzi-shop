@@ -19,28 +19,29 @@ function shouldShowStartupPopup(){
 }
 
 function showStartupPopup(){
-  // Evitar duplicados
   if (document.getElementById("startPopupOverlay")) return;
 
   var ov = document.createElement("div");
   ov.id = "startPopupOverlay";
   ov.className = "startPopupOverlay";
   ov.innerHTML =
-    '<div class="startPopup" role="dialog" aria-label="Cómo comprar">' +
+    '<div class="startPopup" role="dialog" aria-modal="true" aria-label="Cómo comprar">' +
+      '<button class="startPopupClose" id="startPopupClose" type="button" aria-label="Cerrar">✕</button>' +
       '<div class="startPopupHero">' +
         '<img class="startPopupLogo" src="./assets/favicon.png" alt="SubZi" />' +
         '<div class="startPopupTitle">Cómo comprar</div>' +
-        '<div class="startPopupSub">Armá tu pedido en el <b>Cesto</b> y finalizá por <b>WhatsApp</b>. Rápido, seguro y con soporte.</div>' +
+        '<div class="startPopupSub">Armá tu pedido en el <b>Cesto</b>, activá tu producto ideal y finalizá por <b>WhatsApp</b> con soporte rápido.</div>' +
       '</div>' +
       '<div class="startPopupBody">' +
         '<ol class="startSteps">' +
           '<li><span class="stepDot">1</span> Elegí una categoría: <b>ChatGPT</b> o <b>Juegos</b>.</li>' +
-          '<li><span class="stepDot">2</span> Tocá <b>Añadir al cesto</b> en lo que querés.</li>' +
-          '<li><span class="stepDot">3</span> Abrí el <b>Cesto</b> y presioná <b>Finalizar por WhatsApp</b>.</li>' +
-          '<li><span class="stepDot">4</span> Coordinamos <b>pago</b> y <b>entrega</b> (inmediata si hay stock).</li>' +
-          '<li><span class="stepDot">5</span> Si tenés <b>cashback</b>, podés activarlo desde el cesto.</li>' +
+          '<li><span class="stepDot">2</span> Tocá <b>Agregar</b> en lo que querés comprar.</li>' +
+          '<li><span class="stepDot">3</span> Abrí el <b>Cesto</b> desde arriba y revisá tu pedido.</li>' +
+          '<li><span class="stepDot">4</span> Presioná <b>Finalizar por WhatsApp</b> para coordinar pago y entrega.</li>' +
+          '<li><span class="stepDot">5</span> Si tenés <b>cashback</b>, activalo desde el mismo cesto.</li>' +
         '</ol>' +
-        '<div class="startPopupSoon"><b>Próximamente:</b> más suscripciones, juegos, keys, gift cards y novedades.</div><div class="startPopupNote">Se cierra sola en <b>18 segundos</b>. Podés tocar “Saltar” cuando quieras.</div>' +
+        '<div class="startPopupSoon"><b>Próximamente:</b> más suscripciones, gift cards, keys y novedades gamer.</div>' +
+        '<div class="startPopupNote">Se cierra sola en <b>12 segundos</b> y en móvil ya no se sale de la pantalla.</div>' +
       '</div>' +
       '<div class="startPopupActions">' +
         '<button class="btn ghost startSkipBtn" id="startPopupSkip" type="button">Saltar</button>' +
@@ -48,11 +49,12 @@ function showStartupPopup(){
     '</div>';
 
   document.body.appendChild(ov);
-
+  try{ document.body.classList.add("popupOpen"); }catch(e){}
 
   function close(immediate){
     if (!ov) return;
     ov.classList.remove("show");
+    try{ document.body.classList.remove("popupOpen"); }catch(e){}
     if (immediate){
       try{ ov.remove(); }catch(e){}
       return;
@@ -63,20 +65,30 @@ function showStartupPopup(){
   }
 
   ov.addEventListener("click", function(e){ if (e && e.target === ov) close(true); });
+
   var skip = document.getElementById("startPopupSkip");
   if (skip) skip.addEventListener("click", function(e){ if(e){ e.preventDefault(); e.stopPropagation(); } close(true); });
-  // Fallback por si el botón no engancha en algún móvil
+
+  var closeBtn = document.getElementById("startPopupClose");
+  if (closeBtn) closeBtn.addEventListener("click", function(e){ if(e){ e.preventDefault(); e.stopPropagation(); } close(true); });
+
   ov.addEventListener("click", function(e){
     var t = e && e.target;
-    if (t && (t.id === "startPopupSkip" || (t.closest && t.closest("#startPopupSkip")))){
+    if (t && (t.id === "startPopupSkip" || t.id === "startPopupClose" || (t.closest && (t.closest("#startPopupSkip") || t.closest("#startPopupClose"))))){
       if(e){ e.preventDefault(); e.stopPropagation(); }
       close(true);
     }
   });
 
-  // Mostrar + autocierre
+  document.addEventListener("keydown", function escHandler(e){
+    if (e && e.key === "Escape"){
+      close(true);
+      document.removeEventListener("keydown", escHandler);
+    }
+  });
+
   requestAnimationFrame(function(){ ov.classList.add("show"); });
-  setTimeout(close, 18000);
+  setTimeout(close, 12000);
 }
 
 
@@ -665,6 +677,60 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
 
 
   // ===== Header fijo: evitar que tape el contenido (offset dinámico) =====
+  function initMotionFX(){
+    var cards = document.querySelectorAll("[data-tilt]");
+    var finePointer = false;
+    try{ finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches; }catch(e){}
+
+    for (var i = 0; i < cards.length; i++){
+      (function(card){
+        if (!card || card.getAttribute("data-tilt-bound") === "1") return;
+        card.setAttribute("data-tilt-bound", "1");
+
+        if (finePointer){
+          card.addEventListener("pointermove", function(e){
+            var r = card.getBoundingClientRect();
+            var px = (e.clientX - r.left) / r.width;
+            var py = (e.clientY - r.top) / r.height;
+            var rx = (0.5 - py) * 8;
+            var ry = (px - 0.5) * 10;
+            card.style.setProperty("--tilt-x", rx.toFixed(2) + "deg");
+            card.style.setProperty("--tilt-y", ry.toFixed(2) + "deg");
+            card.style.setProperty("--spot-x", (px * 100).toFixed(2) + "%");
+            card.style.setProperty("--spot-y", (py * 100).toFixed(2) + "%");
+          });
+          card.addEventListener("pointerleave", function(){
+            card.style.removeProperty("--tilt-x");
+            card.style.removeProperty("--tilt-y");
+            card.style.removeProperty("--spot-x");
+            card.style.removeProperty("--spot-y");
+          });
+        }
+      })(cards[i]);
+    }
+
+    var revealNodes = document.querySelectorAll(".reveal");
+    for (var j = 0; j < revealNodes.length; j++){
+      revealNodes[j].style.setProperty("--reveal-delay", ((j % 8) * 0.05).toFixed(2) + "s");
+    }
+
+    var hero = document.querySelector(".heroMain");
+    if (hero && hero.getAttribute("data-parallax-bound") !== "1" && finePointer){
+      hero.setAttribute("data-parallax-bound", "1");
+      hero.addEventListener("pointermove", function(e){
+        var r = hero.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        hero.style.setProperty("--hero-x", ((px - 0.5) * 18).toFixed(2) + "px");
+        hero.style.setProperty("--hero-y", ((py - 0.5) * 18).toFixed(2) + "px");
+      });
+      hero.addEventListener("pointerleave", function(){
+        hero.style.removeProperty("--hero-x");
+        hero.style.removeProperty("--hero-y");
+      });
+    }
+  }
+
   function syncHeaderOffset(){
     var header = document.querySelector("header");
     if (!header) return;
@@ -685,6 +751,7 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     initCoreBits();
 
     try{ if (shouldShowStartupPopup()) showStartupPopup(); }catch(e){}
+    try{ initMotionFX(); }catch(e){}
 
     // Año
     try{

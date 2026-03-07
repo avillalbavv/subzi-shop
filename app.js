@@ -15,7 +15,8 @@ function renderCategoryTiles(){
   for (var i=0;i<categories.length;i++){
     var c = categories[i];
     var card = document.createElement("a");
-    card.className = "catTile reveal";
+    card.className = "catTile reveal tiltCard";
+    card.setAttribute("data-tilt", "");
     card.href = c.anchor;
 
     var img = categoryImages[c.id] || categoryImages.streaming || "";
@@ -49,7 +50,8 @@ function renderProductsGrid(categoryId, selector){
     if (p.category !== categoryId) continue;
 
     var el = document.createElement("div");
-    el.className = "product reveal";
+    el.className = "product reveal tiltCard";
+    el.setAttribute("data-tilt", "");
 
     var imgSrc = p.image || categoryImages[p.category] || categoryImages.streaming || "";
 

@@ -2007,3 +2007,386 @@ footer .social{
 @media (prefers-reduced-motion: reduce){
   .noise{ display:none !important; }
 }
+
+
+/* =========================
+   SubZi refresh: social + Eneba-like motion
+   ========================= */
+body.popupOpen{ overflow: hidden; }
+
+.heroEneba{ overflow: visible; }
+.heroMain{
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --hero-x: 0px;
+  --hero-y: 0px;
+}
+.heroMain.tiltCard{
+  transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform .18s ease, border-color .2s ease, box-shadow .2s ease;
+  will-change: transform;
+}
+.heroMain:before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(240px 180px at var(--spot-x) var(--spot-y), rgba(255,255,255,.12), transparent 60%),
+    linear-gradient(120deg, rgba(255,255,255,.04), transparent 35%, rgba(106,224,209,.06) 65%, transparent 100%);
+  opacity: .9;
+  pointer-events: none;
+}
+.heroMain:after{
+  transform: translate(var(--hero-x), var(--hero-y));
+  transition: transform .2s ease;
+}
+.heroEyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.82);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18px;
+}
+.heroEyebrowDot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--a1), var(--a2));
+  box-shadow: 0 0 0 5px rgba(106,224,209,.14);
+  animation: pulse 2s ease-in-out infinite;
+}
+.heroAmbient{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.heroOrb{
+  position:absolute;
+  border-radius:50%;
+  filter: blur(6px);
+  opacity:.9;
+  mix-blend-mode: screen;
+}
+.heroOrb.orbA{
+  width: 180px;
+  height: 180px;
+  top: -38px;
+  right: 12%;
+  background: radial-gradient(circle, rgba(106,224,209,.42), rgba(106,224,209,0) 68%);
+  animation: driftOrb 8s ease-in-out infinite;
+}
+.heroOrb.orbB{
+  width: 220px;
+  height: 220px;
+  bottom: -90px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(10,156,194,.30), rgba(10,156,194,0) 68%);
+  animation: driftOrb 12s ease-in-out infinite reverse;
+}
+.heroOrb.orbC{
+  width: 120px;
+  height: 120px;
+  top: 26%;
+  left: 46%;
+  background: radial-gradient(circle, rgba(84,113,255,.18), rgba(84,113,255,0) 70%);
+  animation: driftOrb 10s ease-in-out infinite;
+}
+.heroFloatBadge{
+  position:absolute;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(8,12,18,.62);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 40px rgba(0,0,0,.28);
+  color: rgba(255,255,255,.94);
+  font-size: 12px;
+  font-weight: 800;
+  backdrop-filter: blur(12px);
+}
+.badgeA{ top: 18px; right: 18px; animation: floatBadge 6s ease-in-out infinite; }
+.badgeB{ right: 28px; bottom: 92px; animation: floatBadge 7.5s ease-in-out infinite reverse; }
+.badgeC{ left: 22px; bottom: 22px; animation: floatBadge 6.5s ease-in-out infinite; }
+.hero h1 span{
+  display:block;
+  color: rgba(255,255,255,.86);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin-top: 6px;
+}
+.heroPills,
+.heroStats{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+.heroPills{ margin: 2px 0 18px; }
+.heroPill{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.88);
+  font-size: 12px;
+  font-weight: 700;
+}
+.heroActions .btn{
+  position: relative;
+  overflow: hidden;
+}
+.heroActions .btn:after{
+  content: "";
+  position:absolute;
+  inset:0;
+  transform: translateX(-120%);
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+  transition: transform .5s ease;
+}
+.heroActions .btn:hover:after{ transform: translateX(120%); }
+.heroStats{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+.heroStat{
+  min-width: 0;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(10px);
+}
+.heroStat strong{
+  display:block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.heroStat span{
+  display:block;
+  color: rgba(255,255,255,.62);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.dealStrip{
+  margin: 18px 0 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  overflow:hidden;
+  position: relative;
+}
+.dealStrip:before,
+.dealStrip:after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width: 70px;
+  z-index:1;
+  pointer-events:none;
+}
+.dealStrip:before{
+  left:0;
+  background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,0));
+}
+.dealStrip:after{
+  right:0;
+  background: linear-gradient(270deg, rgba(0,0,0,.85), rgba(0,0,0,0));
+}
+.dealTrack{
+  display:flex;
+  width:max-content;
+  gap: 14px;
+  padding: 12px 18px;
+  animation: marqueeDeals 24s linear infinite;
+}
+.dealTrack span{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(255,255,255,.82);
+  white-space: nowrap;
+}
+.catGrid{
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+}
+.tiltCard{
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --spot-x: 50%;
+  --spot-y: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.tiltCard:before{
+  content: "";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background: radial-gradient(220px 140px at var(--spot-x) var(--spot-y), rgba(255,255,255,.10), transparent 60%);
+  opacity: 0;
+  transition: opacity .18s ease;
+  pointer-events:none;
+}
+.tiltCard:hover:before{ opacity: 1; }
+.product.tiltCard,
+.catTile.tiltCard,
+.pTile.tiltCard,
+.detailCard.tiltCard,
+.heroSide.tiltCard,
+.mini.tiltCard{
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform .18s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.product.tiltCard:hover,
+.catTile.tiltCard:hover,
+.pTile.tiltCard:hover{
+  box-shadow: 0 26px 70px rgba(0,0,0,.40);
+}
+.reveal{
+  transition-delay: var(--reveal-delay, 0s);
+}
+.social{
+  gap: 12px;
+}
+.soc{
+  position: relative;
+  overflow: hidden;
+  min-height: 40px;
+  padding: 11px 14px;
+  border-color: rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.soc:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform: translateX(-120%);
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.16), transparent);
+  transition: transform .45s ease;
+}
+.soc:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.24);
+}
+.soc:hover:after{ transform: translateX(120%); }
+.startPopupOverlay{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.startPopup{
+  position: relative;
+  width: min(620px, calc(100vw - 20px));
+  max-height: min(86svh, 760px);
+  display:flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(106,224,209,.12), transparent 40%),
+    radial-gradient(100% 100% at 100% 0%, rgba(10,156,194,.10), transparent 32%),
+    #0B1117;
+}
+.startPopupClose{
+  position:absolute;
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.9);
+  cursor:pointer;
+  z-index: 2;
+}
+.startPopupLogo{
+  width: clamp(82px, 16vw, 112px);
+  height: clamp(82px, 16vw, 112px);
+  border-radius: 26px;
+}
+.startPopupHero{
+  padding: 24px 22px 14px;
+}
+.startPopupBody{
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  padding: 14px 18px 16px;
+}
+.startPopupSoon,
+.startPopupNote{
+  margin-top: 12px;
+  color: rgba(255,255,255,.72);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.startPopupActions{
+  padding: 12px 18px 18px;
+}
+@keyframes floatBadge{
+  0%,100%{ transform: translateY(0px); }
+  50%{ transform: translateY(-8px); }
+}
+@keyframes driftOrb{
+  0%,100%{ transform: translate3d(0,0,0) scale(1); }
+  50%{ transform: translate3d(10px,-16px,0) scale(1.06); }
+}
+@keyframes marqueeDeals{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+@media (max-width: 920px){
+  .heroStats{ grid-template-columns: 1fr; }
+  .badgeB{ bottom: 124px; }
+}
+@media (max-width: 640px){
+  .heroMain{ padding: 20px; }
+  .heroEyebrow{ width: 100%; justify-content: center; text-align: center; }
+  .heroFloatBadge{ display:none; }
+  .dealStrip{ border-radius: 18px; }
+  .startPopup{
+    width: calc(100vw - 12px);
+    max-height: calc(100svh - 12px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    border-radius: 20px;
+  }
+  .startPopupHero{ padding: 18px 16px 12px; }
+  .startPopupBody{ padding: 12px 14px 14px; }
+  .startPopupActions{ padding: 10px 14px 14px; }
+  .startSteps li{ padding: 10px; border-radius: 14px; }
+  .startPopupClose{ top: 10px; right: 10px; }
+}
+@media (hover: none), (pointer: coarse){
+  .tiltCard,
+  .heroMain.tiltCard,
+  .product.tiltCard,
+  .catTile.tiltCard,
+  .pTile.tiltCard,
+  .detailCard.tiltCard,
+  .heroSide.tiltCard,
+  .mini.tiltCard{
+    transform: none !important;
+  }
+  .dealTrack{ animation-duration: 34s; }
+}

@@ -46,7 +46,8 @@
       if (!p || p.category !== cat) continue;
 
       var card = document.createElement("article");
-      card.className = "pTile reveal";
+      card.className = "pTile reveal tiltCard";
+      card.setAttribute("data-tilt", "");
       card.setAttribute("data-open", p.id);
 
       var imgSrc = getImg(p);
