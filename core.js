@@ -509,6 +509,10 @@ function openCart(){
   if (ov) ov.classList.add("show");
   if (dr) dr.classList.add("open");
   document.body.classList.add("lock");
+  document.body.classList.add("cartOpen");
+
+  // Si el bot está abierto, cerrarlo para que no se superponga al cesto.
+  try{ if (window.SUBZI && SUBZI.chat && typeof SUBZI.chat.close === 'function') SUBZI.chat.close(); }catch(e){}
 }
 function closeCart(){
   var ov = $("#overlay");
@@ -516,6 +520,7 @@ function closeCart(){
   if (ov) ov.classList.remove("show");
   if (dr) dr.classList.remove("open");
   document.body.classList.remove("lock");
+  document.body.classList.remove("cartOpen");
 }
 
 /* ===== CRUD carrito ===== */

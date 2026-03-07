@@ -168,6 +168,14 @@
     }
     function closeChat(){ chatPanel.classList.remove("show"); }
 
+    // Exponer controles para que otras UI (ej: cesto) pueda cerrar el bot y evitar superposición.
+    try{
+      SUBZI.chat = SUBZI.chat || {};
+      SUBZI.chat.open = openChat;
+      SUBZI.chat.close = closeChat;
+      SUBZI.chat.isOpen = function(){ return chatPanel.classList.contains('show'); };
+    }catch(e){}
+
     fab.addEventListener("click", function(e){
       if (e) e.stopPropagation();
       if (chatPanel.classList.contains("show")) closeChat();

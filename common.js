@@ -180,6 +180,8 @@ function getFooterSocialHTML(){
 
 
 function ensurePageTabs(){
+  // Deshabilitado por pedido: se elimina la fila de tabs (Inicio/Descuentos/...) bajo el header.
+  return;
   var header = document.querySelector("header");
   if (!header || header.querySelector(".pageTabsWrap")) return;
 
@@ -197,6 +199,13 @@ function ensurePageTabs(){
       '<a class="pageTab' + ((current === 'cashback.html') ? ' active' : '') + '" href="' + P('cashback/') + '">Cashback</a>'  +
     '</nav>';
   header.appendChild(nav);
+}
+
+function ensureBrandTagline(){
+  // Unificar el texto del header (sin texto largo con emojis que rompe estética y ocupa demasiado en móvil)
+  var tag = document.querySelector('.brandtext .tag');
+  if (!tag) return;
+  tag.textContent = 'Promos, suscripciones, juegos y Steam Keys. Entrega inmediata • Cierre por WhatsApp.';
 }
 
 function ensureFooterLayout(){
@@ -966,7 +975,9 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
 
   // Run init
   document.addEventListener("DOMContentLoaded", function(){
+    // Tabs debajo del header desactivadas por pedido
     try{ ensurePageTabs(); }catch(e){}
+    try{ ensureBrandTagline(); }catch(e){}
     try{ ensureFooterLayout(); }catch(e){}
     try{ ensureUtilityShell(); }catch(e){}
     // Menú limpio: no inyectar la banda horizontal de stock en el desplegable.

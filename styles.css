@@ -774,6 +774,14 @@ h1{
 }
 .chatFab:hover{ transform: translateY(-2px); filter: brightness(1.08); }
 
+/* Evitar superposición: cuando el cesto está abierto ocultamos WhatsApp flotante y el botón del bot */
+body.cartOpen .waFloat,
+body.cartOpen .chatFab{
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
 .chatPanel{
   position: fixed;
   right: 16px;
