@@ -238,8 +238,8 @@ SUBZI.products = [
     price: 0,
     currency: "PYG",
     badge: "Horror",
-    desc: "Volvé al survival horror con una Steam Key original lista para canjear apenas confirmemos tu pago.",
-    image: "./assets/products/steam.png",
+    desc: "Steam Key original con entrega inmediata por WhatsApp y canje directo en tu cuenta de Steam.",
+    image: "./assets/products/resident-evil-requiem.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Resident Evil Requiem. Stock disponible para venta inmediata.",
@@ -267,7 +267,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Narrativa",
     desc: "Experiencia narrativa premium con Steam Key para activarla directamente en tu propia cuenta.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/detroit-become-human.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Detroit Become Human. Stock disponible para venta inmediata.",
@@ -295,7 +295,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Terror",
     desc: "Terror psicológico en PC con entrega inmediata de key según disponibilidad de stock.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/outlast-2.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Outlast 2. Stock disponible para venta inmediata.",
@@ -323,7 +323,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Fighting",
     desc: "Edición completa para Steam con key digital y soporte para que la actives sin complicaciones.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/mortal-kombat-11-ultimate.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Mortal Kombat 11 Ultimate. Stock disponible para venta inmediata.",
@@ -351,7 +351,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Acción",
     desc: "Sumá Gotham a tu biblioteca con una Steam Key original y activación 100% en tu cuenta.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/batman-arkham-origins.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Batman Arkham Origins. Stock disponible para venta inmediata.",
@@ -379,7 +379,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Legendary",
     desc: "La edición más completa de Injustice 2 lista para entrar a tu cuenta de Steam.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/injustice-2-legendary-edition.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Injustice 2 Legendary Edition. Stock disponible para venta inmediata.",
@@ -407,7 +407,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Sim Racing",
     desc: "Simulador ideal para fanáticos del automovilismo con entrega digital inmediata.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/assetto-corsa.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Assetto Corsa. Stock disponible para venta inmediata.",
@@ -435,7 +435,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Co-op",
     desc: "Diversión cooperativa con Steam Key original y guía rápida de canje.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/human-fall-flat.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Human Fall Flat. Stock disponible para venta inmediata.",
@@ -464,7 +464,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Indie",
     desc: "Indie viral con entrega en key para activarlo al instante en tu biblioteca de Steam.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/buckshot-roulette.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Buckshot Roulette. Stock disponible para venta inmediata.",
@@ -492,7 +492,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Survival Horror",
     desc: "Terror clásico para PC con Steam Key lista para entrega inmediata.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/silent-hill-homecoming.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Silent Hill Homecoming. Stock disponible para venta inmediata.",
@@ -520,7 +520,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Trilogía",
     desc: "La trilogía de Lara Croft en una sola compra con activación directa en tu cuenta.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/tomb-raider-definitive-survival-trilogy.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Tomb Raider Definitive Survival Trilogy. Stock disponible para venta inmediata.",
@@ -548,7 +548,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Rally",
     desc: "Rally competitivo para Steam con key digital y soporte postventa.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/wrc-9.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de WRC 9. Stock disponible para venta inmediata.",
@@ -576,7 +576,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Terror",
     desc: "Shinji Mikami en tu biblioteca con canje directo y sin compartir contraseñas.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/the-evil-within.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de The Evil Within. Stock disponible para venta inmediata.",
@@ -604,7 +604,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Thriller",
     desc: "Thriller oscuro con key oficial para activar en tu cuenta al terminar el pago.",
-    image: "./assets/products/steam.png",
+    image: "./assets/products/martha-is-dead.png",
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Martha is Dead. Stock disponible para venta inmediata.",
@@ -635,8 +635,8 @@ SUBZI.products = [
     price: 0,
     currency: "PYG",
     badge: "Streaming",
-    desc: "Planes de acceso a Netflix con entrega y coordinación rápida por WhatsApp.",
-    image: "./assets/products/streaming.png",
+    desc: "Servicio de streaming listo para coordinar por WhatsApp con la misma ficha visual que el resto del catálogo.",
+    image: "./assets/products/netflix.png",
     features: ["Streaming", "Soporte", "Consulta rápida"],
     details: {
       plan: "Suscripción o acceso a Netflix según disponibilidad.",
@@ -663,7 +663,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Streaming",
     desc: "Disney+ para tu cuenta o acceso coordinado según disponibilidad.",
-    image: "./assets/products/streaming.png",
+    image: "./assets/products/disney-plus.png",
     features: ["Streaming", "Soporte", "Consulta rápida"],
     details: {
       plan: "Suscripción o acceso a Disney+ según disponibilidad.",
@@ -690,7 +690,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Streaming",
     desc: "Paramount+ con activación guiada y soporte simple por WhatsApp.",
-    image: "./assets/products/streaming.png",
+    image: "./assets/products/paramount-plus.png",
     features: ["Streaming", "Soporte", "Consulta rápida"],
     details: {
       plan: "Suscripción o acceso a Paramount+ según disponibilidad.",
@@ -717,7 +717,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Streaming",
     desc: "Prime Video listo para coordinar según el plan disponible en stock.",
-    image: "./assets/products/streaming.png",
+    image: "./assets/products/prime-video.png",
     features: ["Streaming", "Soporte", "Consulta rápida"],
     details: {
       plan: "Suscripción o acceso a Prime Video según disponibilidad.",
@@ -744,7 +744,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Anime",
     desc: "Crunchyroll para fans del anime con activación rápida y soporte.",
-    image: "./assets/products/streaming.png",
+    image: "./assets/products/crunchyroll.png",
     features: ["Streaming", "Soporte", "Consulta rápida"],
     details: {
       plan: "Suscripción o acceso a Crunchyroll según disponibilidad.",
@@ -771,7 +771,7 @@ SUBZI.products = [
     currency: "PYG",
     badge: "Streaming",
     desc: "HBO Max para sumar a tu cuenta con asistencia durante la activación.",
-    image: "./assets/products/streaming.png",
+    image: "./assets/products/hbo-max.png",
     features: ["Streaming", "Soporte", "Consulta rápida"],
     details: {
       plan: "Suscripción o acceso a HBO Max según disponibilidad.",

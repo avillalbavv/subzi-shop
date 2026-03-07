@@ -40,6 +40,7 @@
     if (!grid || !cat) return;
 
     grid.innerHTML = "";
+    grid.classList.add("catalogGrid");
 
     for (var i=0;i<products.length;i++){
       var p = products[i];
@@ -71,6 +72,13 @@
         '</div>';
 
       grid.appendChild(card);
+    }
+
+    if (!grid.children.length){
+      var empty = document.createElement("div");
+      empty.className = "catalogEmpty";
+      empty.innerHTML = "<strong>No hay productos cargados todavía.</strong><span>Actualizá data.js o consultanos por WhatsApp para completar el catálogo.</span>";
+      grid.appendChild(empty);
     }
 
     // Add
@@ -110,5 +118,13 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render);
   else render();
+  window.addEventListener("load", function(){
+    var grid = byId("categoryGrid");
+    if (grid && grid.children.length <= 1) render();
+  });
+  setTimeout(function(){
+    var grid = byId("categoryGrid");
+    if (grid && grid.children.length <= 1) render();
+  }, 240);
 
 })();

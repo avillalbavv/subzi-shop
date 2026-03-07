@@ -3351,3 +3351,103 @@ footer .socIcon img.socialLogo{
     gap: 22px;
   }
 }
+
+
+/* ===== UI fix pack v9 ===== */
+.section{ padding: 40px 0 72px; }
+.sectionHead{ margin: 0 0 28px; }
+.sectionHead .hint{ max-width: 72ch; line-height: 1.7; }
+.pageTabsWrap{ padding: 8px 0 20px; }
+.pageTabs{ gap: 14px; padding: 6px 0 4px; }
+.pageTab{ min-height: 50px; padding: 0 22px; }
+.grid{ gap: 28px; }
+.catalogGrid{ margin-top: 18px; }
+.catalogTitleBlock{ margin: 18px 0 18px; }
+.catalogTitleBlock h3{ margin: 0 0 8px; font-size: 1.35rem; }
+.catalogTitleBlock p{ margin: 0; color: var(--muted); line-height: 1.7; max-width: 72ch; }
+.catalogEmpty{ display:grid; gap:8px; padding:24px; border-radius:22px; border:1px dashed rgba(255,255,255,.18); background:rgba(255,255,255,.03); color:rgba(255,255,255,.86); }
+body[data-category="streaming"] .grid,
+body[data-category="steam"] .grid{ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 28px; }
+body[data-category="streaming"] .pTile,
+body[data-category="steam"] .pTile{ min-height: 100%; }
+body[data-category="streaming"] .pCover,
+body[data-category="steam"] .pCover{ min-height: 0; aspect-ratio: 5 / 3; }
+body[data-category="streaming"] .pCover img,
+body[data-category="steam"] .pCover img{ object-fit: cover; }
+body[data-category="streaming"] .pTile .pMeta,
+body[data-category="steam"] .pTile .pMeta{ gap: 16px; padding: 18px 18px 20px; }
+body[data-category="streaming"] .pTitle,
+body[data-category="steam"] .pTitle{ min-height: 58px; }
+
+.discountShowcase{ margin-top: 110px; padding-top: 34px; gap: 30px; }
+.discountShowcaseHead{ margin-bottom: 18px; align-items: center; }
+.flyerDeal{ padding: 34px; }
+.flyerDealActions{ margin-top: 22px; gap: 14px; }
+.flyerDealActions .btn{ min-height: 52px; }
+
+.steamKeysBand{ margin-top: 54px; padding: 42px; gap: 30px; }
+.steamKeysMiniRow{ gap: 22px; margin-top: 30px; }
+.steamMiniCard{ padding: 26px; min-height: 148px; }
+
+header #navMenu.navDropdown{ width: min(760px, calc(100vw - 32px)); padding: 22px; gap: 16px; }
+header #navMenu.navDropdown .chip{ min-height: 50px; padding: 13px 18px; }
+.steamMenuShelf{ margin-top: 20px; padding: 24px; gap: 20px; }
+.steamMenuShelfHead{ gap: 14px 24px; }
+.steamMenuShelfHead strong{ font-size: 16px; }
+.steamMenuShelfHead span{ font-size: 13px; line-height: 1.6; max-width: 44ch; }
+.steamMenuShelfRow{ display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.steamMenuChip{ min-height: 92px; padding: 18px; gap: 14px; border-radius: 20px; align-items: flex-start; }
+.steamMenuChipText{ display:grid; gap: 6px; }
+.steamMenuChipLabel{ font-weight: 800; line-height: 1.4; }
+.steamMenuChipMeta{ color: var(--muted); line-height: 1.45; font-size: 12px; }
+.steamMenuChipIcon{ width: 34px; height: 34px; border-radius: 999px; display:grid; place-items:center; font-size: 13px; font-weight: 900; background: rgba(106,224,209,.16); color: #9df5ea; }
+
+.steamStockShowcase{ margin: 40px 0 54px; padding: 32px; gap: 22px; }
+.steamStockHead p{ line-height: 1.7; }
+.steamStockRow{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+.steamStockCard{ min-height: 150px; padding: 22px; gap: 12px; }
+.steamStockCardName{ font-size: 20px; }
+.steamStockCardMeta{ line-height: 1.6; }
+
+.streamingCatalogShell{ gap: 24px; padding: 30px; }
+.streamingCatalogHead{ gap: 8px; }
+.streamingCatalogHead strong{ font-size: 1.1rem; }
+.streamingCatalogHead span{ line-height: 1.7; max-width: 70ch; }
+
+footer{ margin-top: 64px; padding: 42px 0 calc(44px + env(safe-area-inset-bottom)); }
+footer .foot,
+.footEnhanced{ gap: 34px 80px; align-items: flex-start; }
+footer .footLeft{ gap: 18px; max-width: 640px; }
+footer .footQuickLinks{ gap: 14px 22px; }
+footer .footQuickLinks a{ padding: 0; background: transparent; color: var(--muted); border: none; }
+footer .footQuickLinks a:hover{ color: rgba(255,255,255,.96); }
+footer .social{ gap: 16px; }
+footer .soc{ min-height: 52px; min-width: 156px; padding: 12px 18px; gap: 14px; border-radius: 18px; }
+footer .socIcon{ width: 36px; height: 36px; }
+footer .socIcon.socialMark svg{ width: 22px; height: 22px; display:block; }
+footer .socIcon img.socialLogo{ display:none !important; }
+
+@media (max-width: 900px){
+  .steamMenuShelfRow,
+  .steamStockRow{ grid-template-columns: 1fr; }
+}
+@media (max-width: 720px){
+  .section{ padding: 28px 0 54px; }
+  .grid{ gap: 22px; }
+  .discountShowcase{ margin-top: 76px; padding-top: 24px; }
+  .steamKeysBand{ margin-top: 40px; padding: 28px; }
+  .streamingCatalogShell,
+  .steamStockShowcase{ padding: 22px; }
+}
+@media (max-width: 560px){
+  header #navMenu.navDropdown{ left: 12px; right: 12px; width: auto; padding: 16px; }
+  .pageTabsWrap{ padding-bottom: 14px; }
+  .pageTab{ min-height: 46px; padding: 0 18px; }
+  .steamMenuShelf{ padding: 18px; gap: 16px; }
+  .steamMenuChip{ min-height: 86px; padding: 16px; }
+  .discountShowcase,
+  .steamKeysBand,
+  .streamingCatalogShell,
+  .steamStockShowcase{ padding-left: 18px; padding-right: 18px; }
+  footer .soc{ min-width: 100%; }
+}
