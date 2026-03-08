@@ -31,16 +31,8 @@
     if (!p) return;
 
     var imgSrc = p.image || categoryImages[p.category] || categoryImages.games;
-    var finalImg = core.path(imgSrc);
-    // cache-busting para evitar que en PC quede pegada la imagen vieja
-    try{
-      var v = (window.SUBZI && (SUBZI.ASSET_V || SUBZI.BUILD)) ? String(SUBZI.ASSET_V || SUBZI.BUILD) : "";
-      if (v){
-        finalImg += (finalImg.indexOf("?") === -1 ? "?" : "&") + "v=" + encodeURIComponent(v);
-      }
-    }catch(e){}
     var imgEl = byId("detailImg");
-    if (imgEl) imgEl.src = finalImg;
+    if (imgEl) imgEl.src = core.path(imgSrc);
 
     var t = byId("detailTitle");
     if (t) t.textContent = p.name;
@@ -55,14 +47,7 @@
     if (iconWrap){
       var iconVal = p.icon || "";
       if (iconVal && (iconVal.indexOf("/") !== -1 || iconVal.indexOf(".") !== -1)){
-        var iconSrc = core.path(iconVal);
-        try{
-          var v2 = (window.SUBZI && (SUBZI.ASSET_V || SUBZI.BUILD)) ? String(SUBZI.ASSET_V || SUBZI.BUILD) : "";
-          if (v2){
-            iconSrc += (iconSrc.indexOf("?") === -1 ? "?" : "&") + "v=" + encodeURIComponent(v2);
-          }
-        }catch(e){}
-        iconWrap.innerHTML = '<img alt="" src="' + iconSrc + '" />';
+        iconWrap.innerHTML = '<img alt="" src="' + core.path(iconVal) + '" />';
       } else {
         iconWrap.textContent = iconVal;
       }

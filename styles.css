@@ -38,44 +38,6 @@ body{
   overflow-x: hidden;
 }
 
-/* =============================
-   Mobile consistency (Android/iOS)
-   - Evitar desbordes horizontales
-   - Cards centradas como Streaming
-   - Desactivar tilt/rotaciones en touch (provocan cortes)
-   ============================= */
-
-/* En dispositivos touch, el tilt puede “cortar” cards por overflow visual */
-@media (hover: none){
-  .tiltCard,
-  .product.tiltCard,
-  .catTile.tiltCard,
-  .pTile.tiltCard,
-  .detailCard.tiltCard,
-  .heroSide.tiltCard,
-  .mini.tiltCard{
-    transform: none !important;
-  }
-  .tiltCard:before{ display:none !important; }
-}
-
-/* Forzar grillas a 1 columna y centradas en móvil para que no “corten” contenido */
-@media (max-width: 820px){
-  .grid{
-    grid-template-columns: 1fr !important;
-    justify-items: center;
-  }
-  .grid > .pTile{
-    width: 100%;
-    max-width: 520px;
-  }
-}
-
-/* Dar aire al final para que WhatsApp/Bot no tapen la última card */
-@media (max-width: 820px){
-  main{ padding-bottom: 140px; }
-}
-
 a{ color: inherit; text-decoration: none; }
 button, input{ font-family: inherit; }
 
@@ -1070,7 +1032,8 @@ main, footer, .toast{ position: relative; z-index: 1; }
 .heroClean{ padding: 22px; }
 .catGrid{
   display:grid;
-  grid-template-columns: repeat(5, minmax(0,1fr));
+  /* auto-fit para que 3-4 tiles se vean grandes y centrados en desktop */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
   margin-top: 10px;
 }
@@ -1334,9 +1297,10 @@ body.lock{ overflow: hidden; }
   right: 12px;
   bottom: 12px;
   display:flex;
+  flex-wrap: wrap;
   gap: 10px;
   align-items:center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.10);
@@ -1363,6 +1327,8 @@ body.lock{ overflow: hidden; }
   font-weight: 900;
   font-size: 12px;
   white-space: nowrap;
+  flex: 1 1 160px;
+  text-align: center;
 }
 .pBtn.primary{
   background: linear-gradient(135deg, rgba(106,224,209,0.26), rgba(10,156,194,0.18));
@@ -1393,6 +1359,9 @@ body.lock{ overflow: hidden; }
 @media (max-width: 520px){
   .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pCover{ aspect-ratio: 1 / 1; }
+  /* Evita que los botones se corten en móvil */
+  .pActions{ left: 10px; right: 10px; bottom: 10px; padding: 8px; gap: 8px; }
+  .pBtn{ flex: 1 1 100%; height: 40px; }
 }
 
 
@@ -3712,6 +3681,22 @@ footer .socIcon.socialMark svg{ display:none; }
   .navDropdown{ padding: 16px; }
   .steamMenuChip{ min-width: 260px; }
   footer .social{ justify-content:flex-start; }
+}
+
+/* =============================
+   v19 – Ajustes de estética
+   - Centrar encabezados de descuentos
+   - Unificar grillas de catálogo en móvil (como Streaming)
+   ============================= */
+
+.discountShowcaseHead{ justify-content: center !important; align-items: center !important; text-align: center !important; }
+.discountShowcaseHead > div{ margin: 0 auto; text-align: center; }
+.discountRail.discountRailSingle{ grid-auto-flow: row !important; overflow: visible !important; justify-items: center; }
+.discountRail.discountRailSingle .flyerDeal{ width: 100%; max-width: 980px; margin: 0 auto; }
+
+@media (max-width: 820px){
+  body[data-category] .grid{ grid-template-columns: 1fr !important; justify-items: center; }
+  body[data-category] .pTile{ width: min(520px, 100%); }
 }
 
 /* v10: footer quicklinks mas aire */
