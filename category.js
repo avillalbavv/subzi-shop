@@ -52,6 +52,13 @@
       card.setAttribute("data-open", p.id);
 
       var imgSrc = core.path(getImg(p));
+      // cache-busting para evitar que en PC se vean imagenes viejas
+      try{
+        var v = (window.SUBZI && (SUBZI.ASSET_V || SUBZI.BUILD)) ? String(SUBZI.ASSET_V || SUBZI.BUILD) : "";
+        if (v){
+          imgSrc += (imgSrc.indexOf("?") === -1 ? "?" : "&") + "v=" + encodeURIComponent(v);
+        }
+      }catch(e){}
 
       card.innerHTML =
         '<div class="pCover">' +

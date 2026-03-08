@@ -6,7 +6,12 @@ window.SUBZI = window.SUBZI || {};
 
 SUBZI.WHATSAPP_NUMBER = "595983929719"; // sin + para wa.me
 
-SUBZI.BUILD = "v12";
+// Build/version: se usa para cache-busting (CSS/JS/imagenes)
+SUBZI.BUILD = "v18";
+
+// Cache-busting para imagenes (ej: assets/products/*.png)
+// Si cambias una imagen y el navegador la “pega”, solo subí este valor.
+SUBZI.ASSET_V = SUBZI.BUILD;
 
 SUBZI.categoryImages = {
   chatgpt: "./assets/products/chatgpt.png",
