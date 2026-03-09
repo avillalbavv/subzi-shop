@@ -4,27 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SubZi | Tienda Online</title>
-  <meta name="description" content="Suscripciones ChatGPT Plus y Pro. Activación rápida y soporte por WhatsApp." />
+  <meta name="description" content="Edición: Canva y CapCut en SubZi. Activación guiada y soporte por WhatsApp." />
   <link rel="stylesheet" href="../styles.css?v=v17" />
   <link rel="icon" type="image/png" href="../assets/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/favicon.png" />
 </head>
 
-<body data-category="chatgpt">
+<body data-category="editing">
   <div class="noise" aria-hidden="true"></div>
   <div class="bgAnim" aria-hidden="true"></div>
 
-<header>
+  <header>
     <div class="wrap topbar">
       <div class="brand">
         <a class="logo logoLink" href="../index.html" title="SubZi"><img alt="Logo SubZi" src="../assets/logo.jpg" /></a>
         <div class="brandtext">
           <div class="name">SubZi</div>
-          <div class="tag">🎮 Suscripciones & Gaming Premium ✨ 🤖 ChatGPT Pro/Plus • 🔑 Keys • 🎁 Gift Cards ⚡️Entrega inmediata • 🔒Compra segura</div>
+          <div class="tag">🎮 Suscripciones & Gaming Premium ✨ 🤖 ChatGPT Pro/Plus • 🔑 Keys • ✂️ Edición ⚡️Entrega inmediata • 🔒Compra segura</div>
         </div>
       </div>
 
-      <div class="hdrRight"><button class="cartBtn" id="btnCart" aria-label="Abrir cesto">
+      <div class="hdrRight">
+        <button class="cartBtn" id="btnCart" aria-label="Abrir cesto">
           <span style="font-weight:900;">🧺 Cesto</span>
           <span class="badge" id="cartBadge">0</span>
         </button>
@@ -58,12 +59,12 @@
     <section class="section">
       <div class="card categoryHeroCard glowBorder reveal tiltCard" data-tilt>
         <div class="categoryHeroCopy">
-          <span class="eyebrow">🤖 ChatGPT / IA</span>
-          <h1 class="categoryHeroTitle">Suscripciones ChatGPT</h1>
-          <p class="lead">Plus o Pro para tu cuenta. Tras el pago te confirmamos el plan y te guiamos por WhatsApp para que quede activado sin vueltas.</p>
+          <span class="eyebrow">✂️ Edición</span>
+          <h1 class="categoryHeroTitle">Edición y diseño</h1>
+          <p class="lead">CapCut y Canva listos para coordinar por WhatsApp. Tras el pago te enviamos el acceso o activación; vos lo vinculás a tu cuenta sin pasar contraseñas.</p>
         </div>
         <div class="categoryHeroActions">
-          <button class="btn primary" id="btnWhatsAppChatgpt" type="button">Consultar por WhatsApp</button>
+          <button class="btn primary" id="btnWhatsAppEditing" type="button">Consultar por WhatsApp</button>
           <a class="btn ghost" href="../descuentos/">Ver descuentos</a>
         </div>
       </div>
@@ -72,26 +73,17 @@
         <h2>Catálogo</h2>
       </div>
 
-      <section class="promoFlyer promoFlyerInline reveal">
-        <div class="promoFlyerCopy">
-          <span class="promoFlyerTag">PROMO VISIBLE</span>
-          <h3>ChatGPT Pro con 25% OFF</h3>
-          <p>Promo destacada conectada con la página de descuentos. Consultá disponibilidad y cerramos por WhatsApp.</p>
-        </div>
-        <!-- Badge overlay eliminado para evitar superposición en mobile -->
-      </section>
-
       <div class="grid" id="categoryGrid"></div>
 
       <div class="divider"></div>
     </section>
   </main>
 
-<footer>
+  <footer>
     <div class="wrap foot">
       <div class="footLeft">
-        <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div></div>
-
+        <div>© <span id="year"></span> SubZi — <b>Todos los derechos reservados.</b></div>
+      </div>
       <div class="social"></div>
     </div>
   </footer>
@@ -152,9 +144,7 @@
         Finalizar por WhatsApp <span aria-hidden="true">📲</span>
       </button>
 
-      <p class="note">
-        Nota: Si el precio está en “Consultar”, te confirmamos por WhatsApp.
-      </p>
+      <p class="note">Nota: Si el precio está en “Consultar”, te confirmamos por WhatsApp.</p>
     </div>
   </aside>
 
@@ -179,11 +169,12 @@
       <div class="q" data-q="Juegos">Juegos</div>
       <div class="q" data-q="Steam Keys">Steam Keys</div>
       <div class="q" data-q="Streaming">Streaming</div>
+      <div class="q" data-q="Edición">Edición</div>
       <div class="q" data-q="Precios">Precios</div>
       <div class="q" data-q="Hablar">Hablar por WhatsApp</div>
     </div>
     <div class="chatInputRow">
-      <input class="chatInput" id="chatInput" placeholder="Escribí acá… (ej: quiero una key de Steam)" />
+      <input class="chatInput" id="chatInput" placeholder="Escribí acá… (ej: canva)" />
       <button class="chatSend" id="chatSend" aria-label="Enviar">Enviar</button>
     </div>
   </div>
@@ -197,6 +188,16 @@
   <script src="../common.js?v=v17"></script>
   <script src="../category.js?v=v17"></script>
   <script src="../chat.js?v=v17"></script>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // CTA WhatsApp
+    (function(){
+      var btn = document.getElementById('btnWhatsAppEditing');
+      if (!btn || !window.SUBZI || !SUBZI.core) return;
+      btn.addEventListener('click', function(){
+        SUBZI.core.openWhatsApp('Hola! Quiero consultar por Edición (CapCut / Canva).');
+      });
+    })();
+  </script>
 </body>
 </html>

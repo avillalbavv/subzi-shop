@@ -6,13 +6,15 @@ window.SUBZI = window.SUBZI || {};
 
 SUBZI.WHATSAPP_NUMBER = "595983929719"; // sin + para wa.me
 
-SUBZI.BUILD = "v12";
+// Versión para cache-busting (útil para imágenes en PC)
+SUBZI.BUILD = "v23";
 
 SUBZI.categoryImages = {
   chatgpt: "./assets/products/chatgpt.png",
   games: "./assets/products/games.png",
   steam: "./assets/products/steam.png",
   streaming: "./assets/products/streaming.png",
+  editing: "./assets/products/editing.png",
 };
 
 // Categorías (solo navegación)
@@ -21,6 +23,7 @@ SUBZI.categories = [
   { id: "games", label: "Juegos", emoji: "🎮", page: "/games/" },
   { id: "steam", label: "Steam Keys", emoji: "🔑", page: "/steam/" },
   { id: "streaming", label: "Streaming", emoji: "📺", page: "/streaming/" },
+  { id: "editing", label: "Edición", emoji: "✂️", page: "/editing/" },
 ];
 
 // Cupones opcionales
@@ -54,7 +57,7 @@ SUBZI.products = [
     category: "chatgpt",
     icon: "✨",
     name: "ChatGPT Plus",
-    price: 39000,
+    price: 15000,
     currency: "PYG",
     badge: "Suscripción",
     desc: "Suscripción ChatGPT Plus (consulta disponibilidad).",
@@ -111,6 +114,25 @@ SUBZI.products = [
   <p class="pNote">Nos pasás tu correo y te enviamos la <b>invitación al email del cliente</b>. Te guiamos por WhatsApp para activarlo en tu cuenta.</p>
   <p class="fine">*Beneficios sujetos al plan vigente y pueden variar con el tiempo.</p>
 </div>`,
+    },
+  },
+
+  // Gemini (IA)
+  {
+    id: "gemini-business",
+    category: "chatgpt",
+    icon: "♊",
+    name: "Gemini Business/Enterprise",
+    price: 29000,
+    currency: "PYG",
+    badge: "Suscripción",
+    desc: "Gemini (Business/Enterprise) para trabajo y productividad — consultá disponibilidad.",
+    image: "./assets/products/gemini-business.png",
+    features: ["Entrega inmediata", "Soporte", "Guía"],
+    details: {
+      plan: "Gemini Business (beneficios según el plan vigente).",
+      pagos: "Pago por período a coordinar por WhatsApp.",
+      how: "Tras el pago te enviamos la activación o invitación correspondiente. Vos lo activás en tu cuenta sin pasar contraseñas; queda para siempre según el plan contratado.",
     },
   },
 
@@ -183,7 +205,7 @@ SUBZI.products = [
     category: "games",
     icon: "⚽",
     name: "EA SPORTS FC 26",
-    price: 0,
+    price: 30000,
     currency: "PYG",
     badge: "Juego",
     desc: "Activación offline (PC) — consultá stock y precio.",
@@ -200,7 +222,7 @@ SUBZI.products = [
     category: "games",
     icon: "🕷️",
     name: "Marvel’s Spider-Man Remastered (2018)",
-    price: 0,
+    price: 25000,
     currency: "PYG",
     badge: "Juego",
     desc: "Activación offline (PC) — consultá stock y precio.",
@@ -217,7 +239,7 @@ SUBZI.products = [
     category: "games",
     icon: "🌲",
     name: "Sons of the Forest",
-    price: 0,
+    price: 20000,
     currency: "PYG",
     badge: "Juego",
     desc: "Activación offline (PC) — consultá stock y precio.",
@@ -237,7 +259,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🧟",
     name: "Resident Evil Requiem",
-    price: 0,
+    price: 350000,
     currency: "PYG",
     badge: "Horror",
     desc: "Steam Key original con entrega inmediata por WhatsApp y canje directo en tu cuenta de Steam.",
@@ -245,7 +267,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Resident Evil Requiem. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 350000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Resident Evil Requiem</h4>
@@ -265,7 +287,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🤖",
     name: "Detroit Become Human",
-    price: 0,
+    price: 45000,
     currency: "PYG",
     badge: "Narrativa",
     desc: "Experiencia narrativa premium con Steam Key para activarla directamente en tu propia cuenta.",
@@ -273,7 +295,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Detroit Become Human. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 45000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Detroit Become Human</h4>
@@ -293,7 +315,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🩸",
     name: "Outlast 2",
-    price: 0,
+    price: 35000,
     currency: "PYG",
     badge: "Terror",
     desc: "Terror psicológico en PC con entrega inmediata de key según disponibilidad de stock.",
@@ -301,7 +323,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Outlast 2. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 35000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Outlast 2</h4>
@@ -321,7 +343,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🥋",
     name: "Mortal Kombat Ultimate",
-    price: 0,
+    price: 40000,
     currency: "PYG",
     badge: "Fighting",
     desc: "Edición completa para Steam con key digital y soporte para que la actives sin complicaciones.",
@@ -329,7 +351,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Mortal Kombat 11 Ultimate. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 40000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Mortal Kombat 11 Ultimate</h4>
@@ -349,7 +371,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🦇",
     name: "Batman Arkham Origins",
-    price: 0,
+    price: 25000,
     currency: "PYG",
     badge: "Acción",
     desc: "Sumá Gotham a tu biblioteca con una Steam Key original y activación 100% en tu cuenta.",
@@ -357,7 +379,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Batman Arkham Origins. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 25000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Batman Arkham Origins</h4>
@@ -377,7 +399,7 @@ SUBZI.products = [
     category: "steam",
     icon: "⚡",
     name: "Injustice 2 Legendary Edition",
-    price: 0,
+    price: 35000,
     currency: "PYG",
     badge: "Legendary",
     desc: "La edición más completa de Injustice 2 lista para entrar a tu cuenta de Steam.",
@@ -385,7 +407,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Injustice 2 Legendary Edition. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 35000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Injustice 2 Legendary Edition</h4>
@@ -405,7 +427,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🏎️",
     name: "Assetto Corsa",
-    price: 0,
+    price: 45000,
     currency: "PYG",
     badge: "Sim Racing",
     desc: "Simulador ideal para fanáticos del automovilismo con entrega digital inmediata.",
@@ -413,7 +435,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Assetto Corsa. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 45000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Assetto Corsa</h4>
@@ -433,7 +455,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🧩",
     name: "Human Fall Flat",
-    price: 0,
+    price: 25000,
     currency: "PYG",
     badge: "Co-op",
     desc: "Diversión cooperativa con Steam Key original y guía rápida de canje.",
@@ -441,7 +463,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Human Fall Flat. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 25000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Human Fall Flat</h4>
@@ -462,7 +484,7 @@ SUBZI.products = [
     icon: "🔫",
     name: "Buckshot Roulette",
     aliases: ["Bookshot Roulette", "Buckshot Roulette"],
-    price: 0,
+    price: 15000,
     currency: "PYG",
     badge: "Indie",
     desc: "Indie viral con entrega en key para activarlo al instante en tu biblioteca de Steam.",
@@ -470,7 +492,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Buckshot Roulette. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 15000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Buckshot Roulette</h4>
@@ -490,7 +512,7 @@ SUBZI.products = [
     category: "steam",
     icon: "👁️",
     name: "Silent Hill Homecoming",
-    price: 0,
+    price: 35000,
     currency: "PYG",
     badge: "Survival Horror",
     desc: "Terror clásico para PC con Steam Key lista para entrega inmediata.",
@@ -498,7 +520,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Silent Hill Homecoming. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 35000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Silent Hill Homecoming</h4>
@@ -518,7 +540,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🏹",
     name: "Tomb Raider Definitive Survival Trilogy",
-    price: 0,
+    price: 75000,
     currency: "PYG",
     badge: "Trilogía",
     desc: "La trilogía de Lara Croft en una sola compra con activación directa en tu cuenta.",
@@ -526,7 +548,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Tomb Raider Definitive Survival Trilogy. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 75000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Tomb Raider Definitive Survival Trilogy</h4>
@@ -546,7 +568,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🏁",
     name: "WRC 9",
-    price: 0,
+    price: 30000,
     currency: "PYG",
     badge: "Rally",
     desc: "Rally competitivo para Steam con key digital y soporte postventa.",
@@ -554,7 +576,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de WRC 9. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 30000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de WRC 9</h4>
@@ -574,7 +596,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🕯️",
     name: "The Evil Within",
-    price: 0,
+    price: 45000,
     currency: "PYG",
     badge: "Terror",
     desc: "Shinji Mikami en tu biblioteca con canje directo y sin compartir contraseñas.",
@@ -582,7 +604,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de The Evil Within. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 45000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de The Evil Within</h4>
@@ -602,7 +624,7 @@ SUBZI.products = [
     category: "steam",
     icon: "🪦",
     name: "Martha is Dead",
-    price: 0,
+    price: 30000,
     currency: "PYG",
     badge: "Thriller",
     desc: "Thriller oscuro con key oficial para activar en tu cuenta al terminar el pago.",
@@ -610,7 +632,7 @@ SUBZI.products = [
     features: ["Entrega inmediata", "Steam Key", "Soporte de activación"],
     details: {
       plan: "Steam Key original de Martha is Dead. Stock disponible para venta inmediata.",
-      pagos: "Precio a cargar. Por ahora se confirma y se coordina el pago por WhatsApp.",
+      pagos: "Precio: 30000 PYG (cierre por WhatsApp).",
       how: "Tras el pago te vamos a mandar la key para que la canjees directamente en tu cuenta, sin contraseñas. Vos la canjeás y queda en tu cuenta para siempre.",
       extraHtml: `<div class=\"pRich\">
   <h4>Entrega inmediata de Martha is Dead</h4>
@@ -634,7 +656,7 @@ SUBZI.products = [
     category: "streaming",
     icon: "🎬",
     name: "Netflix",
-    price: 0,
+    price: 20000,
     currency: "PYG",
     badge: "Streaming",
     desc: "Servicio de streaming listo para coordinar por WhatsApp con la misma ficha visual que el resto del catálogo.",
@@ -661,7 +683,7 @@ SUBZI.products = [
     category: "streaming",
     icon: "✨",
     name: "Disney+",
-    price: 0,
+    price: 15000,
     currency: "PYG",
     badge: "Streaming",
     desc: "Disney+ para tu cuenta o acceso coordinado según disponibilidad.",
@@ -688,7 +710,7 @@ SUBZI.products = [
     category: "streaming",
     icon: "🎞️",
     name: "Paramount+",
-    price: 0,
+    price: 15000,
     currency: "PYG",
     badge: "Streaming",
     desc: "Paramount+ con activación guiada y soporte simple por WhatsApp.",
@@ -715,7 +737,7 @@ SUBZI.products = [
     category: "streaming",
     icon: "📦",
     name: "Prime Video",
-    price: 0,
+    price: 15000,
     currency: "PYG",
     badge: "Streaming",
     desc: "Prime Video listo para coordinar según el plan disponible en stock.",
@@ -742,7 +764,7 @@ SUBZI.products = [
     category: "streaming",
     icon: "🍥",
     name: "Crunchyroll",
-    price: 0,
+    price: 15000,
     currency: "PYG",
     badge: "Anime",
     desc: "Crunchyroll para fans del anime con activación rápida y soporte.",
@@ -769,7 +791,7 @@ SUBZI.products = [
     category: "streaming",
     icon: "🍿",
     name: "HBO Max",
-    price: 0,
+    price: 15000,
     currency: "PYG",
     badge: "Streaming",
     desc: "HBO Max para sumar a tu cuenta con asistencia durante la activación.",
@@ -789,6 +811,44 @@ SUBZI.products = [
   </ul>
   <p class=\"pNote\">Los precios los cargamos después, pero el apartado ya queda listo para mostrar el servicio.</p>
 </div>`,
+    },
+  },
+
+  // =========================
+  // EDICIÓN
+  // =========================
+  {
+    id: "capcut",
+    category: "editing",
+    icon: "✂️",
+    name: "CapCut",
+    price: 25000,
+    currency: "PYG",
+    badge: "Edición",
+    desc: "Herramienta de edición para videos — consultá planes y disponibilidad.",
+    image: "./assets/products/capcut.png",
+    features: ["Edición", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "CapCut (plan según disponibilidad).",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Tras el pago coordinamos la activación. Vos lo activás en tu cuenta sin pasar contraseñas; queda asociado a tu cuenta según el plan.",
+    },
+  },
+  {
+    id: "canva",
+    category: "editing",
+    icon: "🎨",
+    name: "Canva",
+    price: 25000,
+    currency: "PYG",
+    badge: "Edición",
+    desc: "Canva para diseño y plantillas — consultá planes y disponibilidad.",
+    image: "./assets/products/canva.png",
+    features: ["Diseño", "Soporte", "Consulta rápida"],
+    details: {
+      plan: "Canva (plan según disponibilidad).",
+      pagos: "Precio a cargar luego. Confirmación y pago por WhatsApp.",
+      how: "Tras el pago coordinamos la activación. Vos lo activás en tu cuenta sin pasar contraseñas; queda asociado a tu cuenta según el plan.",
     },
   },
 

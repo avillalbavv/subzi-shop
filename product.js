@@ -21,6 +21,15 @@
 
   function byId(id){ return document.getElementById(id); }
 
+  function withBuild(url){
+    try{
+      var v = (window.SUBZI && SUBZI.BUILD) ? String(SUBZI.BUILD) : "";
+      if (!v) return url;
+      if (!url) return url;
+      return (url.indexOf("?") !== -1) ? (url + "&v=" + encodeURIComponent(v)) : (url + "?v=" + encodeURIComponent(v));
+    }catch(e){ return url; }
+  }
+
   function render(){
     var id = getParam("id");
     var p = null;
@@ -30,7 +39,7 @@
     if (!p) p = products[0];
     if (!p) return;
 
-    var imgSrc = p.image || categoryImages[p.category] || categoryImages.games;
+    var imgSrc = withBuild(p.image || categoryImages[p.category] || categoryImages.games);
     var imgEl = byId("detailImg");
     if (imgEl) imgEl.src = core.path(imgSrc);
 

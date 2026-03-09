@@ -878,6 +878,9 @@ if ((res.error.status && String(res.error.status) === "429") || ml.includes("rat
     var waGames = byId("btnWhatsAppGames");
     if (waGames) waGames.addEventListener("click", function(){ core.openWhatsApp(false); });
 
+    var waEditing = byId("btnWhatsAppEditing");
+    if (waEditing) waEditing.addEventListener("click", function(){ core.openWhatsApp(false); });
+
     var waFloat = byId("btnWhatsAppFloat");
     if (waFloat) waFloat.addEventListener("click", function(){ core.openWhatsApp(false); });
 

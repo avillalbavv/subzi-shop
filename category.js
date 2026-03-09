@@ -15,6 +15,15 @@
     return p.image || categoryImages[p.category] || categoryImages.games || categoryImages.chatgpt || "";
   }
 
+  function withBuild(url){
+    try{
+      var v = (window.SUBZI && SUBZI.BUILD) ? String(SUBZI.BUILD) : "";
+      if (!v) return url;
+      if (!url) return url;
+      return (url.indexOf("?") !== -1) ? (url + "&v=" + encodeURIComponent(v)) : (url + "?v=" + encodeURIComponent(v));
+    }catch(e){ return url; }
+  }
+
   function renderIconHTML(icon){
     if (!icon) return "";
     // si parece una ruta de imagen
@@ -51,7 +60,7 @@
       card.setAttribute("data-tilt", "");
       card.setAttribute("data-open", p.id);
 
-      var imgSrc = core.path(getImg(p));
+      var imgSrc = core.path(withBuild(getImg(p)));
 
       card.innerHTML =
         '<div class="pCover">' +
