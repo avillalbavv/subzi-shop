@@ -4,7 +4,7 @@
  */
 window.SUBZI = window.SUBZI || {};
 
-SUBZI.WHATSAPP_NUMBER = "595983929719"; // sin + para wa.me
+SUBZI.WHATSAPP_NUMBER = "595974464716"; // sin + para wa.me
 
 // Versión para cache-busting (útil para imágenes en PC)
 SUBZI.BUILD = "v23";
